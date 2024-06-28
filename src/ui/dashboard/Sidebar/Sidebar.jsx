@@ -1,27 +1,31 @@
 import LinkItem from "./LinkItem";
 const links = [
   {
-    iconClassName: "icon-[material-symbols--dashboard-outline]",
+    iconClassName:
+      "iconify clarity--dashboard-solid-badged text-white-500 rounded-full",
     name: "Dashboard",
     link: "/chinook/dashboard",
   },
   {
-    iconClassName: "icon-[clarity--users-solid-alerted]",
+    // iconClassName: "icon-[clarity--users-solid-alerted]",
+    iconClassName:
+      "iconify clarity--users-solid-alerted text-white-500 rounded-full",
     name: "Employees",
     link: "/chinook/dashboard/employees",
   },
   {
-    iconClassName: "icon-[heroicons--user-group-20-solid]",
+    iconClassName: "iconify clarity--users-solid text-white-500 rounded-full",
     name: "Customers",
     link: "/chinook/dashboard/customers",
   },
   {
-    iconClassName: "icon-[hugeicons--invoice-03]",
+    iconClassName:
+      "iconify clarity--dollar-bill-solid  text-white-500 rounded-full",
     name: "Invoices",
     link: "/chinook/dashboard/invoices",
   },
   {
-    iconClassName: "icon-[ph--playlist-fill]",
+    iconClassName: "iconify clarity--music-note-solid text-white-500 rounded-full",
     name: "Playlists",
     link: "/chinook/dashboard/playlists",
   },
@@ -36,7 +40,7 @@ export default function Sidebar() {
               Dashboard
             </span>
           </div>
-          <nav className="mt-10 px-6 "></nav>
+          <nav className="mt-10 px-6"></nav>
           {links.map((item, index) => (
             <LinkItem
               key={index}

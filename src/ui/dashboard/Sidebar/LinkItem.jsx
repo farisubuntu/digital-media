@@ -8,10 +8,10 @@ export default function SidebarLinkItem({ iconClassName, name, link }) {
     <li
       className={`${
         pathname === link ? "text-yellow-400 bg-black" : "text-white"
-      } `}
+      } px-2`}
     >
-      <div className="flex">
-        <span className={`${iconClassName}`}></span>
+      <div className="flex items-center">
+        <span class={`${iconClassName} p-2 `}></span>
         <Link href={link} className="p-2">
           {name}
         </Link>
