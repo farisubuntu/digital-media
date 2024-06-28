@@ -35,11 +35,7 @@ export default function Sidebar() {
     <div className="dashboardSidebar px-2 border-r-2">
       <div className="flex flex-col sm:flex-row sm:justify-around">
         <div className="h-screen">
-          <div className="flex items-center justify-start mx-6 mt-10">
-            <span className="text-gray-600 dark:text-gray-300 ml-4 text-2xl font-bold">
-              Dashboard
-            </span>
-          </div>
+          
           <nav className="mt-10 px-6"></nav>
           {links.map((item, index) => (
             <LinkItem
