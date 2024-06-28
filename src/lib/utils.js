@@ -17,7 +17,55 @@ export async function getInvoicesCount() {
     },
   });
   const count = res._count._all;
-  console.log("count", count);
+  // console.log("count", count);
 
+  return count;
+}
+
+export async function getCustomersCount() {
+  const res = await prisma.customers.aggregate({
+    _count: {
+      _all: true,
+    },
+  });
+  const count = res._count._all.toString();
+  return count;
+}
+export async function getEmployeesCount() {
+  const res = await prisma.employees.aggregate({
+    _count: {
+      _all: true,
+    },
+  });
+  const count = res._count._all.toString();
+  return count;
+}
+
+export async function getPlaylistsCount() {
+  const res = await prisma.playlists.aggregate({
+    _count: {
+      _all: true,
+    },
+  });
+  const count = res._count._all.toString();
+  return count;
+}
+
+export async function getAlbumsCount() {
+  const res = await prisma.albums.aggregate({
+    _count: {
+      _all: true,
+    },
+  });
+  const count = res._count._all.toString();
+  return count;
+}
+export async function getArtistsCount() {
+  const res = await prisma.artists.aggregate({
+    _count: {
+      _all: true,
+    },
+  });
+  const count = res._count._all.toString();
   return count;
 }

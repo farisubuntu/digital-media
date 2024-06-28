@@ -7,7 +7,15 @@ import {
   artistsIcon,
 } from "@/assets/chinhook";
 
-import { getInvoicesTotal, getInvoicesCount } from "@/lib/utils";
+import {
+  getInvoicesTotal,
+  getInvoicesCount,
+  getCustomersCount,
+  getEmployeesCount,
+  getPlaylistsCount,
+  getAlbumsCount,
+  getArtistsCount,
+} from "@/lib/utils";
 import InfoCard from "@/ui/dashboard/InfoCard/InfoCard";
 
 // ########################
@@ -18,37 +26,37 @@ const cardsInfo = [
   {
     iconSrc: employeesIcon,
     title: `Teams Members`,
-    value: 10,
+    value: await getEmployeesCount(),
     link: "/chinook/dashboard/employees",
   },
   {
     iconSrc: invoicesIcon,
     title: `Invoices - ${await getInvoicesCount()}`,
-    value: getInvoicesTotal(),
+    value: await getInvoicesTotal(),
     link: "/chinook/dashboard/invoices",
   },
   {
     iconSrc: customersIcon,
     title: "Customers",
-    value: 10,
+    value: await getCustomersCount(),
     link: "/chinook/dashboard/customers",
   },
   {
     iconSrc: playlistsIcon,
     title: "Playlists",
-    value: 10,
+    value: await getPlaylistsCount(),
     link: "/chinook/dashboard/playlists",
   },
   {
     iconSrc: albumsIcon,
     title: "Albums",
-    value: 10,
+    value: await getAlbumsCount(),
     link: "/chinook/dashboard/albums",
   },
   {
     iconSrc: artistsIcon,
     title: "Artists",
-    value: 10,
+    value: await getArtistsCount(),
     link: "/chinook/dashboard/artists",
   },
 ];
@@ -57,7 +65,7 @@ export default function DashboardHomePage() {
   return (
     <>
       {/* Cards */}
-      <div className="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 sm:px-8">
+      <div className="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:px-8">
         {cardsInfo.map((card, index) => (
           <InfoCard key={index} {...card} />
         ))}
