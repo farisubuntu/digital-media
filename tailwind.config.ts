@@ -10,14 +10,6 @@ const config: Config = {
   theme: {
     extend: {},
   },
-  plugins: [
-    addIconSelectors([
-      "material-symbols",
-      "clarity",
-      "heroicons",
-      "hugeicons",
-      "ph",
-    ]),
-  ],
+  plugins: [addIconSelectors([ "clarity", "flowbite"])],
 };
 export default config;

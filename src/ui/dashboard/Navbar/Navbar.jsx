@@ -2,9 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
-import { menuItems } from "@/ui/dashboard/Navbar/links";
+
 import Search from "@/ui/Search";
 import { usePathname } from "next/navigation";
+
+
+const menuItems = [
+  { name: "Chinook Dashboard", link: "/chinook/dashboard" },
+  { name: "Blog", link: "/blog", disabled: true },
+];
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -25,7 +31,14 @@ export default function Navbar() {
         </Link>
         <ul className="flex">
           {menuItems.map((item) => (
-            <li key={item.name} className={`p-2 ${pathname === item.link ? "text-yellow-400 bg-black" : "text-white"}`}>
+            <li
+              key={item.name}
+              className={`p-2 ${
+                pathname === item.link
+                  ? "text-yellow-400 bg-black"
+                  : "text-white"
+              }`}
+            >
               <Link href={item.link} className="p-2">
                 {item.name}
               </Link>
