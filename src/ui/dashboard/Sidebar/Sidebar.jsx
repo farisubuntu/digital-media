@@ -1,7 +1,10 @@
-import Image from "next/image";
 import LinkItem from "./LinkItem";
 const links = [
-  { iconClassName: "", name: "Dashboard", link: "/chinook/dashboard" },
+  {
+    iconClassName: "icon-[material-symbols--dashboard-outline]",
+    name: "Dashboard",
+    link: "/chinook/dashboard",
+  },
   {
     iconClassName: "icon-[clarity--users-solid-alerted]",
     name: "Employees",
