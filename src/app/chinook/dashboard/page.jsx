@@ -3,6 +3,8 @@ import {
   employeesIcon,
   invoicesIcon,
   playlistsIcon,
+  albumsIcon,
+  artistsIcon,
 } from "@/assets/chinhook";
 
 import InfoCard from "@/ui/dashboard/InfoCard/InfoCard";
@@ -31,6 +33,18 @@ const cardsInfo = [
     title: "Playlists",
     value: 10,
     link: "/chinook/dashboard/playlists",
+  },
+  {
+    iconSrc: albumsIcon,
+    title: "Albums",
+    value: 10,
+    link: "/chinook/dashboard/albums",
+  },
+  {
+    iconSrc: artistsIcon,
+    title: "Artists",
+    value: 10,
+    link: "/chinook/dashboard/artists",
   },
 ];
 
