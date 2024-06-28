@@ -2,16 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-* {
-  /* background-color: #1e293b; */
-  color: #c8c5c6;
+:root {
+  --bg: #1e293b;
+  --fg: white;
 }
 
-body{
-
-  font-family: 'Poppins', sans-serif;
+html,
+body {
+  font-family: "Poppins", sans-serif;
   font-weight: 400;
-  font-size: 18px;
+  /* font-size: 18px; */
+
+  background-color: var(--bg);
+  color: var(--fg);
 }

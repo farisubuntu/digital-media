@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
-import Navbar from "@/ui/dashboard/Navbar/Navbar";
-
+import Sidebar from "@/ui/dashboard/Sidebar/Sidebar";
 
 export const metadata: Metadata = {
   title: "Chinook Digital Media - Home",
@@ -13,9 +12,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-<>
-   <div className="w-full flex space-x-4 border-b-2  p-2 bg-slate-700"><Navbar /></div>
-   {children}
-   </>
+    <>
+      <div className="dashboardPage w-full flex">
+        <div className="flex-1/5">
+          <Sidebar />
+        </div>
+        <div className="w-full flex-4/5 mx-2 my-2">{children}</div>
+      </div>
+    </>
   );
 }

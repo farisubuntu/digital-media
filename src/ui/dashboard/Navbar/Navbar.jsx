@@ -1,13 +1,16 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
 import { menuItems } from "@/ui/dashboard/Navbar/links";
 import Search from "@/ui/Search";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   return (
     <>
-      <div className="w-full flex items-center">
+      <div className="w-full flex items-center px-1 py-2">
         <div>
           <Image
             src={Logo}
@@ -22,7 +25,7 @@ export default function Navbar() {
         </Link>
         <ul className="flex">
           {menuItems.map((item) => (
-            <li key={item.name} className="border-2 mx-2 rounded hover:bg-black hover:text-yellow-400 italic text-2xl">
+            <li key={item.name} className={`p-2 ${pathname === item.link ? "text-yellow-400 bg-black" : "text-white"}`}>
               <Link href={item.link} className="p-2">
                 {item.name}
               </Link>

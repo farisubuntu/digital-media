@@ -1,7 +1,3 @@
-
-
 export default function DashboardHomePage() {
-  return (
-    <div>Dashboard Home Page</div>
-  )
+  return <div>Dashboard Home Page</div>;
 }
