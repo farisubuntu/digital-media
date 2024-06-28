@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function InfoCard({ iconSrc, title, value, link }) {
-  console.log("iconSrc", iconSrc);
+  // console.log("iconSrc", iconSrc);
   return (
     <Link href={link}>
       <div className="flex items-center bg-white border rounded-sm  shadow px-2 hover:invert">

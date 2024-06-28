@@ -7,19 +7,24 @@ import {
   artistsIcon,
 } from "@/assets/chinhook";
 
+import { getInvoicesTotal, getInvoicesCount } from "@/lib/utils";
 import InfoCard from "@/ui/dashboard/InfoCard/InfoCard";
+
+// ########################
+// # Cards data
+// ########################
 
 const cardsInfo = [
   {
     iconSrc: employeesIcon,
-    title: "Employees",
+    title: `Teams Members`,
     value: 10,
     link: "/chinook/dashboard/employees",
   },
   {
     iconSrc: invoicesIcon,
-    title: "Invoices",
-    value: 10,
+    title: `Invoices - ${await getInvoicesCount()}`,
+    value: getInvoicesTotal(),
     link: "/chinook/dashboard/invoices",
   },
   {

@@ -11,7 +11,7 @@ export default function SidebarLinkItem({ iconClassName, name, link }) {
       } px-2`}
     >
       <div className="flex items-center">
-        <span class={`${iconClassName} p-2 `}></span>
+        <span className={`${iconClassName} p-2 `}></span>
         <Link href={link} className="p-2">
           {name}
         </Link>
