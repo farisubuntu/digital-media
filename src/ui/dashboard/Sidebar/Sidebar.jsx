@@ -1,59 +1,50 @@
-import { FaUsersGear } from "react-icons/bs";
-import { BiSolidAlbum } from "react-icons/bi";
-import { LiaFileInvoiceSolid } from "react-icons/lia";
-import { PiPlaylistFill } from "react-icons/pi";
-import { FaUsersRectangle } from "react-icons/fa6";
-import SidebarLinkItem from "./SidebarLinkItem";
-
-const sidebarItems = [
+import Image from "next/image";
+import LinkItem from "./LinkItem";
+const links = [
+  { iconClassName: "", name: "Dashboard", link: "/chinook/dashboard" },
   {
-    Icon: <FaUsersRectangle />,
-    title: "Employees",
-    link: "/chinook/employees",
+    iconClassName: "icon-[clarity--users-solid-alerted]",
+    name: "Employees",
+    link: "/chinook/dashboard/employees",
   },
   {
-    Icon: <FaUsersGear />,
-    title: "Customers",
-    link: "/chinook/customers",
+    iconClassName: "icon-[heroicons--user-group-20-solid]",
+    name: "Customers",
+    link: "/chinook/dashboard/customers",
   },
   {
-    Icon: <LiaFileInvoiceSolid />,
-    title: "Invoices",
-    link: "/chinook/invoices",
+    iconClassName: "icon-[hugeicons--invoice-03]",
+    name: "Invoices",
+    link: "/chinook/dashboard/invoices",
   },
   {
-    Icon: <PiPlaylistFill />,
-    title: "Playlists",
-    link: "/chinook/playlists",
-  },
-  {
-    Icon: <BiSolidAlbum />,
-    title: "Albums",
-    link: "/chinook/albums",
+    iconClassName: "icon-[ph--playlist-fill]",
+    name: "Playlists",
+    link: "/chinook/dashboard/playlists",
   },
 ];
-
 export default function Sidebar() {
   return (
-    <div className="dashboardSidebar">
+    <div className="dashboardSidebar px-2 border-r-2">
       <div className="flex flex-col sm:flex-row sm:justify-around">
-        <div className="h-screen w-72">
+        <div className="h-screen">
           <div className="flex items-center justify-start mx-6 mt-10">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
+            <span className="text-gray-600 dark:text-gray-300 ml-4 text-2xl font-bold">
               Dashboard
             </span>
           </div>
-          <nav className="mt-10 px-6 ">
-            {sidebarItems.map((item, index) => (
-              <SidebarLinkItem
-                key={index}
-                Icon={item.Icon} // item.Icon}
-                title={item.title}
-                link={item.link}
-              />
-            ))}
-          </nav>
-          <div className="support-item absolute bottom-0 my-10">
+          <nav className="mt-10 px-6 "></nav>
+          {links.map((item, index) => (
+            <LinkItem
+              key={index}
+              iconClassName={item.iconClassName}
+              name={item.name}
+              link={item.link}
+            />
+          ))}
+
+          {/* buttom section */}
+          <div className="absolute bottom-0 my-10">
             <a
               className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 transition-colors duration-200 flex items-center py-2 px-8"
               href="#"
