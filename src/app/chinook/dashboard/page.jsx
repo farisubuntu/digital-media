@@ -70,6 +70,9 @@ export default function DashboardHomePage() {
           <InfoCard key={index} {...card} />
         ))}
       </div>
+      <div className="text-lg my-3">
+        <hr />
+      </div>
     </>
   );
 }

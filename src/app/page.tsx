@@ -8,5 +8,6 @@ export default function Home() {
         Chinook Digital Media Page
       </Link>
     </h1>
+    
   );
 }

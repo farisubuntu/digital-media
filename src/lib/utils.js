@@ -69,3 +69,4 @@ export async function getArtistsCount() {
   const count = res._count._all.toString();
   return count;
 }
+
