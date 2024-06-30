@@ -16,7 +16,7 @@ import {
   getAlbumsCount,
   getArtistsCount,
 } from "@/lib/utils";
-import InfoCard from "@/ui/dashboard/InfoCard/InfoCard";
+import StatCard from "@/ui/dashboard/StatCard/StatCard";
 
 // ########################
 // # Cards data
@@ -62,18 +62,17 @@ const cardsInfo = [
 ];
 
 export default async function DashboardHomePage() {
-  
   return (
-    <>
-      {/* Cards */}
-      <div className="grid grid-cols-1 gap-4 px-4 mt-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 sm:px-8">
-        {cardsInfo.map((card, index) => (
-          <InfoCard key={index} {...card} />
-        ))}
+    <div className="bg-gray-900 rounded-lg mx-1">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl lg:max-w-none">
+          <dl className="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+            {cardsInfo.map((card, index) => (
+              <StatCard key={index} {...card} />
+            ))}
+          </dl>
+        </div>
       </div>
-      <div className="text-lg my-3">
-        <hr />
-      </div>
-    </>
+    </div>
   );
 }

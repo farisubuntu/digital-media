@@ -55,3 +55,5 @@ then call `updateInvoicesDates()`
 ```ts
 await updateInvoicesDates();
 ```
+
+**for example app :** [https://docs.hanko.io/tutorials/nextjs-todo](https://docs.hanko.io/tutorials/nextjs-todo)
