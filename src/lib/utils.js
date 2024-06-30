@@ -1,5 +1,18 @@
 import { prisma } from "@/connect";
 
+export async function getInvoicesWithDate({ from, to }) {
+  const res = await prisma.invoices.findMany({
+    where: {
+      InvoiceDate: {
+        gte: from,
+        lte: to,
+      },
+    },
+  });
+  const data = await res.json();
+  return data;
+}
+
 export async function getInvoicesTotal() {
   const res = await prisma.invoices.aggregate({
     _sum: {
@@ -69,4 +82,3 @@ export async function getArtistsCount() {
   const count = res._count._all.toString();
   return count;
 }
-

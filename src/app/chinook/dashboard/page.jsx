@@ -61,7 +61,8 @@ const cardsInfo = [
   },
 ];
 
-export default function DashboardHomePage() {
+export default async function DashboardHomePage() {
+  
   return (
     <>
       {/* Cards */}

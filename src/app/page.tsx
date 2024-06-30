@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { prisma } from "@/connect";
 
-export default function Home() {
+
+export default async function Home() {
+  // await updateInvoicesDates();
+
   return (
     <h1 className="text-3xl font-bold py-4 italic">
       Go to{" "}
@@ -8,6 +12,5 @@ export default function Home() {
         Chinook Digital Media Page
       </Link>
     </h1>
-    
   );
 }
