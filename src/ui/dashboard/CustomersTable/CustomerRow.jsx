@@ -5,21 +5,21 @@ import ViewButton from "@/ui/dashboard/Buttons/ViewButton";
 import Image from "next/image";
 import Link from "next/link";
 
-
 export default async function CustomerRow({ customer }) {
   const countryFlag = getCountryFlagByName(customer.Country);
 
   // https://avatar.iran.liara.run/public?usearname=[value]
   const randomImage = `https://avatar.iran.liara.run/public?usearname=${customer.FirstName}`;
   return (
-    <tr className="hover:bg-slate-800 hover:text-white">
+    <tr>
       <td className="p-2 whitespace-nowrap border-l-2">
         <div className="flex items-center">
           <div className="w-10 h-10 flex-shrink-0 mr-2 sm:mr-3">
-            <Image 
-              
+            <Image
               className="rounded-full"
-              src={randomImage ? randomImage : "https://via.placeholder.com/150"}
+              src={
+                randomImage ? randomImage : "https://via.placeholder.com/150"
+              }
               width={40}
               height={40}
               alt={customer.country}
@@ -43,13 +43,14 @@ export default async function CustomerRow({ customer }) {
           {countryFlag || "N/A"}
         </div>
       </td>
-      <td className="p-2 whitespace-nowrap border-l-2">
+      <td className="whitespace-nowrap text-white bg-red-700 ml-1 text-center">
         <DeleteButton action={""} />
       </td>
-      <td className="p-2 whitespace-nowrap border-l-2">
-        <button className="text-blue-500 hover:text-blue-700">
-          Edit/Details
-        </button>
+      <td className="whitespace-nowrap text-white bg-green-700 ml-1 text-center">
+        <EditButton action={""} />
+      </td>
+      <td className="whitespace-nowrap text-white bg-slate-700 ml-1 text-center">
+        <ViewButton action={""} />
       </td>
     </tr>
   );

@@ -2,8 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/logo.png";
+// import Search from "@/ui/Search";
 
-import Search from "@/ui/Search";
 import { usePathname } from "next/navigation";
 
 
@@ -45,9 +45,9 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="ml-auto">
+        {/* <div className="ml-auto">
           <Search />
-        </div>
+        </div> */}
       </div>
     </>
   );

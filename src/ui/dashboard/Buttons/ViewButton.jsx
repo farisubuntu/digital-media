@@ -1,7 +1,7 @@
 export default function ViewButton({ action }) {
   return (
     <>
-      <button class="text-inherit bg-inherit hover:bg-inherit hover:text-inherit hover:text-blue-600 text-sm hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+      <button class="text-inherit bg-inherit hover:italic hover:bg-blue-700 text-sm  border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
         <span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
