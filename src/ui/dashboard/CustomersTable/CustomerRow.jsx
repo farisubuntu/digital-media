@@ -4,6 +4,7 @@ import EditButton from "@/ui/dashboard/Buttons/EditButton";
 import ViewButton from "@/ui/dashboard/Buttons/ViewButton";
 import Image from "next/image";
 import Link from "next/link";
+import { actionDeleteCustomer } from "@/app/chinook/actions";
 
 export default async function CustomerRow({ customer }) {
   const countryFlag = getCountryFlagByName(customer.Country);
@@ -44,13 +45,13 @@ export default async function CustomerRow({ customer }) {
         </div>
       </td>
       <td className="whitespace-nowrap text-white bg-red-700 ml-1 text-center">
-        <DeleteButton action={""} />
+        <DeleteButton action={actionDeleteCustomer} id={customer.CustomerId} />
       </td>
-      <td className="whitespace-nowrap text-white bg-green-700 ml-1 text-center">
-        <EditButton action={""} />
-      </td>
+
       <td className="whitespace-nowrap text-white bg-slate-700 ml-1 text-center">
-        <ViewButton action={""} />
+        <ViewButton
+          routePath={`/chinook/dashboard/customers/${customer.CustomerId}`}
+        />
       </td>
     </tr>
   );
