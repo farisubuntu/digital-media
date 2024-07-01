@@ -12,7 +12,11 @@ body {
   font-family: "Poppins", sans-serif;
   font-size:14px;
   /* font-size: 18px; */
-
   background-color: var(--bg);
   color: var(--fg);
+}
+
+input{
+  color: blue;
+  padding-left:1rem;
 }

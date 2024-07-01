@@ -82,3 +82,16 @@ export async function getArtistsCount() {
   const count = res._count._all.toString();
   return count;
 }
+
+export async function getCustomerDetails(id) {
+  const res = await prisma.customers.findUnique({
+    where: {
+      CustomerId: Number(id),
+    },
+    include: {
+      invoices: true,
+      employees: true,
+    },
+  });
+  return res;
+}
