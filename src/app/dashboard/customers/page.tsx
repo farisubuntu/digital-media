@@ -1,5 +1,7 @@
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
+import { getAllCustomers } from "@/lib/utils";
+
 const breadcrumbs: Breadcrumb[] = [
   {
     label: "Home",
@@ -18,10 +20,13 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
-export default function CustomersPage() {
+export default async function CustomersPage() {
+  const customers = await getAllCustomers();
+
   return (
-    <>
+    <div className="flex flex-col">
       <Nav breadcrumbs={breadcrumbs} />
-    </>
+      <div>{JSON.stringify(customers, null, 2)}</div>
+    </div>
   );
 }

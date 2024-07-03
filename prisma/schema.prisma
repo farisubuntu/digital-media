@@ -78,8 +78,8 @@ model invoice_items {
   TrackId       Int
   UnitPrice     Decimal
   Quantity      Int
-  tracks        tracks   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
   invoices      invoices @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
+  tracks        tracks   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([TrackId], map: "IFK_InvoiceLineTrackId")
   @@index([InvoiceId], map: "IFK_InvoiceLineInvoiceId")
@@ -110,8 +110,8 @@ model media_types {
 model playlist_track {
   PlaylistId Int
   TrackId    Int
-  tracks     tracks    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
   playlists  playlists @relation(fields: [PlaylistId], references: [PlaylistId], onDelete: NoAction, onUpdate: NoAction)
+  tracks     tracks    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([PlaylistId, TrackId])
   @@index([TrackId], map: "IFK_PlaylistTrackTrackId")
@@ -135,9 +135,9 @@ model tracks {
   UnitPrice      Decimal
   invoice_items  invoice_items[]
   playlist_track playlist_track[]
-  media_types    media_types      @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
-  genres         genres?          @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
   albums         albums?          @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
+  genres         genres?          @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
+  media_types    media_types      @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([MediaTypeId], map: "IFK_TrackMediaTypeId")
   @@index([GenreId], map: "IFK_TrackGenreId")
