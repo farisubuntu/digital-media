@@ -20,19 +20,19 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <div>
-          <div className="md:">
-            <div>
+          <div>
+            <div className="flex justify-start">
               <Image
                 src={HeroLogo}
                 alt="Digital Media Co. Logo"
-                className="h-10 w-full mb-2"
+                className="h-20 w-80 mb-2 border rounded-lg"
               />
             </div>
-            <div>
+            <div className="">
               <Sidebar />
             </div>
           </div>
-          <div className="flex flex-col">{children}</div>
+          <div>{children}</div>
         </div>
       </body>
     </html>

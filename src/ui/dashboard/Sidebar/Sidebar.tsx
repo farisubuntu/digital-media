@@ -30,6 +30,11 @@ const links = [
     href: "/dashboard/employees",
     icon: UserPlusIcon,
   },
+  {
+    label: "Invoices",
+    href: "/dashboard/invoices",
+    icon: UserPlusIcon,
+  },
 ];
 
 export default function Sidebar() {
@@ -39,12 +44,9 @@ export default function Sidebar() {
   return (
     <>
       <nav className="">
-        <ul className="flex flex-col gap-2">
+        <ul>
           {links.map((link, index) => (
-            <li
-              key={index}
-              
-            >
+            <li key={index} className="">
               <Link
                 href={link.href}
                 className={`flex gap-2 px-2 py-1 border rounded-lg ${
