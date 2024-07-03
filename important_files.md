@@ -1,0 +1,1 @@
+prisma types: [/home/faris/github/farisubuntu/digital-media/node_modules/.prisma/client/index.d.ts][/home/faris/github/farisubuntu/digital-media/node_modules/.prisma/client/index.d.ts]

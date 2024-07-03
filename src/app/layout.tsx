@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import Sidebar from "@/ui/dashboard/Sidebar/Sidebar";
+import HeroLogo from "@/ui/assets/images/icon-128x128.png";
+import Image from "next/image";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -16,7 +18,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <div className="flex">
+          <div className="flex flex-col h-screen border-r-2 border-white gap-2 items-center">
+            <Image
+              src={HeroLogo}
+              alt="Digital Media Co. Logo"
+              className="h-10 w-full mb-2"
+            />
+
+            <div className="mx-2">
+              <Sidebar />
+            </div>
+          </div>
+          <div className="flex flex-col">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
