@@ -5,3 +5,4 @@ export async function getAllCustomers() {
   const json = JSON.stringify(customers, null, 2);
   return json;
 }
+
