@@ -16,9 +16,7 @@ export default function DashboardRootLayout({
   return (
     <main>
       <TopNav />
-
       <Suspense fallback={<div>Loading...</div>}>{children}</Suspense>
-     
     </main>
   );
 }

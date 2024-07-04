@@ -1,3 +1,6 @@
+import { ReactNode } from "react";
+
+
 interface Breadcrumb {
   label: string;
   href: string;
@@ -10,9 +13,14 @@ interface MenuLink {
   icon?: any;
 }
 
-interface NavigationMenu{
+interface NavigationMenu {
   label: string;
   href: string;
-  current: boolean
+  current?: boolean;
 }
-export type { Breadcrumb, MenuLink, NavigationMenu };
+interface StatCardInterface {
+  title: string;
+  icon?: ReactNode | string;
+  value: string | number;
+}
+export type { Breadcrumb, MenuLink, NavigationMenu, StatCardInterface };
