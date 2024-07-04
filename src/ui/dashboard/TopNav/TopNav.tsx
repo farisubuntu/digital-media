@@ -51,7 +51,7 @@ export default function TopNav() {
 
   return (
     <>
-      <div className="min-h-full">
+      <div className="">
         <Disclosure as="nav" className="bg-slate-800">
           {({ open }) => (
             <>
@@ -70,7 +70,7 @@ export default function TopNav() {
                     <div className="hidden md:block">
                       <div className="ml-10 flex items-baseline space-x-4">
                         {navigation.map((item) => (
-                          <a
+                          <Link
                             key={item.label}
                             href={item.href}
                             className={classNames(
@@ -84,7 +84,7 @@ export default function TopNav() {
                             }
                           >
                             {item.label}
-                          </a>
+                          </Link>
                         ))}
                       </div>
                     </div>
