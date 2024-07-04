@@ -1,4 +1,6 @@
-import prismaClient from "./connection-client";
+import { PrismaClient } from "@prisma/client";
+
+const prismaClient = new PrismaClient();
 
 export async function getAllCustomers() {
   const customers = await prismaClient.customers.findMany();
