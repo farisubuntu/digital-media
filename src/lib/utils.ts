@@ -4,8 +4,13 @@ const prismaClient = new PrismaClient();
 
 export async function getAllCustomers() {
   const customers = await prismaClient.customers.findMany();
-  const json = JSON.stringify(customers, null, 2);
-  return json;
+  
+  return customers;
+}
+export async function getAllEmployees() {
+  const employees = await prismaClient.employees.findMany();
+  
+  return employees;
 }
 
 export async function getInvoicesWithDate(from: Date | any, to: Date | any) {
