@@ -15,25 +15,28 @@ import {
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
 
+let statCardItems: StatCardInterface[];
 
+const fetchData = async () => {
+  statCardItems = [
+    {
+      title: "Total Customers",
+      icon: <UserGroupIcon className="size-12" />,
+      value: await getCustomersCount(),
+    },
+    {
+      title: "Total Employees",
+      icon: <UserPlusIcon className="size-12" />,
+      value: await getEmployeesCount(),
+    },
+    {
+      title: "Total Invoices",
+      icon: <CurrencyPoundIcon className="size-12" />,
+      value: await getInvoicesTotal(),
+    },
+  ];
+};
 
-const statCardItems: StatCardInterface[] = [
-  {
-    title: "Total Customers",
-    icon: <UserGroupIcon className="size-12" />,
-    value: await getCustomersCount(),
-  },
-  {
-    title: "Total Employees",
-    icon: <UserPlusIcon className="size-12" />,
-    value: await getEmployeesCount(),
-  },
-  {
-    title: "Total Invoices",
-    icon: <CurrencyPoundIcon className="size-12" />,
-    value: await getInvoicesTotal(),
-  },
-];
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -48,7 +51,8 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  await fetchData();
   return (
     <div className="p-2 my-3 md:my-1">
       <Nav breadcrumbs={breadcrumbs} />
