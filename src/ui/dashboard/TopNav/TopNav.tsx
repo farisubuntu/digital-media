@@ -14,7 +14,8 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import {useState} from "react";
+import { useState } from "react";
+import Logo from "@ui/assets/images/icon-64-64.png";
 
 const user = {
   name: "Tom Cook",
@@ -48,7 +49,6 @@ export default function TopNav() {
   // const currentPathSegment = currentPath[currentPath.length - 1];
   // console.log(currentPathSegment);
 
-
   return (
     <>
       <div className="min-h-full">
@@ -59,10 +59,12 @@ export default function TopNav() {
                 <div className="flex h-16 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
-                      <img
+                      <Image
                         className="h-8 w-8"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
+                        src={Logo}
                         alt="Your Company"
+                        width={64}
+                        height={64}
                       />
                     </div>
                     <div className="hidden md:block">
@@ -104,10 +106,12 @@ export default function TopNav() {
                           <MenuButton className="relative flex max-w-xs items-center rounded-full bg-slate-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
-                            <img
+                            <Image
                               className="h-8 w-8 rounded-full"
                               src={user.imageUrl}
                               alt=""
+                              width={32}
+                              height={32}
                             />
                           </MenuButton>
                         </div>
@@ -217,8 +221,6 @@ export default function TopNav() {
             </>
           )}
         </Disclosure>
-
-     
       </div>
     </>
   );
