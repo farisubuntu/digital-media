@@ -4,25 +4,33 @@ import Link from "next/link";
 import StatCard from "@/ui/dashboard/StatCard/StatCard";
 import { StatCardInterface } from "@/lib/definitiions";
 import {
+  getInvoicesTotal,
+  getCustomersCount,
+  getEmployeesCount,
+} from "@/lib/utils";
+import {
   CurrencyPoundIcon,
   UserGroupIcon,
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
+
+
+
 const statCardItems: StatCardInterface[] = [
   {
     title: "Total Customers",
     icon: <UserGroupIcon className="size-12" />,
-    value: 0,
+    value: await getCustomersCount(),
   },
   {
     title: "Total Employees",
     icon: <UserPlusIcon className="size-12" />,
-    value: 0,
+    value: await getEmployeesCount(),
   },
   {
     title: "Total Invoices",
     icon: <CurrencyPoundIcon className="size-12" />,
-    value: 0,
+    value: await getInvoicesTotal(),
   },
 ];
 
