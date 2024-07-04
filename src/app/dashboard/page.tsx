@@ -37,7 +37,6 @@ const fetchData = async () => {
   ];
 };
 
-
 const breadcrumbs: Breadcrumb[] = [
   {
     label: "Home",
@@ -54,18 +53,22 @@ const breadcrumbs: Breadcrumb[] = [
 export default async function DashboardPage() {
   await fetchData();
   return (
-    <div className="p-2 my-3 md:my-1">
+    <>
       <Nav breadcrumbs={breadcrumbs} />
-      <div className="flex space-x-4">
-        {statCardItems.map((statCardItem, index) => (
-          <div key={index}>
-            <StatCard item={statCardItem} />
+      <div className="px-1">
+        <div className="flex flex-col lg:flex-row gap-2">
+          <div className="flex flex-col md:flex-row">
+            {statCardItems.map((statCardItem, index) => (
+              <div key={index} className="w-full">
+                <StatCard item={statCardItem}  />
+              </div>
+            ))}
           </div>
-        ))}
-        <div className="flex w-full justify-center items-center">
-          charts here
+          <div className="flex sm:text-xl">
+            charts here
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }

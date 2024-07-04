@@ -15,7 +15,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import Logo from "@ui/assets/images/icon-64-64.png";
+import Logo from "@/ui/assets/images/icon-128x128.png";
 
 const user = {
   name: "Tom Cook",
@@ -55,16 +55,16 @@ export default function TopNav() {
         <Disclosure as="nav" className="bg-slate-800">
           {({ open }) => (
             <>
-              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="flex h-16 items-center justify-between">
+              <div className="max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="flex h-20 items-center justify-between">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
                       <Image
-                        className="h-8 w-8"
+                        className="h-16 w-16"
                         src={Logo}
                         alt="Your Company"
-                        width={64}
-                        height={64}
+                        width={128} 
+                        height={128}
                       />
                     </div>
                     <div className="hidden md:block">
@@ -77,7 +77,7 @@ export default function TopNav() {
                               pathname === item.href
                                 ? "bg-slate-900 text-white"
                                 : "text-gray-300 hover:bg-slate-700 hover:text-white",
-                              "rounded-md px-3 py-2 text-sm font-medium"
+                              "rounded-md px-3 py-2 text-sm font-bold lg:text-lg md:text-md"
                             )}
                             aria-current={
                               pathname === item.href ? "page" : undefined
@@ -97,7 +97,7 @@ export default function TopNav() {
                       >
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">View notifications</span>
-                        <BellIcon className="h-6 w-6" aria-hidden="true" />
+                        <BellIcon className="h-8 w-8" aria-hidden="true" />
                       </button>
 
                       {/* Profile dropdown */}
@@ -107,7 +107,7 @@ export default function TopNav() {
                             <span className="absolute -inset-1.5" />
                             <span className="sr-only">Open user menu</span>
                             <Image
-                              className="h-8 w-8 rounded-full"
+                              className="sm:h-8 sm:w-8 lg:h-16 lg:w-16 rounded-full"
                               src={user.imageUrl}
                               alt=""
                               width={32}

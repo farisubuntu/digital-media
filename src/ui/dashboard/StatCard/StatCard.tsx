@@ -4,12 +4,12 @@ import { StatCardInterface } from "@/lib/definitiions";
 export default async function StatCard({ item }: { item: StatCardInterface }) {
   return (
     <>
-      <div className="bg-blue-900 p-2 text-white">
-        <dl className="flex items-center border rounded-lg space-x-2 text-center">
+      <div className="flex bg-green-900 p-4 text-white border rounded-xl  md:min-h-[200px]">
+        <dl className="flex  border rounded-lg space-x-2  p-2 w-full  sm:text-2xl md:justify-center">
           <dt className="text-white">{item.icon && item.icon}</dt>
           <div className="flex flex-col items-center gap-2 p-2">
-            <dt className="order-last text-lg font-medium">{item.title}</dt>
-            <dd className="text-4xl font-extrabold md:text-5x">
+            <dt className="order-last xs:text-sm sm:text-md md:text-lg lg:text-xl font-medium">{item.title}</dt>
+            <dd className="lg:text-4xl  md:text-2xl sm:text-xl  font-extrabold md:text-5x">
               {item.value}
             </dd>
           </div>
