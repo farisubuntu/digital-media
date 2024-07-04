@@ -4,4 +4,15 @@ interface Breadcrumb {
   active?: boolean;
 }
 
-export type { Breadcrumb };
+interface MenuLink {
+  label: string;
+  href: string;
+  icon?: any;
+}
+
+interface NavigationMenu{
+  label: string;
+  href: string;
+  current: boolean
+}
+export type { Breadcrumb, MenuLink, NavigationMenu };
