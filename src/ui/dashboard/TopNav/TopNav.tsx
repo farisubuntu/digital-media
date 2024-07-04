@@ -11,6 +11,7 @@ import {
   MenuItems,
 } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { usePathname } from "next/navigation";
 
 const user = {
   name: "Tom Cook",
@@ -37,7 +38,9 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function TopNav() {
+  const pathname = usePathname();
+
   return (
     <>
       <div className="min-h-full">
@@ -61,12 +64,14 @@ export default function Example() {
                             key={item.label}
                             href={item.href}
                             className={classNames(
-                              item.current
+                              pathname === item.href
                                 ? "bg-gray-900 text-white"
                                 : "text-gray-300 hover:bg-gray-700 hover:text-white",
                               "rounded-md px-3 py-2 text-sm font-medium"
                             )}
-                            aria-current={item.current ? "page" : undefined}
+                            aria-current={
+                              pathname === item.href ? "page" : undefined
+                            }
                           >
                             {item.label}
                           </a>
