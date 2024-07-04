@@ -24,7 +24,6 @@ const breadcrumbs: Breadcrumb[] = [
 
 export default async function CustomersPage() {
   const customers = await getAllCustomers();
-  console.log(customers[0]);
 
   return (
     <div className="flex flex-col">

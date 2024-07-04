@@ -23,7 +23,6 @@ const breadcrumbs: Breadcrumb[] = [
 
 export default async function EmployeesPage() {
   const employees = await getAllEmployees();
-  console.log(employees[0]);
   return (
     <div className="flex flex-col">
       <Nav breadcrumbs={breadcrumbs} />
