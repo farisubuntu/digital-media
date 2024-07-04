@@ -56,6 +56,7 @@ export default async function DashboardPage() {
   return (
     <div className="p-2 my-3 md:my-1">
       <Nav breadcrumbs={breadcrumbs} />
+      <h2 className="text-2xl text-white">asf</h2>
       <div className="flex space-x-4">
         {statCardItems.map((statCardItem, index) => (
           <div key={index}>

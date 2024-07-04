@@ -1,6 +1,6 @@
 import TopNav from "@/ui/dashboard/TopNav/TopNav";
 import { Suspense } from "react";
-import Loading from "@/app/loading";
+import Loading from "./loading";
 
 export default function DashboardLayout({
   children,
@@ -9,9 +9,9 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <Suspense fallback={<Loading />}>
+ 
         <TopNav />
-      </Suspense>
+  
       <Suspense fallback={<Loading />}>{children}</Suspense>
     </>
   );
