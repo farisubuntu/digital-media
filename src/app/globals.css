@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-  background-color: #130d36;
+  background-color: #0a061f;
   color: white;
 }
 input[type="number"] {
@@ -19,4 +19,11 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+tr td a{
+  color:green;
+}
+tr:hover{
+  background-color: #130d36;
+  color: white;
 }
