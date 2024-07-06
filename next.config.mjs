@@ -20,6 +20,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.lorem.space",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };

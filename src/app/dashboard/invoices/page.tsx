@@ -22,7 +22,7 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
-async function getCustomerName(id: number) {
+async function getCustomerFullName(id: number) {
   const customer = await prismaClient.customers.findUnique({
     where: {
       CustomerId: id,
@@ -86,7 +86,7 @@ export default async function InvoicesPage() {
                     href={`/dashboard/customers/${invoice.CustomerId}`}
                     className="text-white bg-green-600 p-2 rounded-xl hover:bg-indigo-900"
                   >
-                    {getCustomerName(invoice.CustomerId)} ...
+                    {getCustomerFullName(invoice.CustomerId)} ...
                   </Link>
                 </td>
 
