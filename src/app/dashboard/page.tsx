@@ -15,27 +15,27 @@ import {
   UserPlusIcon,
 } from "@heroicons/react/24/outline";
 
-let statCardItems: StatCardInterface[];
-
-const fetchData = async () => {
-  statCardItems = [
+async function fetchData() {
+  const statCardItems: StatCardInterface[] = [
     {
       title: "Total Customers",
       icon: <UserGroupIcon className="size-12" />,
-      value: await getCustomersCount(),
+      value: Number(await getCustomersCount()),
     },
     {
       title: "Total Employees",
       icon: <UserPlusIcon className="size-12" />,
-      value: await getEmployeesCount(),
+      value: Number(await getEmployeesCount()),
     },
     {
       title: "Total Invoices",
       icon: <CurrencyPoundIcon className="size-12" />,
-      value: await getInvoicesTotal(),
+      value: Number(await getInvoicesTotal()).toFixed(2),
     },
   ];
-};
+
+  return statCardItems;
+}
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -51,7 +51,7 @@ const breadcrumbs: Breadcrumb[] = [
 ];
 
 export default async function DashboardPage() {
-  await fetchData();
+  const statCardItems = await fetchData();
   return (
     <>
       <Nav breadcrumbs={breadcrumbs} />
@@ -60,13 +60,11 @@ export default async function DashboardPage() {
           <div className="flex flex-col md:flex-row">
             {statCardItems.map((statCardItem, index) => (
               <div key={index} className="w-full">
-                <StatCard item={statCardItem}  />
+                <StatCard item={statCardItem} />
               </div>
             ))}
           </div>
-          <div className="flex sm:text-xl">
-            charts here
-          </div>
+          <div className="flex sm:text-xl">charts here</div>
         </div>
       </div>
     </>

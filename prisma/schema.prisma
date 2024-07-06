@@ -12,7 +12,7 @@ model Album {
   AlbumId  Int     @id @default(autoincrement())
   Title    String
   ArtistId Int
-  artists  Artist  @relation(fields: [ArtistId], references: [ArtistId], onDelete: NoAction, onUpdate: NoAction)
+  artist  Artist  @relation(fields: [ArtistId], references: [ArtistId], onDelete: NoAction, onUpdate: NoAction)
   tracks   Track[]
 
   @@index([ArtistId], map: "IFK_AlbumArtistId")
@@ -38,7 +38,7 @@ model Customer {
   Fax          String?
   Email        String
   SupportRepId Int?
-  employees    Employee? @relation(fields: [SupportRepId], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
+  employee    Employee? @relation(fields: [SupportRepId], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
   invoices     Invoice[]
 
   @@index([SupportRepId], map: "IFK_CustomerSupportRepId")
@@ -79,7 +79,7 @@ model Invoice_Item {
   TrackId       Int
   UnitPrice     Decimal
   Quantity      Int
-  invoices      Invoice @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
+  invoice      Invoice @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
   track         Track   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([TrackId], map: "IFK_InvoiceLineTrackId")
@@ -112,7 +112,7 @@ model Playlist_Track {
   PlaylistId Int
   TrackId    Int
   playlists  Playlist @relation(fields: [PlaylistId], references: [PlaylistId], onDelete: NoAction, onUpdate: NoAction)
-  tracks     Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
+  track     Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([PlaylistId, TrackId])
   @@index([TrackId], map: "IFK_PlaylistTrackTrackId")
@@ -121,7 +121,7 @@ model Playlist_Track {
 model Playlist {
   PlaylistId     Int              @id @default(autoincrement())
   Name           String?
-  playlist_track Playlist_Track[]
+  playlist_tracks Playlist_Track[]
 }
 
 model Track {
@@ -135,10 +135,10 @@ model Track {
   Bytes          Int?
   UnitPrice      Decimal
   invoice_items  Invoice_Item[]
-  albums         Album?           @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
-  genres         Gener?           @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
-  media_types    Media_Type       @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
-  playlist_track Playlist_Track[]
+  album         Album?           @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
+  genre         Gener?           @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
+  media_type    Media_Type       @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
+  playlist_tracks Playlist_Track[]
 
   @@index([MediaTypeId], map: "IFK_TrackMediaTypeId")
   @@index([GenreId], map: "IFK_TrackGenreId")

@@ -1,5 +1,5 @@
 import prismaClient from "@lib/connection-client";
-import type { Employee,Invoice, Customer,Invoice_Item } from "@prisma/client";
+import type { Employee, Invoice, Customer, Invoice_Item } from "@prisma/client";
 
 export async function getAllCustomers() {
   const customers = await prismaClient.customer.findMany();
@@ -31,13 +31,13 @@ export async function getInvoicesWithDate(from: Date | any, to: Date | any) {
 }
 
 export async function getInvoicesTotal() {
-  const res: any = await prismaClient.invoice.aggregate({
+  const res = await prismaClient.invoice.aggregate({
     _sum: {
       Total: true,
     },
   });
-
-  return res._sum.Total.toFixed(2).toString();
+  console.log(res);
+  return res._sum.Total;
 }
 
 export async function getInvoicesCount() {
