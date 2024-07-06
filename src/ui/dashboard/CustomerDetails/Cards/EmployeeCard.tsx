@@ -1,4 +1,3 @@
-import React from "react";
 // import { employees } from "@prisma/client";
 import { getEmployeeDetails } from "@/lib/utils";
 

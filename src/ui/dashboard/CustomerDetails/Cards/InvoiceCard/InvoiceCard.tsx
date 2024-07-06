@@ -1,4 +1,3 @@
-import React from "react";
 import { invoices } from "@prisma/client";
 import { getInvoiceItems } from "@/lib/utils";
 import InvoiceCardItem from "./InvoiceItemRow";

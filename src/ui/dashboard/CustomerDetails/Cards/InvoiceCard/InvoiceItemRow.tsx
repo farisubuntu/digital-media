@@ -1,4 +1,3 @@
-import React from "react";
 import { invoice_items } from "@prisma/client";
 
 export default function InvoiceItemRow({
