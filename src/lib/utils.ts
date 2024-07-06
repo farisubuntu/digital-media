@@ -1,6 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import prismaClient from "@lib/connection-client";
 import { employees } from "@prisma/client";
-const prismaClient = new PrismaClient();
 
 export async function getAllCustomers() {
   const customers = await prismaClient.customers.findMany();
@@ -106,15 +105,14 @@ export async function getCustomerDetails(id: string) {
     where: {
       CustomerId: Number(id),
     },
-    include: {
-      invoices: true,
-      employees: true,
-    },
   });
-  return { ...res };
+
+  return res;
 }
 
-export async function getEmployeeDetails(employeeId: number | null) : Promise<employees | null> {
+export async function getEmployeeDetails(
+  employeeId: number | null
+): Promise<employees | null> {
   const res = await prismaClient.employees.findUnique({
     where: {
       EmployeeId: Number(employeeId),
@@ -123,7 +121,6 @@ export async function getEmployeeDetails(employeeId: number | null) : Promise<em
   if (!res) {
     return null;
   }
-
 
   return res;
 }
