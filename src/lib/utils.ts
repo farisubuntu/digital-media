@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-
+import { employees } from "@prisma/client";
 const prismaClient = new PrismaClient();
 
 export async function getAllCustomers() {
@@ -114,6 +114,19 @@ export async function getCustomerDetails(id: string) {
   return { ...res };
 }
 
+export async function getEmployeeDetails(employeeId: number | null) : Promise<employees | null> {
+  const res = await prismaClient.employees.findUnique({
+    where: {
+      EmployeeId: Number(employeeId),
+    },
+  });
+  if (!res) {
+    return null;
+  }
+
+
+  return res;
+}
 export async function deleteCustomer(id: string) {
   try {
     const res = await prismaClient.customers.delete({
@@ -128,12 +141,21 @@ export async function deleteCustomer(id: string) {
   }
 }
 
-export async function getCustomerInvoices(customerId: string) {
+export async function getCustomerInvoices(customerId: number | string) {
   const res = await prismaClient.invoices.findMany({
     where: {
       CustomerId: Number(customerId),
     },
   });
 
-  return [...res];
+  return res;
+}
+
+export async function getInvoiceItems(invoiceId: number) {
+  const res = await prismaClient.invoice_items.findMany({
+    where: {
+      InvoiceId: Number(invoiceId),
+    },
+  });
+  return res;
 }

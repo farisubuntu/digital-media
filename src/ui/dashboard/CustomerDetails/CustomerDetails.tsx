@@ -1,302 +1,71 @@
-import {
-  Field,
-  Fieldset,
-  Input,
-  Label,
-  Legend,
-  Select,
-  Textarea,
-} from "@headlessui/react";
+import CustomerCard from "@ui/dashboard/CustomerDetails/Cards/CustomerCard";
+import EmployeeCard from "@ui/dashboard/CustomerDetails/Cards/EmployeeCard";
+import InvoiceCard from "@ui/dashboard/CustomerDetails/Cards/InvoiceCard/InvoiceCard";
 import { employees, invoices, customers } from "@prisma/client";
+import { getCustomerInvoices, getEmployeeDetails } from "@/lib/utils";
 
-const employeeLabels = {
-  EmployeeId: "Employee ID",
-  LastName: "Last Name",
-  FirstName: "First Name",
-  Title: "Depatment Title",
-  ReportsTo: "Reports To",
-  BirthDate: "Birth Date",
-  HireDate: "Hire Date",
-  Address: "Address",
-  City: "City",
-  State: "State",
-  Country: "Country",
-  PostalCode: "Postal Code",
-  Phone: "Phone",
-  Fax: "Fax",
-  Email: "Email",
-};
+import Image from "next/image";
 
-export default function CustomerDetails({ customer }: { customer: any }) {
+export default async function CustomerDetails({
+  customer,
+}: {
+  customer: any;
+}) {
   const customerInfo: customers = customer;
-  
-  const invoices: invoices[] = customer.Invoices;
+  const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
+  const invoices: invoices[] = await getCustomerInvoices(
+    customerInfo.CustomerId
+  );
 
-  // console.log("invoices", invoices);
   return (
-    <div className="form-wrapper flex flex-col p-2">
-      <form
-        id="view-customer-form"
-        className="p-4 m-4 gap-2 bg-inherit text-inherit lg:grid lg:grid-cols-3 md:grid md:grid-cols-2 sm:grid sm:grid-cols-1"
-      >
-        <Fieldset
-          className="space-y-8 flex flex-col border border-1 p-4"
-          disabled
-        >
-          <Legend className="text-lg font-bold legend">Personal Details</Legend>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="firstName">
-              First Name
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="firstName"
-              name="firstName"
-              defaultValue={customer.FirstName}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="lastName">
-              Last Name
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="lastName"
-              name="lastName"
-              defaultValue={customer.LastName}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="city">
-              City
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="city"
-              name="city"
-              defaultValue={customer.City?.toString()}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="country">
-              Country
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="country"
-              name="country"
-              defaultValue={customer.Country?.toString()}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="state">
-              State
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="state"
-              name="state"
-              defaultValue={customer.State?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="company">
-              Company
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="company"
-              name="company"
-              defaultValue={customer.Company?.toString()}
-            />
-          </Field>
-        </Fieldset>
-        <Fieldset
-          className="space-y-8 flex flex-col border border-1 p-4"
-          disabled
-        >
-          <Legend className="text-lg font-bold">Contact Details</Legend>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="phone">
-              Phone
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="phone"
-              name="phone"
-              defaultValue={customer.Phone?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="email">
-              Email
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="email"
-              name="email"
-              defaultValue={customer.Email}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="address">
-              Address
-            </Label>
-            <Textarea
-              className="mt-1 block w-full"
-              id="address"
-              name="address"
-              defaultValue={customer.Address?.toString()}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="fax">
-              Fax
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="fax"
-              name="fax"
-              defaultValue={customer.Fax?.toString()}
-            />
-          </Field>
-        </Fieldset>
-        <Fieldset
-          className="space-y-8 flex flex-col border border-1 p-4"
-          disabled
-        >
-          <Legend className="text-lg font-bold">Supporter/Employee Data</Legend>
-
-          <Field key={customer.EmployeeId} className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="employeeId">
-              Employee ID
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="employeeId"
-              name="employeeId"
-              defaultValue={customer.SupportRepId?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="firstName">
-              First Name
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="firstName"
-              name="firstName"
-              defaultValue={customer.employees.FirstName}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="lastName">
-              {employeeLabels.LastName}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="lastName"
-              name="lastName"
-              defaultValue={customer.employees.LastName}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="title">
-              {employeeLabels.Title}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="title"
-              name="title"
-              defaultValue={customer.employees.Title?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="reportsTo">
-              {employeeLabels.ReportsTo}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="reportsTo"
-              name="reportsTo"
-              defaultValue={customer.employees.ReportsTo?.toString()}
-            />
-          </Field>
-
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="address">
-              {employeeLabels.Address}
-            </Label>
-            <Textarea
-              className="mt-1 block w-full"
-              id="address"
-              name="address"
-              defaultValue={customer.employees.Address?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="city">
-              {employeeLabels.City}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="city"
-              name="city"
-              defaultValue={customer.employees.City?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="country">
-              {employeeLabels.Country}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="country"
-              name="country"
-              defaultValue={customer.employees.Country?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="postalCode">
-              {employeeLabels.PostalCode}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="postalCode"
-              name="postalCode"
-              defaultValue={customer.employees.PostalCode?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="state">
-              {employeeLabels.State}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="state"
-              name="state"
-              defaultValue={customer.employees.State?.toString()}
-            />
-          </Field>
-          <Field className="flex gap-2 items-center">
-            <Label className="block w-full" htmlFor="phone">
-              {employeeLabels.Phone}
-            </Label>
-            <Input
-              className="mt-1 block w-full"
-              id="phone"
-              name="phone"
-              defaultValue={customer.employees.Phone?.toString()}
-            />
-          </Field>
-        </Fieldset>
-      </form>
+    <div className="w-full flex flex-col">
+      <div className="md:flex md:h-full my-2 p-2">
+        <div className="text-white bg-blue-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-inherit">
+          <h1 className="p-2 w-full text-4xl text-center">
+            Personal Information
+          </h1>
+        </div>
+        <div className="p-1 md:w-4/12 mx-3">
+          <Image
+            src={"https://xsgames.co/randomusers/avatar.php?g=male"}
+            width={300}
+            alt="Movie Poster"
+            height={150}
+            className="w-full object-cover"
+          />
+        </div>
+        <div className="md:w-full text-xl">
+          <CustomerCard customer={customerInfo} />
+        </div>
+      </div>
+      <div className="md:flex md:h-full my-2 p-2">
+        <div className="text-white bg-blue-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-2xl h-inherit">
+          <h1 className="p-2 w-full text-4xl text-center">Suupporter</h1>
+        </div>
+        <div className="p-1 md:w-4/12 mx-3">
+          <Image
+            src="https://xsgames.co/randomusers/avatar.php?g=female"
+            width={300}
+            height={150}
+            alt="Movie Poster"
+            className="md:w-full object-cover md:h-full"
+          />
+        </div>
+        <div className="md:w-full text-xl">
+          <EmployeeCard employee={employeeInfo} />
+        </div>
+      </div>
+      <h1 className="text-white text-4xl my-5 p-4 mx-3 bg-blue-500 w-1/4 border rounded-xl">
+        Invoices -{" "}
+        <span className="text-md italic">
+          TODO: Total Customer Invoices here
+        </span>
+      </h1>
+      <div className="flex flex-col text-white bg-bule-900">
+        {invoices.map((invoice) => (
+          <InvoiceCard key={invoice.InvoiceId} Invoice={invoice} />
+        ))}
+      </div>
     </div>
   );
 }

@@ -22,7 +22,14 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "api.lorem.space",
+        hostname: "picsum.photos",
+        port: "",
+        pathname: "/**",
+      },
+
+      {
+        protocol: "https",
+        hostname: "xsgames.co",
         port: "",
         pathname: "/**",
       },
