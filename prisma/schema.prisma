@@ -1,7 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
-  binaryTargets= ["native","rhel-openssl-3.0.x"]
-  
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -10,7 +9,7 @@ datasource db {
 }
 
 model Album {
-  AlbumId  Int      @id @default(autoincrement())
+  AlbumId  Int     @id @default(autoincrement())
   Title    String
   ArtistId Int
   artists  Artist  @relation(fields: [ArtistId], references: [ArtistId], onDelete: NoAction, onUpdate: NoAction)
@@ -20,13 +19,13 @@ model Album {
 }
 
 model Artist {
-  ArtistId Int      @id @default(autoincrement())
+  ArtistId Int     @id @default(autoincrement())
   Name     String?
   albums   Album[]
 }
 
 model Customer {
-  CustomerId   Int        @id @default(autoincrement())
+  CustomerId   Int       @id @default(autoincrement())
   FirstName    String
   LastName     String
   Company      String?
@@ -46,7 +45,7 @@ model Customer {
 }
 
 model Employee {
-  EmployeeId      Int         @id @default(autoincrement())
+  EmployeeId      Int        @id @default(autoincrement())
   LastName        String
   FirstName       String
   Title           String?
@@ -62,26 +61,26 @@ model Employee {
   Fax             String?
   Email           String?
   customers       Customer[]
-  employee       Employee?  @relation("employeesToemployees", fields: [ReportsTo], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
+  employee        Employee?  @relation("employeesToemployees", fields: [ReportsTo], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
   other_employees Employee[] @relation("employeesToemployees")
 
   @@index([ReportsTo], map: "IFK_EmployeeReportsTo")
 }
 
 model Gener {
-  GenreId Int      @id @default(autoincrement())
+  GenreId Int     @id @default(autoincrement())
   Name    String?
   tracks  Track[]
 }
 
-model Invoice_Items {
-  InvoiceLineId Int      @id @default(autoincrement())
+model Invoice_Item {
+  InvoiceLineId Int     @id @default(autoincrement())
   InvoiceId     Int
   TrackId       Int
   UnitPrice     Decimal
   Quantity      Int
-  track        Track   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
   invoices      Invoice @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
+  track         Track   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([TrackId], map: "IFK_InvoiceLineTrackId")
   @@index([InvoiceId], map: "IFK_InvoiceLineInvoiceId")
@@ -97,23 +96,23 @@ model Invoice {
   BillingCountry    String?
   BillingPostalCode String?
   Total             Decimal
-  invoice_items     Invoice_Items[]
-  customer         Customer       @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
+  customer          Customer        @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
+  invoice_items     Invoice_Item[]
 
   @@index([CustomerId], map: "IFK_InvoiceCustomerId")
 }
 
 model Media_Type {
-  MediaTypeId Int      @id @default(autoincrement())
+  MediaTypeId Int     @id @default(autoincrement())
   Name        String?
   tracks      Track[]
 }
 
-model playlist_track {
+model Playlist_Track {
   PlaylistId Int
   TrackId    Int
-  tracks     Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
   playlists  Playlist @relation(fields: [PlaylistId], references: [PlaylistId], onDelete: NoAction, onUpdate: NoAction)
+  tracks     Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([PlaylistId, TrackId])
   @@index([TrackId], map: "IFK_PlaylistTrackTrackId")
@@ -122,7 +121,7 @@ model playlist_track {
 model Playlist {
   PlaylistId     Int              @id @default(autoincrement())
   Name           String?
-  playlist_track playlist_track[]
+  playlist_track Playlist_Track[]
 }
 
 model Track {
@@ -135,11 +134,11 @@ model Track {
   Milliseconds   Int
   Bytes          Int?
   UnitPrice      Decimal
-  invoice_items  Invoice_Items[]
-  playlist_track playlist_track[]
-  media_types    Media_Type      @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
-  genres         Gener?          @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
-  albums         Album?          @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
+  invoice_items  Invoice_Item[]
+  albums         Album?           @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
+  genres         Gener?           @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
+  media_types    Media_Type       @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
+  playlist_track Playlist_Track[]
 
   @@index([MediaTypeId], map: "IFK_TrackMediaTypeId")
   @@index([GenreId], map: "IFK_TrackGenreId")

@@ -2,7 +2,7 @@ import CustomerDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
 import { getCustomerDetails } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { Breadcrumb } from "@/lib/definitiions";
-import { customers } from "@prisma/client";
+import { Customer } from "@prisma/client";
 
 const breadcrumbs: Breadcrumb[] = [
   {
