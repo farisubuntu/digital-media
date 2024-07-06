@@ -12,7 +12,7 @@ model Album {
   AlbumId  Int     @id @default(autoincrement())
   Title    String
   ArtistId Int
-  artist  Artist  @relation(fields: [ArtistId], references: [ArtistId], onDelete: NoAction, onUpdate: NoAction)
+  artist   Artist  @relation(fields: [ArtistId], references: [ArtistId], onDelete: NoAction, onUpdate: NoAction)
   tracks   Track[]
 
   @@index([ArtistId], map: "IFK_AlbumArtistId")
@@ -38,7 +38,7 @@ model Customer {
   Fax          String?
   Email        String
   SupportRepId Int?
-  employee    Employee? @relation(fields: [SupportRepId], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
+  employee     Employee? @relation(fields: [SupportRepId], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
   invoices     Invoice[]
 
   @@index([SupportRepId], map: "IFK_CustomerSupportRepId")
@@ -79,15 +79,15 @@ model Invoice_Item {
   TrackId       Int
   UnitPrice     Decimal
   Quantity      Int
-  invoice      Invoice @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
   track         Track   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
+  invoice       Invoice @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([TrackId], map: "IFK_InvoiceLineTrackId")
   @@index([InvoiceId], map: "IFK_InvoiceLineInvoiceId")
 }
 
 model Invoice {
-  InvoiceId         Int             @id @default(autoincrement())
+  InvoiceId         Int            @id @default(autoincrement())
   CustomerId        Int
   InvoiceDate       DateTime
   BillingAddress    String?
@@ -96,7 +96,7 @@ model Invoice {
   BillingCountry    String?
   BillingPostalCode String?
   Total             Decimal
-  customer          Customer        @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
+  customer          Customer       @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
   invoice_items     Invoice_Item[]
 
   @@index([CustomerId], map: "IFK_InvoiceCustomerId")
@@ -111,34 +111,34 @@ model Media_Type {
 model Playlist_Track {
   PlaylistId Int
   TrackId    Int
+  track      Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
   playlists  Playlist @relation(fields: [PlaylistId], references: [PlaylistId], onDelete: NoAction, onUpdate: NoAction)
-  track     Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
 
   @@id([PlaylistId, TrackId])
   @@index([TrackId], map: "IFK_PlaylistTrackTrackId")
 }
 
 model Playlist {
-  PlaylistId     Int              @id @default(autoincrement())
-  Name           String?
+  PlaylistId      Int              @id @default(autoincrement())
+  Name            String?
   playlist_tracks Playlist_Track[]
 }
 
 model Track {
-  TrackId        Int              @id @default(autoincrement())
-  Name           String
-  AlbumId        Int?
-  MediaTypeId    Int
-  GenreId        Int?
-  Composer       String?
-  Milliseconds   Int
-  Bytes          Int?
-  UnitPrice      Decimal
-  invoice_items  Invoice_Item[]
-  album         Album?           @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
-  genre         Gener?           @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
-  media_type    Media_Type       @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
+  TrackId         Int              @id @default(autoincrement())
+  Name            String
+  AlbumId         Int?
+  MediaTypeId     Int
+  GenreId         Int?
+  Composer        String?
+  Milliseconds    Int
+  Bytes           Int?
+  UnitPrice       Decimal
+  invoice_items   Invoice_Item[]
   playlist_tracks Playlist_Track[]
+  album           Album?           @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
+  genre           Gener?           @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
+  media_type      Media_Type       @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([MediaTypeId], map: "IFK_TrackMediaTypeId")
   @@index([GenreId], map: "IFK_TrackGenreId")
