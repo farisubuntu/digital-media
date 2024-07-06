@@ -1,3 +1,4 @@
+import prismaClient from "@/lib/connection-client";
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { getAllInvoices } from "@/lib/utils";
@@ -21,35 +22,51 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
+async function getCustomerName(id: number) {
+  const customer = await prismaClient.customers.findUnique({
+    where: {
+      CustomerId: Number(id),
+    },
+  });
+  const fullName = `${customer?.FirstName} ${customer?.LastName}`;
+
+  return fullName;
+}
+
 export default async function InvoicesPage() {
   const invoices = await getAllInvoices();
 
   return (
     <div className="flex flex-col">
       <Nav breadcrumbs={breadcrumbs} />
-      <div>
+      <div className="table-wrapper">
         <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
           <thead className="bg-blue-600 text-white">
             <tr>
               <th
                 scope="col"
-                className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                className="px-2 py-3 text-left uppercase tracking-wider"
               >
                 No./ID.
               </th>
               <th
                 scope="col"
-                className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                className="px-2 py-3 text-left uppercase tracking-wider"
               >
                 Billing Countery
               </th>
               <th
                 scope="col"
-                className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                className="px-2 py-3 text-left uppercase tracking-wider"
               >
                 Total
               </th>
-  
+              <th
+                scope="col"
+                className="px-2 py-3 text-left uppercase tracking-wider"
+              >
+                Customer
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200 bg-white">
@@ -66,15 +83,14 @@ export default async function InvoicesPage() {
                 </td>
                 <td className="whitespace-nowrap px-2 py-4 text-sm text-gray-500">
                   <Link
-                    href={`/dashboard/customers/${invoice.InvoiceId}`}
+                    href={`/dashboard/customers/${invoice.CustomerId}`}
                     className="text-white bg-green-600 p-2 rounded-xl hover:bg-indigo-900"
                   >
-                    Customer Details ...
+                    {getCustomerName(invoice.InvoiceId)} ...
                   </Link>
                 </td>
 
-
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">
                   <Link
                     href={`/dashboard/invoices/${invoice.InvoiceId}`}
                     className="text-white bg-green-600 p-2 rounded-xl hover:bg-indigo-900"
