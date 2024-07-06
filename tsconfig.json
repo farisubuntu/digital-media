@@ -17,11 +17,12 @@
         "name": "next"
       }
     ],
-    
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "@lib/*": ["./src/lib/*"],
-      "@ui/*": ["./src/ui/*"]
+      "@ui/*": ["./src/ui/*"],
+      "@styles/*": ["./src/styles/*"]
     }
   },
   "include": [

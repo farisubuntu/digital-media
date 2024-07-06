@@ -26,8 +26,8 @@ export default async function EmployeesPage() {
   return (
     <div className="flex flex-col">
       <Nav breadcrumbs={breadcrumbs} />
-      <div>
-        <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
+      <div className="table-wrapper">
+        <table className="w-full divide-y divide-gray-200 overflow-x-auto">
           <thead className="bg-blue-600 text-white">
             <tr>
               <th

@@ -25,7 +25,7 @@ const breadcrumbs: Breadcrumb[] = [
 async function getCustomerName(id: number) {
   const customer = await prismaClient.customers.findUnique({
     where: {
-      CustomerId: Number(id),
+      CustomerId: id,
     },
   });
   const fullName = `${customer?.FirstName} ${customer?.LastName}`;
@@ -40,7 +40,7 @@ export default async function InvoicesPage() {
     <div className="flex flex-col">
       <Nav breadcrumbs={breadcrumbs} />
       <div className="table-wrapper">
-        <table className="min-w-full divide-y divide-gray-200 overflow-x-auto">
+        <table className="w-full divide-y divide-gray-200 overflow-x-auto">
           <thead className="bg-blue-600 text-white">
             <tr>
               <th
@@ -86,7 +86,7 @@ export default async function InvoicesPage() {
                     href={`/dashboard/customers/${invoice.CustomerId}`}
                     className="text-white bg-green-600 p-2 rounded-xl hover:bg-indigo-900"
                   >
-                    {getCustomerName(invoice.InvoiceId)} ...
+                    {getCustomerName(invoice.CustomerId)} ...
                   </Link>
                 </td>
 

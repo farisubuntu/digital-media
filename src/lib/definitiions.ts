@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 
-
 interface Breadcrumb {
   label: string;
   href: string;
@@ -23,4 +22,5 @@ interface StatCardInterface {
   icon?: ReactNode | string;
   value: string | number;
 }
+
 export type { Breadcrumb, MenuLink, NavigationMenu, StatCardInterface };

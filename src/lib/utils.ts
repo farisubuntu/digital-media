@@ -111,7 +111,7 @@ export async function getCustomerDetails(id: string) {
       employees: true,
     },
   });
-  return res;
+  return { ...res };
 }
 
 export async function deleteCustomer(id: string) {
