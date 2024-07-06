@@ -2,7 +2,7 @@ import CustomerDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
 import { getCustomerDetails } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { Breadcrumb } from "@/lib/definitiions";
-import { Customer } from "@prisma/client";
+import { customers } from "@prisma/client";
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -32,7 +32,7 @@ export default async function CustomerPage({
   if (breadcrumbs.length < 4) {
     breadcrumbs.push({
       label: `${data?.FirstName} ${data?.LastName}`,
-      href: "/dashboard/customers/" + params.customerId?.toString(),
+      href: "#",
       active: false,
     });
   }
