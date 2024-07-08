@@ -1,16 +1,37 @@
 import { Breadcrumb } from "@/lib/definitiions";
-import { getInvoiceDetails } from "@/lib/utils";
-import { invoices, invoice_items } from "@prisma/client";
+import Nav from "@/ui/dashboard/Nav/Nav";
+import Link from "next/link";
+import InvoiceTable from "@/ui/dashboard/InvoiceDetails/InvoiceTable";
 
+const breadcrumbs: Breadcrumb[] = [
+  {
+    label: "Home",
+    href: "/",
+    active: false,
+  },
+  {
+    label: "Dashboard",
+    href: "/dashboard",
+    active: false,
+  },
+  {
+    label: "Invoices",
+    href: "/dashboard/invoices",
+    active: true,
+  },
+];
 export default async function InvoicePage({
   params,
 }: {
-  params: { invoiceId: string };
+  params: { invoiceId: string| number };
 }) {
-  const data = await getInvoiceDetails(params.invoiceId);
-  const invoiceData = data?.invoiceData;
-  const itemsData = data?.itemsData;
-  console.log("invoiceData", invoiceData);
-  console.log("itemsData", itemsData);
-  return <div>InvoicePage</div>;
+
+  
+
+  return (
+    <>
+      <Nav breadcrumbs={breadcrumbs} />
+      <InvoiceTable invoiceId={params.invoiceId} />
+    </>
+  );
 }

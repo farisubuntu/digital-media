@@ -10,7 +10,6 @@ import type {
 } from "@prisma/client";
 
 export async function getAllCustomers(): Promise<customers[]> {
- 
   const customers = await prismaClient.customers.findMany();
 
   return customers;
@@ -55,6 +54,14 @@ export async function getInvoiceDetails(invoiceId: string | any) {
   } catch (err) {
     console.log(err);
   }
+}
+export async function getInvoice(invoiceId: string | any) {
+  const res = await prismaClient.invoices.findUnique({
+    where: {
+      InvoiceId: Number(invoiceId),
+    },
+  });
+  return res;
 }
 export async function getInvoicesTotal() {
   const res = await prismaClient.invoices.aggregate({

@@ -26,7 +26,7 @@ export default function InvoiceItemRow({
         scope="col"
         className="px-6 py-3 text-left  font-medium uppercase tracking-wider"
       >
-        {item.UnitPrice.toString()}
+        $ {item.UnitPrice.toString()}
       </td>
       <td
         scope="col"
@@ -38,7 +38,7 @@ export default function InvoiceItemRow({
         scope="col"
         className="px-6 py-3 text-left  font-medium uppercase tracking-wider"
       >
-        {subTotal.toString()}
+       $ {subTotal.toString()}
       </td>
     </tr>
   );

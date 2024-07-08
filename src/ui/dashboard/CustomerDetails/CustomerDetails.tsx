@@ -1,6 +1,6 @@
-import CustomerCard from "@ui/dashboard/CustomerDetails/Cards/CustomerCard";
-import EmployeeCard from "@ui/dashboard/CustomerDetails/Cards/EmployeeCard";
-import InvoiceCard from "@ui/dashboard/CustomerDetails/Cards/InvoiceCard/InvoiceCard";
+import CustomerCard from "@/ui/dashboard/Cards/CustomerCard";
+import EmployeeCard from "@/ui/dashboard/Cards/EmployeeCard";
+import InvoiceCard from "@/ui/dashboard/Cards/InvoiceCard/InvoiceCard";
 import { employees, invoices, customers } from "@prisma/client";
 import { getCustomerInvoices, getEmployeeDetails } from "@/lib/utils";
 
