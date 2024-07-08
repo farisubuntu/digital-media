@@ -1,5 +1,5 @@
 
-export default function ArtistPage({
+export default function ArtistViewPage({
   params,
 }: {
   params: { artistId: string | any };
