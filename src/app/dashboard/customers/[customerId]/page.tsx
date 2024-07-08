@@ -38,6 +38,7 @@ export default async function CustomerPage({
           </h1>
       </div>
       <CustomerDetails customer={data} />
+      
     </div>
   );
 }
