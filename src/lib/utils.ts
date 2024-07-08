@@ -35,6 +35,7 @@ export async function getInvoicesWithDate(from: Date | any, to: Date | any) {
     },
   });
 
+  
   return res;
 }
 
