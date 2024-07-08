@@ -3,9 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 
-
 export default function Error({
-  
   error,
   reset,
 }: {
@@ -21,8 +19,11 @@ export default function Error({
 
   return (
     <main className="flex h-full flex-col items-center justify-center">
-      <h2 className="text-center">Customer ID ({pathname})route: Something went wrong!</h2>
+      <h2 className="text-center">
+        Dashboard Error Route (/dashboard/loading.tsx) : Something went wrong!
+      </h2>
       <div className="text-3xl border border-2xl">
+        <div>Pathname: {pathname}</div>
         <div>Error digest: {error.digest}</div>
         <div>Error message: {error.message}</div>
         <div>Error name: {error.name}</div>
