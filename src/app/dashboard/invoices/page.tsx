@@ -1,7 +1,6 @@
-import prismaClient from "@/lib/connection-client";
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
-import { getAllInvoices } from "@/lib/utils";
+import { getAllInvoices, prismaClient } from "@/lib/utils";
 import Link from "next/link";
 
 const breadcrumbs: Breadcrumb[] = [

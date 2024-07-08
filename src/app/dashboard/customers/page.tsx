@@ -1,6 +1,6 @@
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
-import { getAllCustomers } from "@/lib/utils";
+import { getAllCustomers } from "@lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
