@@ -1,4 +1,4 @@
-import { PrismaClient } from "./prisma/client";
+import { PrismaClient } from "@prisma/client";
 
 const prismaClient = new PrismaClient();
 
@@ -7,7 +7,7 @@ import type {
   invoices,
   customers,
   invoice_items,
-} from "./prisma/client";
+} from "@prisma/client";
 
 export async function getAllCustomers(): Promise<customers[]> {
   const customers = await prismaClient.customers.findMany();
@@ -190,4 +190,4 @@ export async function getInvoiceItems(invoiceId: number) {
   return res;
 }
 
-export {prismaClient};
+export { prismaClient };
