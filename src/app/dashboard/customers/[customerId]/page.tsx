@@ -25,7 +25,7 @@ const breadcrumbs: Breadcrumb[] = [
 export default async function CustomerPage({
   params,
 }: {
-  params: { customerId: string };
+  params: { customerId: string|any };
 }) {
   const data = await getCustomerDetails(params.customerId);
   console.log(data)

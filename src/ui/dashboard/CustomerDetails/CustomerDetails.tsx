@@ -9,7 +9,7 @@ import Image from "next/image";
 export default async function CustomerDetails({
   customer,
 }: {
-  customer: any;
+  customer: customers|any;
 }) {
   const customerInfo: customers = customer;
   const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
