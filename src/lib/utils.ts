@@ -31,13 +31,33 @@ export async function getAllArtists(): Promise<artists[]> {
 
   return artists;
 }
-export async function getAllAlbums(): Promise<albums[]> {
-  const albums = await prismaClient.albums.findMany();
-
-  return albums;
+export async function getArtistName(artistId: string | any) {
+  const res = await prismaClient.artists.findUnique({
+    where: {
+      ArtistId: Number(artistId),
+    },
+  });
+  return res;
 }
+export async function getAllAlbums() {
+  const data = await prismaClient.albums.findMany({
+    include: {
+      artists: true,
+    },
+  });
+  return data;
+}
+
 export async function getTracksLength(albumId: string | any) {
   const res = await prismaClient.tracks.count({
+    where: {
+      AlbumId: Number(albumId),
+    },
+  });
+  return res;
+}
+export async function getAlbumTracks(albumId: string | any) {
+  const res = await prismaClient.tracks.findMany({
     where: {
       AlbumId: Number(albumId),
     },

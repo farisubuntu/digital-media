@@ -1,8 +1,9 @@
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import Link from "next/link";
-import { getAllAlbums, getTracksLength } from "@/lib/utils";
+import { getAllAlbums, getArtistName } from "@/lib/utils";
 import { notFound } from "next/navigation";
+import TrackSubTable from "@/ui/dashboard/AlbumsDetails/TrackSubTable";
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -27,54 +28,51 @@ export default async function Album({
 }: {
   params: { albumId: string };
 }) {
-  const albums = await getAllAlbums();
-  if (!albums) {
+  const data = await getAllAlbums();
+  if (!data) {
     notFound();
   }
 
   return (
     <>
       <Nav breadcrumbs={breadcrumbs} />
-      <table className="w-full divide-y divide-gray-200 overflow-x-auto">
-        <div className="flex flex-col">
-          <div className="text-white bg-blue-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-inherit">
-            <thead>
-              <tr>
-                <th scope="col" className="px-6 py-4">
-                  ID
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Title
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Artist ID
-                </th>
-                <th scope="col" className="px-6 py-4">
-                  Tracks Count
-                </th>
-              </tr>
-            </thead>
-          </div>
+      <div className="flex flex-col">
+        <table className="divide-y divide-gray-200 overflow-x-auto text-center">
+          <thead className="bg-blue-600 text-white sticky top-0">
+            <tr className="text-left">
+              <th scope="col" className="px-6 py-2 w-1/8">
+                ID
+              </th>
+              <th scope="col" className="px-6 py-2 w-3/8">
+                Title
+              </th>
+              <th scope="col" className="px-6 py-2 w-3/8">
+                Artist
+              </th>
+              <th scope="col" className="px-6 py-2 w-1/8">
+                Tracks Count
+              </th>
+            </tr>
+          </thead>
           <tbody>
-            <div className="flex flex-col bg-white text-green-600">
-              {albums.map((album) => (
-                <tr key={album.AlbumId}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {album.AlbumId}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">{album.Title}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {album.ArtistId}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {getTracksLength(album.AlbumId).toString()}
-                  </td>
-                </tr>
-              ))}
-            </div>
+            {data.map((album) => (
+              <tr key={album.AlbumId} className="text-left">
+                <td scope="col" className="px-6 py-4 w-1/8">
+                  {album.AlbumId}
+                </td>
+                <td scope="col" className="px-6 py-4 w-3/8">
+                  {album.Title}
+                </td>
+                <td scope="col" className="px-6 py-4 w-3/8">
+                  {album.artists.Name}
+                </td>
+
+                {<TrackSubTable albumId={album.AlbumId} />}
+              </tr>
+            ))}
           </tbody>
-        </div>
-      </table>
+        </table>
+      </div>
     </>
   );
 }
