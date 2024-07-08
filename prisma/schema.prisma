@@ -28,6 +28,7 @@ model customers {
   CustomerId   Int        @id @default(autoincrement())
   FirstName    String
   LastName     String
+  ImageURL     String     @default("https://picsum.photos/300")
   Company      String?
   Address      String?
   City         String?
@@ -48,6 +49,7 @@ model employees {
   EmployeeId      Int         @id @default(autoincrement())
   LastName        String
   FirstName       String
+  ImageURL        String     @default("https://picsum.photos/300")
   Title           String?
   ReportsTo       Int?
   BirthDate       DateTime?
