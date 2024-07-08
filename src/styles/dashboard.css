@@ -1,0 +1,16 @@
+@media screen and (min-width: 900px) {
+  .table-wrapper table thead tr th {
+    font-size: 1.3rem;
+  }
+  .table-wrapper table tbody tr td {
+    font-size: 1.2rem;
+  }
+  input,
+  label {
+    font-size: 1.2rem;
+    padding-left: 5px;
+  }
+  input {
+    border: 1px solid white;
+  }
+}
