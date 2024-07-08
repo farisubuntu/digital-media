@@ -7,6 +7,8 @@ import type {
   invoices,
   customers,
   invoice_items,
+  artists,
+  albums,
 } from "@prisma/client";
 
 export async function getAllCustomers(): Promise<customers[]> {
@@ -24,7 +26,24 @@ export async function getAllInvoices(): Promise<invoices[]> {
 
   return invoices;
 }
+export async function getAllArtists(): Promise<artists[]> {
+  const artists = await prismaClient.artists.findMany();
 
+  return artists;
+}
+export async function getAllAlbums(): Promise<albums[]> {
+  const albums = await prismaClient.albums.findMany();
+
+  return albums;
+}
+export async function getTracksLength(albumId: string | any) {
+  const res = await prismaClient.tracks.count({
+    where: {
+      AlbumId: Number(albumId),
+    },
+  });
+  return res;
+}
 export async function getInvoicesWithDate(from: Date | any, to: Date | any) {
   const res = await prismaClient.invoices.findMany({
     where: {
@@ -35,7 +54,6 @@ export async function getInvoicesWithDate(from: Date | any, to: Date | any) {
     },
   });
 
-  
   return res;
 }
 
