@@ -28,7 +28,7 @@ export default async function CustomerPage({
   params: { customerId: string };
 }) {
   const data = await getCustomerDetails(params.customerId);
-
+  console.log(data)
   return (
     <div className="flex flex-col">
       <div className="flex justify-between items-center">
@@ -38,7 +38,7 @@ export default async function CustomerPage({
           </h1>
       </div>
       <CustomerDetails customer={data} />
-      
+
     </div>
   );
 }

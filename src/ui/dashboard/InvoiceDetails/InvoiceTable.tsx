@@ -1,14 +1,22 @@
-import { invoices } from "@prisma/client";
+import { invoices, invoice_items } from "@prisma/client";
 import { getInvoiceItems, getInvoice } from "@/lib/utils";
 import InvoiceItemRow from "@/ui/dashboard/Cards/InvoiceCard/InvoiceItemRow";
 
-export default async function InvoiceTable({ invoiceId }: { invoiceId: any }) {
-  const invoiceData = await getInvoice(invoiceId);
-  const itemsData = await getInvoiceItems(invoiceId);
-  const invoiceTotal = itemsData.reduce(
+async function getInvoiceTotal({
+  invoiceItems,
+}: {
+  invoiceItems: invoice_items[];
+}) {
+  const invoiceTotal = invoiceItems.reduce(
     (total, item) => total + Number(item.UnitPrice) * item.Quantity,
     0
   );
+  return invoiceTotal;
+}
+export default async function InvoiceTable({ invoiceId }: { invoiceId: any }) {
+  const invoiceData = await getInvoice(invoiceId);
+  const itemsData = await getInvoiceItems(invoiceId);
+  const invoiceTotal = await getInvoiceTotal({ invoiceItems: itemsData });
   return (
     <>
       <div className="flex flex-col">
