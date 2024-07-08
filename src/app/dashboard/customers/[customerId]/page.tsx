@@ -29,16 +29,14 @@ export default async function CustomerPage({
 }) {
   const data = await getCustomerDetails(params.customerId);
 
-  if (breadcrumbs.length < 4) {
-    breadcrumbs.push({
-      label: `${data?.FirstName} ${data?.LastName}`,
-      href: "#",
-      active: false,
-    });
-  }
   return (
     <div className="flex flex-col">
-      <Nav breadcrumbs={breadcrumbs} />
+      <div className="flex justify-between items-center">
+        <Nav breadcrumbs={breadcrumbs} />
+          <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
+            {data?.FirstName} {data?.LastName}
+          </h1>
+      </div>
       <CustomerDetails customer={data} />
     </div>
   );
