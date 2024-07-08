@@ -10,9 +10,10 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <TopNav />
-
-      <Suspense fallback={<Loading />}>{children}</Suspense>
+      <Suspense fallback={<Loading />}>
+        <TopNav />
+        {children}
+      </Suspense>
     </>
   );
 }
