@@ -1,4 +1,7 @@
-import prismaClient from "@lib/connection-client";
+import { PrismaClient } from "@prisma/client";
+
+const prismaClient = new PrismaClient();
+
 import type {
   employees,
   invoices,
@@ -6,17 +9,18 @@ import type {
   invoice_items,
 } from "@prisma/client";
 
-export async function getAllCustomers() {
+export async function getAllCustomers(): Promise<customers[]> {
+ 
   const customers = await prismaClient.customers.findMany();
 
   return customers;
 }
-export async function getAllEmployees() {
+export async function getAllEmployees(): Promise<employees[]> {
   const employees = await prismaClient.employees.findMany();
 
   return employees;
 }
-export async function getAllInvoices() {
+export async function getAllInvoices(): Promise<invoices[]> {
   const invoices = await prismaClient.invoices.findMany();
 
   return invoices;
@@ -58,7 +62,7 @@ export async function getInvoicesTotal() {
       Total: true,
     },
   });
-  console.log(res);
+  // console.log(res);
   return res._sum.Total;
 }
 
@@ -178,3 +182,5 @@ export async function getInvoiceItems(invoiceId: number) {
   });
   return res;
 }
+
+export default prismaClient;
