@@ -2,6 +2,8 @@ import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import Link from "next/link";
 import InvoiceTable from "@/ui/dashboard/InvoiceDetails/InvoiceTable";
+import { Suspense } from "react";
+import Loading from "@/app/dashboard/loading";
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -23,15 +25,14 @@ const breadcrumbs: Breadcrumb[] = [
 export default async function InvoicePage({
   params,
 }: {
-  params: { invoiceId: string| number };
+  params: { invoiceId: string | number };
 }) {
-
-  
-
   return (
     <>
       <Nav breadcrumbs={breadcrumbs} />
-      <InvoiceTable invoiceId={params.invoiceId} />
+      <Suspense fallback={<Loading />}>
+        <InvoiceTable invoiceId={params.invoiceId} />
+      </Suspense>
     </>
   );
 }
