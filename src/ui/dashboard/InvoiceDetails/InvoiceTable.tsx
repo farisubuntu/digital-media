@@ -57,7 +57,9 @@ export default async function InvoiceTable({ invoiceId }: { invoiceId: any }) {
           </thead>
           <tbody className="bg-white text-blue-800 divide-y divide-gray-400">
             {itemsData.map((item) => (
-              <InvoiceItemRow key={item.InvoiceId} item={item} />
+              <div key={item.InvoiceId}>
+                <InvoiceItemRow item={item} />
+              </div>
             ))}
             <tr className="md:text-lg">
               <td

@@ -27,49 +27,40 @@ export default async function ArtistsPage() {
   if (!artists) {
     notFound();
   }
-  
-  return (
-  <>
-    <Nav breadcrumbs={breadcrumbs} />
-    <table className="w-full divide-y divide-gray-200 overflow-x-auto">
-    <div className="flex flex-col">
-      <div className="text-white bg-blue-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-inherit">
-      <thead>
-        <tr>
-          <th
-            scope="col"
-            className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
-          >
-            Name
-          </th>
-          <th
-            scope="col"
-            className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
-          >
-          Artist Name...
-          </th>
-        </tr>
-      </thead>
-      </div>
-      {
-        artists.map((artist) =>  (
-          <div className="flex flex-col bg-white text-green-600">
-            <tbody>
-              <tr>
-                <td>{artist.Name}</td>
-                <td>
-                  
-                </td>
-                <td>{artist.ArtistId}</td>
-              </tr>
-            </tbody>
-          </div>
-          ))
-        
-      }
-    </div>
-  </table>
-  </>
 
+  return (
+    <>
+      <Nav breadcrumbs={breadcrumbs} />
+      <table className="divide-y divide-gray-200 overflow-x-auto">
+        <thead>
+          <tr>
+            <th
+              scope="col"
+              className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+            >
+             Artist Name
+            </th>
+            <th
+              scope="col"
+              className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+            >
+            Artist ID
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {artists.map((artist) => (
+            <tr key={artist.ArtistId}>
+              <td className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                {artist.Name}
+              </td>
+              <td className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider">
+                {artist.ArtistId}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </>
   );
 }

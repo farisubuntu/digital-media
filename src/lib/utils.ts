@@ -144,13 +144,9 @@ export async function getEmployeesCount() {
 }
 
 export async function getPlaylistsCount() {
-  const res = await prismaClient.playlists.aggregate({
-    _count: {
-      _all: true,
-    },
-  });
-  const count = res._count._all.toString();
-  return count;
+  const playlistsCount = await prismaClient.playlists.count();
+
+  return playlistsCount | 0;
 }
 
 export async function getAlbumsCount() {

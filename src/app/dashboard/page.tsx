@@ -3,17 +3,23 @@ import Nav from "@/ui/dashboard/Nav/Nav";
 import Link from "next/link";
 import StatCard from "@/ui/dashboard/StatCard/StatCard";
 import { StatCardInterface } from "@/lib/definitiions";
-
+import PlaylistIcon from "@/ui/Icons/playlist-icon";
 import {
   getInvoicesTotal,
   getCustomersCount,
   getEmployeesCount,
+  getArtistsCount,
+  getAlbumsCount,
+  getPlaylistsCount,
 } from "@/lib/utils";
 import {
   CurrencyPoundIcon,
   UserGroupIcon,
   UserPlusIcon,
+  MusicalNoteIcon,
+  QueueListIcon,
 } from "@heroicons/react/24/outline";
+
 
 async function fetchData() {
   const statCardItems: StatCardInterface[] = [
@@ -32,6 +38,22 @@ async function fetchData() {
       icon: <CurrencyPoundIcon className="size-12" />,
       value: Number(await getInvoicesTotal()).toFixed(2),
     },
+    {
+      title: "Artists Count",
+      icon: <MusicalNoteIcon className="size-12" />,
+      value: Number(await getArtistsCount()),
+    },
+    {
+      title: "Albums Count",
+      icon: <QueueListIcon className="size-12" />,
+      value: Number(await getAlbumsCount()),
+    },
+    {
+      title:"Playlists Count",
+      icon: <PlaylistIcon size={48} />,
+      value: Number(await getPlaylistsCount()),
+
+    }
   ];
 
   return statCardItems;
