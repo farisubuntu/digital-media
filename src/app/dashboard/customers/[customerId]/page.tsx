@@ -33,6 +33,8 @@ export default async function CustomerPage({
   const data = await fetch(
     `http://localhost:3000/api/customers/${params.customerId}`
   );
+  const customerData = await data.json();
+
 
   console.log("DATA: ", data);
   if (!data) return notFound();
@@ -44,7 +46,7 @@ export default async function CustomerPage({
           <div className="flex justify-between items-center">
             <Nav breadcrumbs={breadcrumbs} />
             <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
-              {data?.FirstName} {data?.LastName}
+              {customerData?.FirstName} {customerData?.LastName}
             </h1>
           </div>
           <CustomerDetails customer={data} />

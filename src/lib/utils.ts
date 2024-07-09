@@ -186,7 +186,7 @@ export async function getCustomerDetails(id: string) {
   return res;
 }
 
-export async function getEmployeeDetails(employeeId: string) {
+export async function getEmployeeDetails(employeeId: string|any) {
   // const res = await prismaClient.employees.findUnique({
   //   where: {
   //     EmployeeId: Number(employeeId),
