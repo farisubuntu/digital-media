@@ -31,7 +31,7 @@ export default async function CustomerPage({
   params: { customerId: string | any };
 }) {
   const data = await getCustomerDetails(params.customerId);
-  const customerData: customers = data;
+  const customerData = data;
 
 
   console.log("DATA: ", data);

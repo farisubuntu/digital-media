@@ -12,7 +12,7 @@ export default async function CustomerDetails({
   customer: customers|any;
 }) {
   const customerInfo: customers = customer;
-  const employeeInfo: employees = await getEmployeeDetails(customerInfo.SupportRepId);
+  const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
   const invoices: invoices[] = await getCustomerInvoices(
     customerInfo.CustomerId
   );
