@@ -1,6 +1,5 @@
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
-import Link from "next/link";
 import InvoiceTable from "@/ui/dashboard/InvoiceDetails/InvoiceTable";
 import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";

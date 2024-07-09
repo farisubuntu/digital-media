@@ -158,6 +158,14 @@ export async function getAlbumsCount() {
   const count = res._count._all.toString();
   return count;
 }
+export async function getTracksInAlbum(albumId: string | any) {
+  const res = await prismaClient.tracks.findMany({
+    where: {
+      AlbumId: Number(albumId),
+    },
+  });
+  return res;
+}
 export async function getArtistsCount() {
   const res = await prismaClient.artists.aggregate({
     _count: {
