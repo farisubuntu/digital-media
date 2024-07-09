@@ -186,19 +186,13 @@ export async function getCustomerDetails(id: string) {
   return res;
 }
 
-export async function getEmployeeDetails(
-  employeeId: number | null
-): Promise<employees | null> {
-  const res = await prismaClient.employees.findUnique({
-    where: {
-      EmployeeId: Number(employeeId),
-    },
-  });
-  if (!res) {
-    return null;
-  }
-
-  return res;
+export async function getEmployeeDetails(employeeId: string) {
+  // const res = await prismaClient.employees.findUnique({
+  //   where: {
+  //     EmployeeId: Number(employeeId),
+  //   },
+  // });
+  // return res;
 }
 export async function deleteCustomer(id: string) {
   try {

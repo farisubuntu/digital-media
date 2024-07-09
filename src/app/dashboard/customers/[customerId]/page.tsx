@@ -30,20 +30,25 @@ export default async function CustomerPage({
 }: {
   params: { customerId: string | any };
 }) {
-  const data = await getCustomerDetails(params.customerId);
+  const data = await fetch(
+    `http://localhost:3000/api/customers/${params.customerId}`
+  );
+
+  console.log("DATA: ", data);
   if (!data) return notFound();
   console.log(data);
-  return (
-    <div className="flex flex-col">
-      <Suspense fallback={<Loading />}>
-        <div className="flex justify-between items-center">
-          <Nav breadcrumbs={breadcrumbs} />
-          <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
-            {data?.FirstName} {data?.LastName}
-          </h1>
-        </div>
-        <CustomerDetails customer={data} />
-      </Suspense>
-    </div>
-  );
+  if (data)
+    return (
+      <div className="flex flex-col">
+        <Suspense fallback={<Loading />}>
+          <div className="flex justify-between items-center">
+            <Nav breadcrumbs={breadcrumbs} />
+            <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
+              {data?.FirstName} {data?.LastName}
+            </h1>
+          </div>
+          <CustomerDetails customer={data} />
+        </Suspense>
+      </div>
+    );
 }
