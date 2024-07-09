@@ -1,7 +1,7 @@
 import CustomerCard from "@/ui/dashboard/Cards/CustomerCard";
 import EmployeeCard from "@/ui/dashboard/Cards/EmployeeCard";
 import InvoiceCard from "@/ui/dashboard/Cards/InvoiceCard/InvoiceCard";
-import { employees, invoices, customers } from "@prisma/client";
+import type { employees, invoices, customers } from "@prisma/client";
 import { getCustomerInvoices, getEmployeeDetails } from "@/lib/utils";
 
 import Image from "next/image";
@@ -12,7 +12,7 @@ export default async function CustomerDetails({
   customer: customers|any;
 }) {
   const customerInfo: customers = customer;
-  const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
+  const employeeInfo: employees = await getEmployeeDetails(customerInfo.SupportRepId);
   const invoices: invoices[] = await getCustomerInvoices(
     customerInfo.CustomerId
   );

@@ -30,10 +30,8 @@ export default async function CustomerPage({
 }: {
   params: { customerId: string | any };
 }) {
-  const data = await fetch(
-    `http://localhost:3000/api/customers/${params.customerId}`
-  );
-  const customerData = await data.json();
+  const data = await getCustomerDetails(params.customerId);
+  const customerData: customers = data;
 
 
   console.log("DATA: ", data);

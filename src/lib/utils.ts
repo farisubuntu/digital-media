@@ -39,14 +39,6 @@ export async function getArtistName(artistId: string | any) {
   });
   return res;
 }
-export async function getAllAlbums() {
-  const data = await prismaClient.albums.findMany({
-    include: {
-      artists: true,
-    },
-  });
-  return data;
-}
 
 export async function getTracksLength(albumId: string | any) {
   const res = await prismaClient.tracks.count({
@@ -186,13 +178,13 @@ export async function getCustomerDetails(id: string) {
   return res;
 }
 
-export async function getEmployeeDetails(employeeId: string|any) {
-  // const res = await prismaClient.employees.findUnique({
-  //   where: {
-  //     EmployeeId: Number(employeeId),
-  //   },
-  // });
-  // return res;
+export async function getEmployeeDetails(employeeId: string|number) {
+  const res = await prismaClient.employees.findUnique({
+    where: {
+      EmployeeId: Number(employeeId),
+    },
+  });
+  return res;
 }
 export async function deleteCustomer(id: string) {
   try {
