@@ -21,6 +21,36 @@ export async function getAllEmployees(): Promise<employees[]> {
 
   return employees;
 }
+export async function getAllEmployeeCustomers(
+  employeeId: number
+) {
+  const customers = await prismaClient.customers.findMany({
+    where: {
+      SupportRepId: employeeId,
+    },
+  });
+  if (customers.length > 0) {
+    return customers;
+  }
+  else{
+  return null;
+  }
+}
+export async function getAllTracks(): Promise<tracks[]> {
+  const tracks = await prismaClient.tracks.findMany();
+
+  return tracks;
+}
+export async function getAllPlaylists(): Promise<playlists[]> {
+  const playlists = await prismaClient.playlists.findMany();
+
+  return playlists;
+}
+export async function getAllAlbums(): Promise<albums[]> {
+  const albums = await prismaClient.albums.findMany();
+
+  return albums;
+}
 export async function getAllInvoices(): Promise<invoices[]> {
   const invoices = await prismaClient.invoices.findMany();
 
@@ -178,7 +208,7 @@ export async function getCustomerDetails(id: string) {
   return res;
 }
 
-export async function getEmployeeDetails(employeeId:number) {
+export async function getEmployeeDetails(employeeId: number) {
   const res = await prismaClient.employees.findUnique({
     where: {
       EmployeeId: Number(employeeId),

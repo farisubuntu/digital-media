@@ -1,5 +1,5 @@
-import CustomerDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
-import { getCustomerDetails } from "@/lib/utils";
+import EmployeeDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
+import { getCustomerDetails, getEmployeeDetails } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { Breadcrumb } from "@/lib/definitiions";
 import { customers } from "@prisma/client";
@@ -19,34 +19,34 @@ const breadcrumbs: Breadcrumb[] = [
     active: false,
   },
   {
-    label: "Customers",
-    href: "/dashboard/customers",
+    label: "Employees",
+    href: "/dashboard/employees",
     active: true,
   },
 ];
 
-export default async function CustomerPage({
+export default async function EmployeePage({
   params,
 }: {
-  params: { customerId: string | any };
+  params: { employeeId: string | any };
 }) {
-  const customerData = await getCustomerDetails(params.customerId);
-
+  const employeeData = await getEmployeeDetails(params.employeeId);
 
   // console.log("DATA: ", data);
-  if (!customerData) return notFound();
-  console.log(customerData);
-  if (customerData)
+  if (!employeeData) return notFound();
+  // console.log(employeeData);
+  if (employeeData)
     return (
       <div className="flex flex-col">
         <Nav breadcrumbs={breadcrumbs} />
         <Suspense fallback={<Loading />}>
           <div className="flex justify-between items-center">
+            
             <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
-              {customerData?.FirstName} {customerData?.LastName}
+              {employeeData?.FirstName} {employeeData?.LastName}
             </h1>
           </div>
-          <CustomerDetails customer={customerData} />
+          <EmployeeDetails customer={employeeData} />
         </Suspense>
       </div>
     );

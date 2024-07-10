@@ -3,16 +3,30 @@ import EmployeeCard from "@/ui/dashboard/Cards/EmployeeCard";
 import InvoiceCard from "@/ui/dashboard/Cards/InvoiceCard/InvoiceCard";
 import type { employees, invoices, customers } from "@prisma/client";
 import { getCustomerInvoices, getEmployeeDetails } from "@/lib/utils";
-
 import Image from "next/image";
+
+function NoSuppporter() {
+  return (
+    <>
+      <div className="text-white bg-red-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-inherit">
+        No SuppoerterRepId Found or NULL
+      </div>
+    </>
+  );
+}
 
 export default async function CustomerDetails({
   customer,
 }: {
-  customer: customers|any;
+  customer: customers | any;
 }) {
   const customerInfo: customers = customer;
-  const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
+
+  let employeeInfo: employees | null = null;
+
+  if (customerInfo.SupportRepId !== null) {
+    employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
+  }
   const invoices: invoices[] = await getCustomerInvoices(
     customerInfo.CustomerId
   );
@@ -52,7 +66,11 @@ export default async function CustomerDetails({
           />
         </div>
         <div className="md:w-full text-xl">
-          <EmployeeCard employee={employeeInfo} />
+          {employeeInfo !== null ? (
+            <EmployeeCard employee={employeeInfo} />
+          ) : (
+            <NoSuppporter />
+          )}
         </div>
       </div>
       <h1 className="text-white text-4xl my-5 p-4 mx-3 bg-blue-500 w-1/4 border rounded-xl">

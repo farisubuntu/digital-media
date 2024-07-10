@@ -1,8 +1,9 @@
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
-import { getAllCustomers } from "@/lib/utils";
+import { getAllEmployees } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -16,15 +17,15 @@ const breadcrumbs: Breadcrumb[] = [
     active: false,
   },
   {
-    label: "Customers",
-    href: "/dashboard/customers",
+    label: "Employees",
+    href: "/dashboard/employees",
     active: true,
   },
 ];
 
-export default async function CustomersPage() {
-  const customers = await getAllCustomers();
-  // console.log(customers[0])
+export default async function EmployeePage() {
+const allEmployees=await getAllEmployees();
+
   return (
     <div className="flex flex-col">
       <Nav breadcrumbs={breadcrumbs} />
@@ -49,19 +50,32 @@ export default async function CustomersPage() {
                 scope="col"
                 className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
               >
+                Email
+              </th>
+              <th
+                scope="col"
+                className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+              >
+                Department / Job Title
+              </th>
+              <th
+                scope="col"
+                className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+              >
                 Country
               </th>
+
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
-            {customers.map((customer) => (
-              <tr key={customer.CustomerId}>
+            {allEmployees.map((employee) => (
+              <tr key={employee.EmployeeId}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
                     <div className="flex-shrink-0 h-10 w-10">
                       <Image
                         className="h-10 w-10 rounded-full"
-                        src={customer.ImageURL}
+                        src={employee.ImageURL}
                         alt="avatar"
                         width={40}
                         height={40}
@@ -69,25 +83,25 @@ export default async function CustomersPage() {
                     </div>
                     <div className="ml-4">
                       <div className="text-sm font-medium text-gray-900">
-                        {customer.FirstName} {customer.LastName}
+                        {employee.FirstName} {employee.LastName}
                       </div>
                       <div className="text-sm text-gray-500">
-                        {customer.Email}
+                        {employee?.Email}
                       </div>
                     </div>
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-900">{customer.Phone}</div>
+                  <div className="text-sm text-gray-900">{employee.Phone}</div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                    {customer?.Country && customer?.Country}
+                    {employee?.Country}
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <Link
-                    href={`/dashboard/customers/${customer.CustomerId}`}
+                    href={`/dashboard/employees/${employee.EmployeeId}`}
                     className="text-white bg-green-600 p-2 rounded-xl hover:bg-indigo-900"
                   >
                     Details
