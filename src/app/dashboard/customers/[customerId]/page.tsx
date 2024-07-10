@@ -2,7 +2,7 @@ import CustomerDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
 import { getCustomerDetails } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { Breadcrumb } from "@/lib/definitiions";
-import { customers } from "@prisma/client";
+import type { Customer } from "@prisma/client";
 import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";
 import { notFound } from "next/navigation";
@@ -30,8 +30,9 @@ export default async function CustomerPage({
 }: {
   params: { customerId: string | any };
 }) {
-  const customerData = await getCustomerDetails(params.customerId);
-
+  const customerData: Customer | null = await getCustomerDetails(
+    params.customerId
+  );
 
   // console.log("DATA: ", data);
   if (!customerData) return notFound();
@@ -46,7 +47,7 @@ export default async function CustomerPage({
               {customerData?.FirstName} {customerData?.LastName}
             </h1>
           </div>
-          <CustomerDetails customer={customerData} />
+          <CustomerDetails customerInfo={customerData} />
         </Suspense>
       </div>
     );

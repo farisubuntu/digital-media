@@ -1,4 +1,4 @@
-import { Invoice, Invice_Item } from "@prisma/client";
+import type { Invoice, Invice_Item } from "@prisma/client";
 import { getInvoiceItems, getInvoice } from "@/lib/utils";
 import InvoiceItemRow from "@/ui/dashboard/Cards/InvoiceCard/InvoiceItemRow";
 
@@ -27,7 +27,7 @@ export default async function InvoiceTable({ invoiceId }: { invoiceId: any }) {
                 scope="col"
                 className="px-6 py-3 text-left  font-medium uppercase tracking-wider"
               >
-                Invoice ID
+              LineIn
               </th>
               <th
                 scope="col"
@@ -57,9 +57,9 @@ export default async function InvoiceTable({ invoiceId }: { invoiceId: any }) {
           </thead>
           <tbody className="bg-white text-blue-800 divide-y divide-gray-400">
             {itemsData.map((item) => (
-              <div key={item.InvoiceId}>
+              <tr key={item.InvoiceId}>
                 <InvoiceItemRow item={item} />
-              </div>
+              </tr>
             ))}
             <tr className="md:text-lg">
               <td

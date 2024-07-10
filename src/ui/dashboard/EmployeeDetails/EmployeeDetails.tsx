@@ -23,10 +23,11 @@ export default async function EmployeeDetails({
   // if(employee.ReportsTo && employee.ReportsTo>0){
 
   // }
-  const customersInfo: Customer[] | null = await getAllEmployeeCustomers(
+  const customersInfo: Customer[] | 0 = await getAllEmployeeCustomers(
     employee.EmployeeId
   );
 
+  if (!employee) return <NoEmployees />;
   return (
     <div className="w-full flex flex-col">
       <div className="md:flex md:h-full my-2 p-2">

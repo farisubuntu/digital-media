@@ -1,4 +1,4 @@
-import { Customer } from "@prisma/client";
+import type { Customer } from "@prisma/client";
 
 
 export default function CustomerCard({ customer }: { customer: Customer }) {
@@ -19,32 +19,32 @@ export default function CustomerCard({ customer }: { customer: Customer }) {
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Phone</dt>
-          <dd className="text-white sm:col-span-2">{customer.Phone}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.Phone}</dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Country</dt>
-          <dd className="text-white sm:col-span-2">{customer.Country}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.Country}</dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Company</dt>
-          <dd className="text-white sm:col-span-2">{customer.Company}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.Company}</dd>
         </div>
 
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Address</dt>
-          <dd className="text-white sm:col-span-2">{customer.Address}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.Address}</dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">City</dt>
-          <dd className="text-white sm:col-span-2">{customer.City}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.City}</dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">State</dt>
-          <dd className="text-white sm:col-span-2">{customer.State}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.State}</dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Fax</dt>
-          <dd className="text-white sm:col-span-2">{customer.Fax}</dd>
+          <dd className="text-white sm:col-span-2">{customer?.Fax}</dd>
         </div>
       </dl>
     </div>

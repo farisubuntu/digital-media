@@ -30,9 +30,9 @@ export async function getAllEmployeeCustomers(employeeId: number) {
     },
   });
   if (customers.length > 0) {
-    return [...customers];
+    return customers;
   } else {
-    return null;
+    return 0;
   }
 }
 export async function getAllTracks(): Promise<Track[]> {
@@ -85,7 +85,6 @@ export async function getAlbumTracks(albumId: string | any) {
   });
   return res;
 }
-
 
 export async function getInvoiceDetails(invoiceId: string | any) {
   try {
@@ -198,7 +197,7 @@ export async function getCustomerDetails(id: string) {
 
 export async function getEmployeeDetails(employeeId: number | string | any) {
   if (employeeId === undefined || employeeId === null) return null;
-  
+
   console.log(employeeId);
   const res: Employee | null = await prismaClient.employee.findUnique({
     where: {
@@ -222,13 +221,13 @@ export async function deleteCustomer(id: string) {
   }
 }
 
-export async function getCustomerInvoices(customerId: number | string) {
-  const res = await prismaClient.invoice.findMany({
+export async function getCustomerInvoices(customerId: number) {
+  const res: Invoice[]  = await prismaClient.invoice.findMany({
     where: {
       CustomerId: Number(customerId),
     },
-  });
 
+  });
   return res;
 }
 

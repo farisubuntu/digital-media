@@ -99,7 +99,7 @@ model Invoice {
   BillingPostalCode String?
   Total             Decimal
   Invice_Item       Invice_Item[]
-  Customer          Customer      @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
+  Customer          Customer?      @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
 
   @@index([CustomerId], map: "IFK_InvoiceCustomerId")
 }

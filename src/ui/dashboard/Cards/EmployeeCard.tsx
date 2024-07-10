@@ -1,7 +1,11 @@
-import type { employees } from "@prisma/client";
+import type { Employee } from "@prisma/client";
 import { getEmployeeDetails } from "@/lib/utils";
 
-export default async function EmployeeCard({ employee }: { employee: employees }) {
+export default async function EmployeeCard({
+  employee,
+}: {
+  employee: Employee;
+}) {
   return (
     <div className="rounded-lg border border-gray-100 py-3 shadow-sm">
       <dl className="-my-3 divide-y divide-gray-200">

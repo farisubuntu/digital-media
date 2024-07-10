@@ -1,9 +1,9 @@
-import { invoices } from "@prisma/client";
+import type { Invoice } from "@prisma/client";
 import { getInvoiceItems } from "@/lib/utils";
 import InvoiceCardItem from "./InvoiceItemRow";
 
-export default async function InvoiceCard({ Invoice }: { Invoice: invoices }) {
-  const invoiceItems = await getInvoiceItems(Invoice.InvoiceId);
+export default async function InvoiceCard({ invoiceData }: { invoiceData: Invoice }) {
+  const invoiceItems = await getInvoiceItems(invoiceData.InvoiceId);
   return (
     <>
       <div className="bg-slate-700 hover:cursor-pointer hover:bg-blue-500 my-3">
@@ -11,15 +11,15 @@ export default async function InvoiceCard({ Invoice }: { Invoice: invoices }) {
           <summary className="p-4 rounded-lg cursor-pointer shadow-md mb-4 flex flex-col border border-3-black hover:text-brown-500">
             <div className="flex justify-between">
               <h1 className="text-lg font-bold">
-                Invoice # {Invoice.InvoiceId}
+                Invoice # {invoiceData.InvoiceId.toString()}
               </h1>
               <p className="text-lg">
-                Date: {Invoice.InvoiceDate.toISOString().slice(0, 10)}
+                Date: {invoiceData.InvoiceDate.toISOString().slice(0, 10)}
               </p>
-              <p className="text-lg">Total: ${Invoice.Total.toString()}</p>
+              <p className="text-lg">Total: ${invoiceData.Total.toString()}</p>
             </div>
           </summary>
-          <div className="flex flex-col">
+          <div className="flex flex-col w-full">
             <table className="w-full divide-y divide-gray-400 overflow-x-auto">
               <thead className="bg-blue-500 text-xl">
                 <tr>
@@ -67,33 +67,33 @@ export default async function InvoiceCard({ Invoice }: { Invoice: invoices }) {
             <div className="flex justify-between w-full">
               <p className="text-xl m-2">
                 <span className="text-green-800 px-2">Billing Address:</span>{" "}
-                {Invoice.BillingAddress}
+                {invoiceData.BillingAddress}
               </p>
               <p className="text-xl m-2">
                 <span className="text-green-800 px-2">Billing City:</span>{" "}
-                {Invoice.BillingCity}
+                {invoiceData.BillingCity}
               </p>
 
               <p className="text-xl m-2">
                 <span className="text-green-800 px-2">Billing State:</span>{" "}
-                {Invoice.BillingState}
+                {invoiceData.BillingState}
               </p>
             </div>
             <div className="flex justify-between w-full">
               <p className="text-xl m-2">
                 <span className="text-green-800 px-2">Billing Country:</span>{" "}
-                {Invoice.BillingCountry}
+                {invoiceData.BillingCountry}
               </p>
 
               <p className="text-xl m-2">
                 <span className="text-green-800 px-2">
                   Billing Postal Code:
                 </span>{" "}
-                {Invoice.BillingPostalCode}
+                {invoiceData.BillingPostalCode}
               </p>
               <h1 className="text-2xl m-2 bg-gray-300 px-2">
                 <span className="text-green-800 px-2">Total:</span> $
-                {Invoice.Total.toString()}
+                {invoiceData.Total.toString()}
               </h1>
             </div>
           </div>

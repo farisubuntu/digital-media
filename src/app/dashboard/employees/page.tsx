@@ -3,6 +3,8 @@ import Nav from "@/ui/dashboard/Nav/Nav";
 import { getAllEmployees } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { Employee } from "@prisma/client";
+import { notFound } from "next/navigation";
 
 
 const breadcrumbs: Breadcrumb[] = [
@@ -24,7 +26,8 @@ const breadcrumbs: Breadcrumb[] = [
 ];
 
 export default async function EmployeePage() {
-const allEmployees=await getAllEmployees();
+  const allEmployees: Employee[] | null = await getAllEmployees();
+if(!allEmployees) return notFound();
 
   return (
     <div className="flex flex-col">
@@ -64,7 +67,6 @@ const allEmployees=await getAllEmployees();
               >
                 Country
               </th>
-
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">

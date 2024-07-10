@@ -3,6 +3,7 @@ import Nav from "@/ui/dashboard/Nav/Nav";
 import { getAllCustomers } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import type { Customer } from "@prisma/client";
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -23,7 +24,7 @@ const breadcrumbs: Breadcrumb[] = [
 ];
 
 export default async function CustomersPage() {
-  const customers = await getAllCustomers();
+  const customers: Customer[] = await getAllCustomers();
   // console.log(customers[0])
   return (
     <div className="flex flex-col">

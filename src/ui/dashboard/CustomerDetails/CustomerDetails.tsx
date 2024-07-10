@@ -16,17 +16,18 @@ function NoSuppporter() {
 }
 
 export default async function CustomerDetails({
-  customer,
+  customerInfo,
 }: {
-  customer: Customer | any;
+  customerInfo: Customer;
 }) {
-  const customerInfo: Customer = customer;
+  console.log(customerInfo);
 
+  const employeeInfo: Employee | null = await getEmployeeDetails(
+    customerInfo?.SupportRepId
+  );
 
-const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
-
-  const invoices: Invoice[] = await getCustomerInvoices(
-    customerInfo.CustomerId
+  const invoices: Invoice[] | null = await getCustomerInvoices(
+    customerInfo?.CustomerId
   );
 
   return (
@@ -53,30 +54,31 @@ const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
           <CustomerCard customer={customerInfo} />
         </div>
       </div>
-      <div className="md:flex md:h-full my-2 p-2">
-        <div className="text-white bg-blue-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-2xl h-inherit">
-          <h1 className="p-2 w-full text-4xl text-center">Suupporter</h1>
-        </div>
-        <div className="p-1 md:w-4/12 mx-3">
-          <Image
-            src={
-              employeeInfo?.ImageURL ||
-              "https://xsgames.co/randomusers/avatar.php?g=female"
-            } 
-            width={300}
-            height={150}
-            alt="Movie Poster"
-            className="md:w-full object-cover md:h-full"
-          />
-        </div>
-        <div className="md:w-full text-xl">
-          {employeeInfo !== null ? (
+      {employeeInfo !== null && employeeInfo ? (
+        <div className="md:flex md:h-full my-2 p-2">
+          <div className="text-white bg-blue-500 md:w-1/12 ml-2 md:[writing-mode:vertical-lr] text-2xl h-inherit">
+            <h1 className="p-2 w-full text-4xl text-center">Suupporter</h1>
+          </div>
+
+          <div className="p-1 md:w-4/12 mx-3">
+            <Image
+              src={
+                employeeInfo.ImageURL ||
+                "https://xsgames.co/randomusers/avatar.php?g=female"
+              }
+              width={300}
+              height={150}
+              alt="Movie Poster"
+              className="md:w-full object-cover md:h-full"
+            />
+          </div>
+          <div className="md:w-full text-xl">
             <EmployeeCard employee={employeeInfo} />
-          ) : (
-            <NoSuppporter />
-          )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <NoSuppporter />
+      )}
       <h1 className="text-white text-4xl my-5 p-4 mx-3 bg-blue-500 w-1/4 border rounded-xl">
         Invoices -{" "}
         <span className="text-md italic">
@@ -84,9 +86,11 @@ const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
         </span>
       </h1>
       <div className="flex flex-col text-white bg-bule-900">
-        {invoices.map((invoice) => (
-          <InvoiceCard key={invoice.InvoiceId} Invoice={invoice} />
-        ))}
+        {invoices &&
+          invoices.length > 0 &&
+          invoices.map((invoice) => (
+            <InvoiceCard key={invoice.InvoiceId} invoiceData={invoice} />
+          ))}
       </div>
     </div>
   );
