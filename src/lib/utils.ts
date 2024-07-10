@@ -3,66 +3,65 @@ import { PrismaClient } from "@prisma/client";
 const prismaClient = new PrismaClient();
 
 import type {
-  employees,
-  invoices,
-  customers,
-  invoice_items,
-  artists,
-  albums,
+  Employee,
+  Invoice,
+  Customer,
+  Invice_Item,
+  Artist,
+  Album,
+  Playlist,
+  Track,
 } from "@prisma/client";
 
-export async function getAllCustomers(): Promise<customers[]> {
-  const customers = await prismaClient.customers.findMany();
+export async function getAllCustomers(): Promise<Customer[]> {
+  const customers = await prismaClient.customer.findMany();
 
   return customers;
 }
-export async function getAllEmployees(): Promise<employees[]> {
-  const employees = await prismaClient.employees.findMany();
+export async function getAllEmployees(): Promise<Employee[]> {
+  const employees = await prismaClient.employee.findMany();
 
   return employees;
 }
-export async function getAllEmployeeCustomers(
-  employeeId: number
-) {
-  const customers = await prismaClient.customers.findMany({
+export async function getAllEmployeeCustomers(employeeId: number) {
+  const customers: Customer[] | null = await prismaClient.customer.findMany({
     where: {
-      SupportRepId: employeeId,
+      CustomerId: Number(employeeId),
     },
   });
   if (customers.length > 0) {
-    return customers;
-  }
-  else{
-  return null;
+    return [...customers];
+  } else {
+    return null;
   }
 }
-export async function getAllTracks(): Promise<tracks[]> {
-  const tracks = await prismaClient.tracks.findMany();
+export async function getAllTracks(): Promise<Track[]> {
+  const tracks = await prismaClient.track.findMany();
 
   return tracks;
 }
-export async function getAllPlaylists(): Promise<playlists[]> {
-  const playlists = await prismaClient.playlists.findMany();
+export async function getAllPlaylists(): Promise<Playlist[]> {
+  const playlists = await prismaClient.playlist.findMany();
 
   return playlists;
 }
-export async function getAllAlbums(): Promise<albums[]> {
-  const albums = await prismaClient.albums.findMany();
+export async function getAllAlbums(): Promise<Album[]> {
+  const albums = await prismaClient.album.findMany();
 
   return albums;
 }
-export async function getAllInvoices(): Promise<invoices[]> {
-  const invoices = await prismaClient.invoices.findMany();
+export async function getAllInvoices(): Promise<Invoice[]> {
+  const invoices = await prismaClient.invoice.findMany();
 
   return invoices;
 }
-export async function getAllArtists(): Promise<artists[]> {
-  const artists = await prismaClient.artists.findMany();
+export async function getAllArtists(): Promise<Artist[]> {
+  const artists = await prismaClient.artist.findMany();
 
   return artists;
 }
 export async function getArtistName(artistId: string | any) {
-  const res = await prismaClient.artists.findUnique({
+  const res = await prismaClient.artist.findUnique({
     where: {
       ArtistId: Number(artistId),
     },
@@ -71,7 +70,7 @@ export async function getArtistName(artistId: string | any) {
 }
 
 export async function getTracksLength(albumId: string | any) {
-  const res = await prismaClient.tracks.count({
+  const res = await prismaClient.track.count({
     where: {
       AlbumId: Number(albumId),
     },
@@ -79,34 +78,23 @@ export async function getTracksLength(albumId: string | any) {
   return res;
 }
 export async function getAlbumTracks(albumId: string | any) {
-  const res = await prismaClient.tracks.findMany({
+  const res = await prismaClient.track.findMany({
     where: {
       AlbumId: Number(albumId),
     },
   });
   return res;
 }
-export async function getInvoicesWithDate(from: Date | any, to: Date | any) {
-  const res = await prismaClient.invoices.findMany({
-    where: {
-      InvoiceDate: {
-        gte: from,
-        lte: to,
-      },
-    },
-  });
 
-  return res;
-}
 
 export async function getInvoiceDetails(invoiceId: string | any) {
   try {
-    const invoiceData = await prismaClient.invoices.findUnique({
+    const invoiceData = await prismaClient.invoice.findUnique({
       where: {
         InvoiceId: Number(invoiceId),
       },
     });
-    const itemsData = await prismaClient.invoice_items.findMany({
+    const itemsData = await prismaClient.invice_Item.findMany({
       where: {
         InvoiceId: Number(invoiceId),
       },
@@ -117,7 +105,7 @@ export async function getInvoiceDetails(invoiceId: string | any) {
   }
 }
 export async function getInvoice(invoiceId: string | any) {
-  const res = await prismaClient.invoices.findUnique({
+  const res = await prismaClient.invoice.findUnique({
     where: {
       InvoiceId: Number(invoiceId),
     },
@@ -125,7 +113,7 @@ export async function getInvoice(invoiceId: string | any) {
   return res;
 }
 export async function getInvoicesTotal() {
-  const res = await prismaClient.invoices.aggregate({
+  const res = await prismaClient.invoice.aggregate({
     _sum: {
       Total: true,
     },
@@ -135,7 +123,7 @@ export async function getInvoicesTotal() {
 }
 
 export async function getInvoicesCount() {
-  const res = await prismaClient.invoices.aggregate({
+  const res = await prismaClient.invoice.aggregate({
     _count: {
       _all: true,
     },
@@ -147,7 +135,7 @@ export async function getInvoicesCount() {
 }
 
 export async function getCustomersCount() {
-  const res = await prismaClient.customers.aggregate({
+  const res = await prismaClient.customer.aggregate({
     _count: {
       _all: true,
     },
@@ -156,7 +144,7 @@ export async function getCustomersCount() {
   return count;
 }
 export async function getEmployeesCount() {
-  const res = await prismaClient.employees.aggregate({
+  const res = await prismaClient.employee.aggregate({
     _count: {
       _all: true,
     },
@@ -166,13 +154,13 @@ export async function getEmployeesCount() {
 }
 
 export async function getPlaylistsCount() {
-  const playlistsCount = await prismaClient.playlists.count();
+  const playlistsCount = await prismaClient.playlist.count();
 
   return playlistsCount | 0;
 }
 
 export async function getAlbumsCount() {
-  const res = await prismaClient.albums.aggregate({
+  const res = await prismaClient.album.aggregate({
     _count: {
       _all: true,
     },
@@ -181,7 +169,7 @@ export async function getAlbumsCount() {
   return count;
 }
 export async function getTracksInAlbum(albumId: string | any) {
-  const res = await prismaClient.tracks.findMany({
+  const res = await prismaClient.track.findMany({
     where: {
       AlbumId: Number(albumId),
     },
@@ -189,7 +177,7 @@ export async function getTracksInAlbum(albumId: string | any) {
   return res;
 }
 export async function getArtistsCount() {
-  const res = await prismaClient.artists.aggregate({
+  const res = await prismaClient.artist.aggregate({
     _count: {
       _all: true,
     },
@@ -199,7 +187,7 @@ export async function getArtistsCount() {
 }
 
 export async function getCustomerDetails(id: string) {
-  const res = await prismaClient.customers.findUnique({
+  const res = await prismaClient.customer.findUnique({
     where: {
       CustomerId: Number(id),
     },
@@ -208,17 +196,21 @@ export async function getCustomerDetails(id: string) {
   return res;
 }
 
-export async function getEmployeeDetails(employeeId: number | string) {
-  const res = await prismaClient.employees.findUnique({
+export async function getEmployeeDetails(employeeId: number | string | any) {
+  if (employeeId === undefined || employeeId === null) return null;
+  
+  console.log(employeeId);
+  const res: Employee | null = await prismaClient.employee.findUnique({
     where: {
       EmployeeId: Number(employeeId),
     },
   });
-  return res;
+  if (res) return res;
+  else return null;
 }
 export async function deleteCustomer(id: string) {
   try {
-    const res = await prismaClient.customers.delete({
+    const res = await prismaClient.customer.delete({
       where: {
         CustomerId: Number(id),
       },
@@ -231,7 +223,7 @@ export async function deleteCustomer(id: string) {
 }
 
 export async function getCustomerInvoices(customerId: number | string) {
-  const res = await prismaClient.invoices.findMany({
+  const res = await prismaClient.invoice.findMany({
     where: {
       CustomerId: Number(customerId),
     },
@@ -241,7 +233,7 @@ export async function getCustomerInvoices(customerId: number | string) {
 }
 
 export async function getInvoiceItems(invoiceId: number) {
-  const res = await prismaClient.invoice_items.findMany({
+  const res = await prismaClient.invice_Item.findMany({
     where: {
       InvoiceId: Number(invoiceId),
     },

@@ -1,7 +1,7 @@
 import CustomerCard from "@/ui/dashboard/Cards/CustomerCard";
 import EmployeeCard from "@/ui/dashboard/Cards/EmployeeCard";
 import InvoiceCard from "@/ui/dashboard/Cards/InvoiceCard/InvoiceCard";
-import type { employees, invoices, customers } from "@prisma/client";
+import type { Employee, Invoice, Customer } from "@prisma/client";
 import { getCustomerInvoices, getEmployeeDetails } from "@/lib/utils";
 import Image from "next/image";
 
@@ -18,16 +18,14 @@ function NoSuppporter() {
 export default async function CustomerDetails({
   customer,
 }: {
-  customer: customers | any;
+  customer: Customer | any;
 }) {
-  const customerInfo: customers = customer;
+  const customerInfo: Customer = customer;
 
-  let employeeInfo: employees | null = null;
 
-  if (customerInfo.SupportRepId !== null) {
-    employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
-  }
-  const invoices: invoices[] = await getCustomerInvoices(
+const employeeInfo = await getEmployeeDetails(customerInfo.SupportRepId);
+
+  const invoices: Invoice[] = await getCustomerInvoices(
     customerInfo.CustomerId
   );
 
@@ -41,7 +39,10 @@ export default async function CustomerDetails({
         </div>
         <div className="p-1 md:w-4/12 mx-3">
           <Image
-            src={"https://xsgames.co/randomusers/avatar.php?g=male"}
+            src={
+              customerInfo?.ImageURL ||
+              "https://xsgames.co/randomusers/avatar.php?g=male"
+            }
             width={300}
             alt="Movie Poster"
             height={150}
@@ -58,7 +59,10 @@ export default async function CustomerDetails({
         </div>
         <div className="p-1 md:w-4/12 mx-3">
           <Image
-            src="https://xsgames.co/randomusers/avatar.php?g=female"
+            src={
+              employeeInfo?.ImageURL ||
+              "https://xsgames.co/randomusers/avatar.php?g=female"
+            } 
             width={300}
             height={150}
             alt="Movie Poster"

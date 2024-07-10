@@ -1,7 +1,7 @@
-import { customers } from "@prisma/client";
+import { Customer } from "@prisma/client";
 
 
-export default function CustomerCard({ customer }: { customer: customers }) {
+export default function CustomerCard({ customer }: { customer: Customer }) {
   return (
     <div className="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
       <dl className="-my-3 divide-y divide-gray-200">

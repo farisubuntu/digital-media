@@ -22,7 +22,7 @@ const breadcrumbs: Breadcrumb[] = [
 ];
 
 async function getCustomerFullName(id: number) {
-  const customer = await prismaClient.customers.findUnique({
+  const customer = await prismaClient.customer.findUnique({
     where: {
       CustomerId: id,
     },

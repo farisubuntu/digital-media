@@ -1,6 +1,6 @@
 import CustomerCard from "@/ui/dashboard/Cards/CustomerCard";
 import EmployeeCard from "@/ui/dashboard/Cards/EmployeeCard";
-import type { employees, customers } from "@prisma/client";
+import type { Employee, Customer } from "@prisma/client";
 import { getAllEmployeeCustomers, getEmployeeDetails } from "@/lib/utils";
 import Image from "next/image";
 
@@ -17,13 +17,15 @@ function NoEmployees() {
 export default async function EmployeeDetails({
   employee,
 }: {
-  employee: employees;
+  employee: Employee;
 }) {
   // let emplooyeesTeam:employees[]=[];
   // if(employee.ReportsTo && employee.ReportsTo>0){
 
   // }
-  const customersInfo=await getAllEmployeeCustomers(employee.EmployeeId);
+  const customersInfo: Customer[] | null = await getAllEmployeeCustomers(
+    employee.EmployeeId
+  );
 
   return (
     <div className="w-full flex flex-col">
@@ -63,11 +65,10 @@ export default async function EmployeeDetails({
         </div>
       </div>
       <h1 className="text-white text-4xl my-5 p-4 mx-3 bg-blue-500 w-1/4 border rounded-xl">
-        Customers 
-       
+        Customers
       </h1>
       {customersInfo && customersInfo.length > 0 ? (
-        customersInfo.map((customer: customers) => (
+        customersInfo.map((customer: Customer) => (
           <CustomerCard key={customer.CustomerId} customer={customer} />
         ))
       ) : (

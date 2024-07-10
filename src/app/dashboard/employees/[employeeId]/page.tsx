@@ -2,7 +2,7 @@ import EmployeeDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
 import { getCustomerDetails, getEmployeeDetails } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { Breadcrumb } from "@/lib/definitiions";
-import { customers } from "@prisma/client";
+import { Employee } from "@prisma/client";
 import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";
 import { notFound } from "next/navigation";
@@ -28,9 +28,11 @@ const breadcrumbs: Breadcrumb[] = [
 export default async function EmployeePage({
   params,
 }: {
-  params: { employeeId: string | number };
+  params: { employeeId: string | any };
 }) {
-  const employeeData = await getEmployeeDetails(params.employeeId);
+  const employeeData: Employee | null = await getEmployeeDetails(
+    params.employeeId
+  );
 
   // console.log("DATA: ", data);
   if (!employeeData) return notFound();
@@ -41,7 +43,6 @@ export default async function EmployeePage({
         <Nav breadcrumbs={breadcrumbs} />
         <Suspense fallback={<Loading />}>
           <div className="flex justify-between items-center">
-            
             <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
               {employeeData?.FirstName} {employeeData?.LastName}
             </h1>

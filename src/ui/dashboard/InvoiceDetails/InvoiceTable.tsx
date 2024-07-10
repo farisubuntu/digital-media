@@ -1,11 +1,11 @@
-import { invoices, invoice_items } from "@prisma/client";
+import { Invoice, Invice_Item } from "@prisma/client";
 import { getInvoiceItems, getInvoice } from "@/lib/utils";
 import InvoiceItemRow from "@/ui/dashboard/Cards/InvoiceCard/InvoiceItemRow";
 
 async function getInvoiceTotal({
   invoiceItems,
 }: {
-  invoiceItems: invoice_items[];
+  invoiceItems: Invice_Item[];
 }) {
   const invoiceTotal = invoiceItems.reduce(
     (total, item) => total + Number(item.UnitPrice) * item.Quantity,

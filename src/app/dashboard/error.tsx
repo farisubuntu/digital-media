@@ -22,12 +22,33 @@ export default function Error({
       <h2 className="text-center">
         Dashboard Error Route (/dashboard/loading.tsx) : Something went wrong!
       </h2>
-      <div className="text-3xl border border-2xl">
-        <div>Pathname: {pathname}</div>
-        <div>Error digest: {error.digest}</div>
-        <div>Error message: {error.message}</div>
-        <div>Error name: {error.name}</div>
-        <div>Error stack: {error.stack}</div>
+      <div className="text-xl border border-2xl">
+        <div>
+          <span className="text-green bg-slate-800">Pathname: </span>
+          {pathname}
+        </div>
+        <div>
+          <span className="text-green bg-slate-800">Error digest:</span>
+          {error.digest}
+        </div>
+        <div>
+          <span className="text-white bg-slate-800">
+            Error message:
+          </span>
+           {error.message}
+        </div>
+        <div>
+          <span className="text-white bg-slate-800">
+            Error name:
+          </span>
+           {error.name}
+        </div>
+        <div>
+          <span className="text-white bg-slate-800">
+            Error stack:
+          </span>
+           {error.stack}
+        </div>
       </div>
       <button
         className="mt-4 rounded-md bg-blue-500 px-4 py-2 text-sm text-white transition-colors hover:bg-blue-400"
