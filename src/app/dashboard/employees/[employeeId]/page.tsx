@@ -28,7 +28,7 @@ const breadcrumbs: Breadcrumb[] = [
 export default async function EmployeePage({
   params,
 }: {
-  params: { employeeId: string | any };
+  params: { employeeId: string | number };
 }) {
   const employeeData = await getEmployeeDetails(params.employeeId);
 
