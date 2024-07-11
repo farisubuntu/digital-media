@@ -29,6 +29,8 @@ export default async function CustomerDetails({
   const invoices: Invoice[] | null = await getCustomerInvoices(
     customerInfo?.CustomerId
   );
+  const supporterImageLink = `https://xsgames.co/randomusers/avatar.php?g=female `;
+
 
   return (
     <div className="w-full flex flex-col">
@@ -41,8 +43,8 @@ export default async function CustomerDetails({
         <div className="p-1 md:w-4/12 mx-3">
           <Image
             src={
-              customerInfo?.ImageURL ||
-              "https://xsgames.co/randomusers/avatar.php?g=male"
+              "https://xsgames.co/randomusers/avatar.php?g=male " ||
+              customerInfo?.ImageURL
             }
             width={300}
             alt="Movie Poster"
@@ -62,10 +64,7 @@ export default async function CustomerDetails({
 
           <div className="p-1 md:w-4/12 mx-3">
             <Image
-              src={
-                employeeInfo.ImageURL ||
-                "https://xsgames.co/randomusers/avatar.php?g=female"
-              }
+              src={supporterImageLink}
               width={300}
               height={150}
               alt="Movie Poster"
