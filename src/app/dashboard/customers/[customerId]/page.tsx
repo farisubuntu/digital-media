@@ -25,16 +25,7 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
-export async function getStaticParams() {
-  const customers = await getAllCustomers();
-  const paths = customers.map((customer) => ({
-    params: { customerId: customer.CustomerId.toString() },
-  }));
-  return {
-    paths,
-    fallback: false,
-  };
-}
+
 
 export default async function CustomerPage({
   params,
