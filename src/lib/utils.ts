@@ -50,6 +50,7 @@ export async function getAllAlbums(): Promise<Album[]> {
 
   return albums;
 }
+
 export async function getAllInvoices(): Promise<Invoice[]> {
   const invoices = await prismaClient.invoice.findMany();
 

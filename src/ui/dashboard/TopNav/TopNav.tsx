@@ -29,7 +29,7 @@ const navigation: NavigationMenu[] = [
   { label: "Invoices", href: "/dashboard/invoices", current: false },
   { label: "Employees", href: "/dashboard/employees", current: false },
   { label: "Artists", href: "/dashboard/artists", current: false },
-  { label: "Albums", href: "/dashboard/albums", current: false },
+  { label: "Tracks", href: "/dashboard/tracks", current: false },
 ];
 
 // temporary data
