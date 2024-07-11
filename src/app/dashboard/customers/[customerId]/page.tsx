@@ -1,5 +1,5 @@
 import CustomerDetails from "@/ui/dashboard/CustomerDetails/CustomerDetails";
-import { getCustomerDetails } from "@/lib/utils";
+import { getCustomerDetails,getAllCustomers } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { Breadcrumb } from "@/lib/definitiions";
 import type { Customer } from "@prisma/client";
@@ -24,6 +24,18 @@ const breadcrumbs: Breadcrumb[] = [
     active: true,
   },
 ];
+
+export async function getStaticPaths() {
+  const customers = await getAllCustomers();
+  const paths = customers.map((customer) => ({
+    params: { customerId: customer.CustomerId.toString() },
+  }));
+  return {
+    paths,
+    fallback: true,
+  };
+}
+
 
 export default async function CustomerPage({
   params,
