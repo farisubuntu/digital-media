@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { getTracksInAlbum } from "@/lib/utils";
-import { tracks } from "@prisma/client";
+import type { Track } from "@prisma/client";
 
 export default async function ViewTracksPage({
   params,
@@ -9,7 +9,7 @@ export default async function ViewTracksPage({
   params: { albumId: string };
 }) {
   // console.log(params.albumId);
-  const tracks: tracks[] = await getTracksInAlbum(params.albumId);
+  const tracks: Track[] = await getTracksInAlbum(params.albumId);
   if (!tracks) {
     notFound();
   }

@@ -26,6 +26,9 @@ export default async function EmployeeDetails({
   const customersInfo: Customer[] | 0 = await getAllEmployeeCustomers(
     employee.EmployeeId
   );
+  const reportsTo: Employee | null = await getEmployeeDetails(
+    employee.ReportsTo
+  );
 
   if (!employee) return <NoEmployees />;
   return (
@@ -58,11 +61,11 @@ export default async function EmployeeDetails({
 
         <div className="md:w-full text-xl">
           <h1 className="text-white text-4xl my-5 p-4 mx-3 bg-blue-500 w-1/4 border rounded-xl">
-            ReportsTo: {employee?.ReportsTo}
-            <span className="text-md italic">
-              TODO: Total Employee Team here
-            </span>
+            ReportsTo:
           </h1>
+          <div className="md:w-full text-xl">
+            {reportsTo && <EmployeeCard employee={reportsTo} />}
+          </div>
         </div>
       </div>
       <h1 className="text-white text-4xl my-5 p-4 mx-3 bg-blue-500 w-1/4 border rounded-xl">

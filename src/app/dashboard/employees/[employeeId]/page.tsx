@@ -33,8 +33,9 @@ export default async function EmployeePage({
   const employeeData: Employee | null = await getEmployeeDetails(
     params.employeeId
   );
+const teams=await getEmployeeDetails(employeeData?.ReportsTo);
 
-  // console.log("DATA: ", data);
+// console.log("DATA: ", teams);
   if (!employeeData) return notFound();
   // console.log(employeeData);
 
@@ -48,6 +49,7 @@ export default async function EmployeePage({
           </h1>
         </div>
         <EmployeeDetails employee={employeeData} />
+      
       </Suspense>
     </div>
   );
