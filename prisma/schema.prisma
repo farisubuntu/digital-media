@@ -1,7 +1,7 @@
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = ["native", "rhel-openssl-3.0.x"]
+  provider        = "prisma-client-js"
   previewFeatures = ["views"]
+  binaryTargets   = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -147,3 +147,6 @@ model Track {
   @@index([GenreId], map: "IFK_TrackGenreId")
   @@index([AlbumId], map: "IFK_TrackAlbumId")
 }
+
+
+

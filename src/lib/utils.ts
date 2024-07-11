@@ -40,6 +40,7 @@ export async function getAllTracks(): Promise<Track[]> {
 
   return tracks;
 }
+
 export async function getAllPlaylists(): Promise<Playlist[]> {
   const playlists = await prismaClient.playlist.findMany();
 
@@ -223,11 +224,10 @@ export async function deleteCustomer(id: string) {
 }
 
 export async function getCustomerInvoices(customerId: number) {
-  const res: Invoice[]  = await prismaClient.invoice.findMany({
+  const res: Invoice[] = await prismaClient.invoice.findMany({
     where: {
       CustomerId: Number(customerId),
     },
-
   });
   return res;
 }
