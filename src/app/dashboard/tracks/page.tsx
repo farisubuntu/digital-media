@@ -32,7 +32,7 @@ export default async function TracksPage() {
       <div className="flex flex-col">
         <Nav breadcrumbs={breadcrumbs} />
         <table className="w-full divide-y divide-gray-200 overflow-x-auto">
-          <thead className="bg-blue-600 text-white">
+          <thead className="bg-blue-600 text-white sticky top-0">
             <tr>
               <th
                 scope="col"
