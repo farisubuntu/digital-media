@@ -25,8 +25,6 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
-
-
 export default async function CustomerPage({
   params,
 }: {
@@ -49,7 +47,9 @@ export default async function CustomerPage({
               {customerData?.FirstName} {customerData?.LastName}
             </h1>
           </div>
-          <CustomerDetails customerInfo={customerData} />
+          <div className="flex justify-center items-center">
+            <CustomerDetails customerInfo={customerData} />
+          </div>
         </Suspense>
       </div>
     );

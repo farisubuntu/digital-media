@@ -89,7 +89,12 @@ export default async function CustomerDetails({
         {invoices &&
           invoices.length > 0 &&
           invoices.map((invoice) => (
-            <InvoiceCard key={invoice.InvoiceId} invoiceData={invoice} />
+            <div className="flex flex-col" key={invoice.InvoiceId}>
+              <div className="flex">
+                {" "}
+                <InvoiceCard invoiceData={invoice} />
+              </div>
+            </div>
           ))}
       </div>
     </div>

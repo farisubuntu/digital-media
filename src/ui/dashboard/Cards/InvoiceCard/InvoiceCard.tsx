@@ -2,11 +2,15 @@ import type { Invoice } from "@prisma/client";
 import { getInvoiceItems } from "@/lib/utils";
 import InvoiceCardItem from "./InvoiceItemRow";
 
-export default async function InvoiceCard({ invoiceData }: { invoiceData: Invoice }) {
+export default async function InvoiceCard({
+  invoiceData,
+}: {
+  invoiceData: Invoice;
+}) {
   const invoiceItems = await getInvoiceItems(invoiceData.InvoiceId);
   return (
     <>
-      <div className="bg-slate-700 hover:cursor-pointer hover:bg-blue-500 my-3">
+      <div className="bg-slate-700 hover:cursor-pointer hover:bg-blue-500 my-3 w-full">
         <details className="mb-2 w-full">
           <summary className="p-4 rounded-lg cursor-pointer shadow-md mb-4 flex flex-col border border-3-black hover:text-brown-500">
             <div className="flex justify-between">
@@ -19,45 +23,36 @@ export default async function InvoiceCard({ invoiceData }: { invoiceData: Invoic
               <p className="text-lg">Total: ${invoiceData.Total.toString()}</p>
             </div>
           </summary>
-          <div className="flex flex-col w-full">
-            <table className="w-full divide-y divide-gray-400 overflow-x-auto">
-              <thead className="bg-blue-500 text-xl">
-                <tr>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left  font-medium uppercase tracking-wider"
-                  >
+          <div className="flex flex-col">
+            <table className="flex flex-col divide-y divide-gray-400 overflow-x-auto">
+              <thead className="bg-blue-500 text-xl flex flex-col justify-between w-full">
+                <tr className="flex justify-between">
+                  <th className="px-6 py-3 text-left  font-medium uppercase tracking-wider">
                     Invoice ID
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left  font-medium uppercase tracking-wider"
-                  >
+                  <th className="px-6 py-3 text-left  font-medium uppercase tracking-wider">
                     Track ID
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left font-medium uppercase tracking-wider"
-                  >
+                  <th className="px-6 py-3 text-left font-medium uppercase tracking-wider">
                     Unit Price
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left font-medium uppercase tracking-wider"
-                  >
+                  <th className="px-6 py-3 text-left font-medium uppercase tracking-wider">
                     Quantity
                   </th>
-                  <th
-                    scope="col"
-                    className="px-6 py-3 text-left font-medium uppercase tracking-wider"
-                  >
+                  <th className="px-6 py-3 text-left font-medium uppercase tracking-wider">
                     Sub Total
                   </th>
                 </tr>
               </thead>
-              <tbody className="bg-white text-blue-800 divide-y divide-gray-400">
+              <tbody className="flex flex-col bg-white text-blue-800 divide-y divide-gray-400">
                 {invoiceItems.map((item) => (
-                  <InvoiceCardItem key={item.InvoiceId} item={item} />
+                  <div
+                    key={item.InvoiceId}
+                    className="flex w-full justify-between"
+                  
+                  >
+                    <InvoiceCardItem item={item} />
+                  </div>
                 ))}
               </tbody>
             </table>

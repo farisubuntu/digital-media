@@ -6,7 +6,7 @@ export default function InvoiceItemRow({ item }: { item: Invice_Item }) {
     <>
       <td
         scope="col"
-        className="px-6 py-3 text-left  font-medium uppercase tracking-wider"
+        className="text-left font-medium uppercase"
       >
         {item.InvoiceLineId.toString()}
       </td>
