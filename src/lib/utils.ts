@@ -198,9 +198,6 @@ export async function getCustomerDetails(id: string) {
 }
 
 export async function getEmployeeDetails(employeeId: number | string | any) {
-  if (employeeId === undefined || employeeId === null) return null;
-
-  // console.log(employeeId);
   const res: Employee | null = await prismaClient.employee.findUnique({
     where: {
       EmployeeId: Number(employeeId),
@@ -209,8 +206,8 @@ export async function getEmployeeDetails(employeeId: number | string | any) {
       Employee: true,
     }
   });
-  if (res) return res;
-  else return null;
+
+  return res;
 }
 export async function deleteCustomer(id: string) {
   try {

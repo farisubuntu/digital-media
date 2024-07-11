@@ -1,10 +1,10 @@
 import type { Employee } from "@prisma/client";
 import { getEmployeeDetails } from "@/lib/utils";
 
-export default async function EmployeeCard({
+export default function EmployeeCard({
   employee,
 }: {
-  employee: Employee;
+  employee?: Employee;
 }) {
   return (
     <div className="rounded-lg border border-gray-100 py-3 shadow-sm">
@@ -20,32 +20,32 @@ export default async function EmployeeCard({
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Department Title </dt>
           <dd className="text-white sm:col-span-2">
-            {employee.Title || "N/A"}
+            {employee?.Title || "N/A"}
           </dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Email</dt>
           <dd className="text-white sm:col-span-2">
-            {employee.Email || "N/A"}
+            {employee?.Email || "N/A"}
           </dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Phone</dt>
           <dd className="text-white sm:col-span-2">
-            {employee.Phone || "N/A"}
+            {employee?.Phone || "N/A"}
           </dd>
         </div>
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Country</dt>
           <dd className="text-white sm:col-span-2">
-            {employee.Country || "N/A"}
+            {employee?.Country || "N/A"}
           </dd>
         </div>
 
         <div className="grid grid-cols-1 gap-1 p-3 even:bg-blue-500 sm:grid-cols-3 sm:gap-4">
           <dt className="font-bold text-white">Address</dt>
           <dd className="text-white sm:col-span-2">
-            {employee.Address || "N/A"}
+            {employee?.Address || "N/A"}
           </dd>
         </div>
       </dl>
