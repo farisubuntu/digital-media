@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 const navigation: NavigationMenu[] = [
+  { label: "Home", href: "/" },
   { label: "Dashboard", href: "/dashboard" },
   { label: "Blog", href: "/blog" },
   { label: "Contact Admin", href: "/contact" },
@@ -26,15 +27,7 @@ function classNames(...classes: string[]) {
 export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  function handleClick() {
-    const collapseMenu = document.getElementById("collapseMenu")!;
 
-    if (collapseMenu.style.display === "block") {
-      collapseMenu.style.display = "none";
-    } else {
-      collapseMenu.style.display = "block";
-    }
-  }
   return (
     <>
       <header className="font-[sans-serif] min-h-[60px] tracking-wide relative z-50">
@@ -55,7 +48,6 @@ export default function Header() {
             <button
               id="toggleClose"
               className="lg:hidden fixed top-2 right-4 z-[100] rounded-full bg-white p-3"
-              onClick={handleClick}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +78,9 @@ export default function Header() {
               </li>
               {navigation.map((item, index) => (
                 <li
-                  className="max-lg:border-b max-lg:py-3 relative lg:after:absolute lg:after:bg-white lg:after:w-full lg:after:h-[2px] lg:after:block lg:after:-bottom-4 lg:after:transition-all lg:after:duration-300"
+                  className={`${
+                    pathname === item.href ? "lg:after:bg-white" : ""
+                  } max-lg:py-3 relative lg:after:absolute  lg:after:w-full lg:after:h-[2px] lg:after:block lg:after:-bottom-4 lg:after:transition-all lg:after:duration-300`}
                   key={index}
                 >
                   <Link
@@ -135,11 +129,7 @@ export default function Header() {
                 </span>
               </li>
             </ul>
-            <button
-              id="toggleOpen"
-              className="lg:hidden ml-6"
-              onClick={handleClick}
-            >
+            <button id="toggleOpen" className="lg:hidden ml-6">
               <svg
                 className="w-7 h-7"
                 fill="#fff"
