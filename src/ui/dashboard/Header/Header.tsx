@@ -31,6 +31,17 @@ export default function Header() {
   return (
     <>
       <header className="font-[sans-serif] min-h-[60px] tracking-wide relative z-50">
+        <section className="bg-[#004d66] min-h-[40px] px-4 py-2 sm:px-10 flex items-center max-sm:flex-col">
+          <div className="sm:ml-auto text-white">
+            <a href="/sign-in" className="text-white text-sm mr-1">
+              Sign In
+            </a>
+            /
+            <a href="/sign-up" className="text-white text-sm ml-1">
+              Sign Up
+            </a>
+          </div>
+        </section>
         <div className="flex flex-wrap items-center justify-between py-3 px-4 sm:px-10 bg-[#151d20] lg:gap-y-4 gap-y-6 gap-x-4">
           <Link href="/">
             <Image

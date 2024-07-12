@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SignUpPage() {
   return (
@@ -376,9 +377,9 @@ export default function SignUpPage() {
             <div className="mt-4 text-sm text-gray-600 text-center">
               <p>
                 Already have an account?{" "}
-                <a href="#" className="text-black hover:underline">
+                <Link href="/sign-in" className="text-black hover:underline">
                   Login here
-                </a>
+                </Link>
               </p>
             </div>
           </div>
