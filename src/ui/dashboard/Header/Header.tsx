@@ -137,7 +137,7 @@ export default function Header() {
             </ul>
             <button
               id="toggleOpen"
-              className={`${is} "lg:hidden ml-6"`}
+              className="lg:hidden ml-6"
               onClick={handleClick}
             >
               <svg
