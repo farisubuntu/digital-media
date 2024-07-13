@@ -76,7 +76,7 @@ export default async function DashboardPage() {
               </div>
             ))}
           </div>
-          <div className="flex border-2 p-2">right side</div>
+        
         </div>
       </div>
     </>
