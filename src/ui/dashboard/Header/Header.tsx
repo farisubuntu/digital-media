@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <>
       <header className="font-[sans-serif] tracking-wide relative z-50">
-        <div className="flex flex-wrap items-center justify-between py-3 px-4 sm:px-10 bg-[#151d20] lg:gap-y-4 gap-y-6 gap-x-4">
+        <div className="flex flex-wrap items-center justify-between py-3 px-4 sm:px-10 bg-[#121e31] lg:gap-y-4 gap-y-6 gap-x-4">
           <Link href="/">
             <Image
               src="https://readymadeui.com/readymadeui-white.svg"

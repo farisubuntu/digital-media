@@ -65,22 +65,18 @@ export default async function DashboardPage() {
     <>
       <div className="flex flex-col">
         <Nav breadcrumbs={breadcrumbs} />
-        <div className="flex gap-2">
+        <div className="flex flex-col gap-2 h-screen">
           <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
             {cards.map((item, index) => (
               <div
                 key={index}
-                className="flex bg-green-900  text-white border rounded-xl"
+                className="flex bg-green-900 text-white border rounded-xl"
               >
                 <StatCard item={item} />
               </div>
             ))}
           </div>
-          <div className="flex border-2 p-2 w-full">
-            right side
-
-
-          </div>
+          <div className="flex border-2 p-2">right side</div>
         </div>
       </div>
     </>
