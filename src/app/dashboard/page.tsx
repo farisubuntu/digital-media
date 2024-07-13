@@ -1,6 +1,9 @@
 import { StatCardInterface, Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import StatCard from "@/ui/dashboard/StatCard/StatCard";
+import Link from "next/link";
+import { Suspense } from "react";
+import { fetchCardData } from "@/lib/utils/counts";
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -14,55 +17,70 @@ const breadcrumbs: Breadcrumb[] = [
     active: true,
   },
 ];
+
 async function getData(): Promise<StatCardInterface[]> {
-  return [
+  const data = await fetchCardData();
+  const cards: StatCardInterface[] = [
     {
-      title: "Total Invoices",
-      value: 0,
+      title: "Revenue",
+      value: data.invoiceTotal,
     },
     {
-      title: "Total Customers",
-      value: 0,
+      title: "Invoices",
+      value: data.invoiceCount,
     },
     {
-      title: "Total Employees",
-      value: 0,
+      title: "Customers",
+      value: data.customerCount,
     },
     {
-      title: "Total Albums",
-      value: 0,
+      title: "Employees",
+      value: data.employeeCount,
     },
     {
-      title: "Total Tracks",
-      value: 0,
+      title: "Albums",
+      value: data.albumCount,
     },
     {
-      title: "Total Genres",
-      value: 0,
+      title: "Tracks",
+      value: data.trackCount,
+    },
+    {
+      title: "Genres",
+      value: data.genreCount,
     },
 
     {
-      title: "Total Playlists",
-      value: 0,
+      title: "Playlists",
+      value: data.playlistCount,
     },
   ];
+
+  return cards;
 }
 export default async function DashboardPage() {
-  const data = await getData();
-
+  const cards: StatCardInterface[] = await getData();
+  console.log(cards);
   return (
     <>
       <div className="flex flex-col">
         <Nav breadcrumbs={breadcrumbs} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {data.map((item, index) => (
-            <div
-              key={index}
-              className="flex bg-green-900  text-white border rounded-xl"
-            >
-              <StatCard item={item} />
-            </div>
-          ))}
+        <div className="flex gap-2">
+          <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
+            {cards.map((item, index) => (
+              <div
+                key={index}
+                className="flex bg-green-900  text-white border rounded-xl"
+              >
+                <StatCard item={item} />
+              </div>
+            ))}
+          </div>
+          <div className="flex border-2 p-2 w-full">
+            right side
+
+
+          </div>
         </div>
       </div>
     </>

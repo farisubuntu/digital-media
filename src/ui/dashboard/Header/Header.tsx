@@ -30,18 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="font-[sans-serif] min-h-[60px] tracking-wide relative z-50">
-        <section className="bg-[#004d66] min-h-[40px] px-4 py-2 sm:px-10 flex items-center max-sm:flex-col">
-          <div className="sm:ml-auto text-white">
-            <a href="/sign-in" className="text-white text-sm mr-1">
-              Sign In
-            </a>
-            /
-            <a href="/sign-up" className="text-white text-sm ml-1">
-              Sign Up
-            </a>
-          </div>
-        </section>
+      <header className="font-[sans-serif] tracking-wide relative z-50">
         <div className="flex flex-wrap items-center justify-between py-3 px-4 sm:px-10 bg-[#151d20] lg:gap-y-4 gap-y-6 gap-x-4">
           <Link href="/">
             <Image
@@ -104,8 +93,8 @@ export default function Header() {
               ))}
             </ul>
           </div>
-          <div className="flex items-center max-sm:ml-auto">
-            <ul className="flex space-x-4">
+          <div className="flex items-center space-x-4 max-sm:ml-auto">
+            <ul className="flex gap-2">
               <li className="relative px-1 lg:hover:after:absolute lg:after:bg-white lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:-bottom-4 lg:after:transition-all lg:after:duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -120,7 +109,7 @@ export default function Header() {
                   />
                 </svg>
               </li>
-              <li className="relative px-1 lg:hover:after:absolute lg:after:bg-white lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:-bottom-4 lg:after:transition-all lg:after:duration-300">
+              {/* <li className="relative px-1 lg:hover:after:absolute lg:after:bg-white lg:after:w-0 lg:hover:after:w-full lg:hover:after:h-[2px] lg:after:block lg:after:-bottom-4 lg:after:transition-all lg:after:duration-300">
                 <span className="relative">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -138,8 +127,19 @@ export default function Header() {
                     0
                   </span>
                 </span>
-              </li>
+              </li> */}
             </ul>
+            <section className="bg-[#004d66] p-2 sm:px-10 flex items-center max-sm:flex-col ">
+              <div className="sm:ml-auto text-white flex items-center gap-2">
+                <Link href="/sign-in" className="text-white text-sm mr-1">
+                  Sign In
+                </Link>
+                <span>|</span>
+                <Link href="/sign-up" className="text-white text-sm ml-1">
+                  Sign Up
+                </Link>
+              </div>
+            </section>
             <button id="toggleOpen" className="lg:hidden ml-6">
               <svg
                 className="w-7 h-7"
