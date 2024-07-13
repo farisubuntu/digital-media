@@ -60,23 +60,24 @@ async function getData(): Promise<StatCardInterface[]> {
 }
 export default async function DashboardPage() {
   const cards: StatCardInterface[] = await getData();
-  console.log(cards);
+  // console.log(cards);
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-2 justify-around">
         <Nav breadcrumbs={breadcrumbs} />
-        <div className="flex flex-col gap-2 h-screen">
+        <div className="flex flex-col gap-2">
           <div className="grid sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
             {cards.map((item, index) => (
               <div
                 key={index}
                 className="flex bg-green-900 text-white border rounded-xl"
               >
-                <StatCard item={item} />
+                <div className="w-full">
+                  <StatCard item={item} />
+                </div>
               </div>
             ))}
           </div>
-        
         </div>
       </div>
     </>

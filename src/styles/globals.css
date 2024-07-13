@@ -2,9 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
- padding:0.5rem;
- background: #121e31;
+
+
+
+body {
+  padding: 0.5rem;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: #121e31;
 }
-
-
+* {
+ background-color: inherit;
+}

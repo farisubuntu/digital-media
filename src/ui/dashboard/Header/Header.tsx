@@ -30,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-      <header className="font-[sans-serif] tracking-wide relative z-50">
+      <header className="font-[sans-serif] tracking-wide">
         <div className="flex flex-wrap items-center justify-between py-3 px-4 sm:px-10 bg-[#121e31] lg:gap-y-4 gap-y-6 gap-x-4">
           <Link href="/">
             <Image
@@ -64,7 +64,7 @@ export default function Header() {
                 />
               </svg>
             </button>
-            <ul className="lg:!flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-[#151d20] max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:px-10 max-lg:py-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
+            <ul className="lg:!flex lg:gap-x-10 max-lg:space-y-3 max-lg:fixed max-lg:bg-[#151d20] max-lg:w-2/3 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:px-10 max-lg:py-4 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto">
               <li className="mb-6 hidden max-lg:block">
                 <a href="#">
                   <Image

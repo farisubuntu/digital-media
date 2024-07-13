@@ -24,8 +24,11 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} h-full`}>
         {/* <TopNav /> */}
-        <Header />
-        {children}
+          <div>
+            <Header />
+          </div>
+           <div> {children}</div>
+        
       </body>
     </html>
   );

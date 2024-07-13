@@ -1,25 +1,15 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Sidebar() {
   return (
     <>
-      <nav className="bg-[#121e31] h-screen fixed top-0 left-0 py-6 px-4 font-[sans-serif] tracking-wide overflow-auto">
-        <div className="flex flex-wrap items-center gap-4 cursor-pointer">
-          <img
-            src="https://readymadeui.com/profile.webp"
-            className="w-10 h-10 rounded-full border-2 border-white"
-          />
-          <div>
-            <p className="text-sm text-white">John Doe</p>
-            <p className="text-xs text-gray-300 mt-0.5">johndoe23@gmail.com</p>
-          </div>
-        </div>
-        <hr className="my-6 border-gray-400" />
+      <nav className="bg-[#121e31] h-screen fixed top-auto left-0 py-6 px-4 font-[sans-serif] tracking-wide overflow-auto">
         <ul className="space-y-3">
           <li>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/dashboard/invoices"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
             >
               <svg
@@ -34,11 +24,11 @@ export default function Sidebar() {
                 />
               </svg>
               <span>Invoices</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/dashboard/insights"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
             >
               <svg
@@ -53,11 +43,11 @@ export default function Sidebar() {
                 />
               </svg>
               <span>Insights</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/dashboard/customers"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
             >
               <svg
@@ -72,11 +62,11 @@ export default function Sidebar() {
                 />
               </svg>
               <span>Customers</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/dashboard/employees"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
             >
               <svg
@@ -91,11 +81,11 @@ export default function Sidebar() {
                 />
               </svg>
               <span>Employees</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/dashboard/albums"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
             >
               <svg
@@ -128,11 +118,11 @@ export default function Sidebar() {
                 </g>
               </svg>
               <span>Albums</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a
-              href="javascript:void(0)"
+            <Link
+              href="/dashboard/artists"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
             >
               <svg
@@ -151,9 +141,22 @@ export default function Sidebar() {
                 />
               </svg>
               <span>Artists</span>
-            </a>
+            </Link>
           </li>
         </ul>
+        <div className="flex flex-wrap items-center gap-4 cursor-pointer fixed bottom-2 left-2">
+          <Image
+            src="https://readymadeui.com/profile.webp"
+            className="w-10 h-10 rounded-full border-2 border-white"
+            alt="logo"
+            width={100}
+            height={100}
+          />
+          <div>
+            <p className="text-sm text-white">John Doe</p>
+            <p className="text-xs text-gray-300 mt-0.5">johndoe23@gmail.com</p>
+          </div>
+        </div>
       </nav>
     </>
   );
