@@ -1,5 +1,5 @@
 import { StatCardInterface, Breadcrumb } from "@/lib/definitiions";
-import Nav from "@/ui/dashboard/Nav/Nav";
+import Nav from "@/ui/Nav/Nav";
 import StatCard from "@/ui/dashboard/StatCard/StatCard";
 import Link from "next/link";
 import { Suspense } from "react";
