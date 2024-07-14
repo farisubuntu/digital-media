@@ -9,5 +9,5 @@ See [demo](https://digital-media-7xcw.vercel.app/)
 
 See [demo](https://netlify-main--netlify-digital-media.netlify.app/)
 
-`turso` branch only for development and testing before merge into `main` branch.
+`vercel-turso` branch only for development and testing before merge into `main` branch.
 `netlify-main-dev` the same but to merge into `netlify-main` branch.
