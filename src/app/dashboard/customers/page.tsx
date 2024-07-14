@@ -1,6 +1,6 @@
 import React from 'react'
 import { Breadcrumb, NavigationMenu  } from '@/lib/definitiions'
-
+import Nav from '@/ui/Nav/Nav'
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -28,7 +28,10 @@ export const metadata = {
 export default function CustomersPage() {
   return (
     <>
-
+        <div className="flex flex-col">
+          <Nav breadcrumbs={breadcrumbs} />
+          
+        </div>
     </>
   )
 }
