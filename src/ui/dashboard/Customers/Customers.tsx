@@ -1,15 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Customer } from "@/lib/definitiions";
 
 export default function Customers({ customers }: { customers: any[] }) {
-  // console.log("customer", customers[0]);
   return (
     <>
       <div className="font-[sans-serif] overflow-x-auto">
         <table className="min-w-full bg-white">
           <thead className="bg-gray-800 whitespace-nowrap">
             <tr>
+              <th className="p-4 text-left text-sm font-medium text-white">
+                Id
+              </th>
               <th className="p-4 text-left text-sm font-medium text-white">
                 Name
               </th>
@@ -33,16 +34,19 @@ export default function Customers({ customers }: { customers: any[] }) {
           </thead>
           <tbody className="whitespace-nowrap">
             {customers.map((customer) => (
-              <tr className="even:bg-blue-50" key={customer[0]}>
+              <tr className="even:bg-blue-100" key={customer.CustomerId}>
                 <td className="p-4 text-sm text-black">
-                  {customer[1]} {customer[2]}
+                  {customer.CustomerId}
                 </td>
-                <td className="p-4 text-sm text-black">{customer[12]}</td>
-                <td className="p-4 text-sm text-black">{customer[10]}</td>
-                <td className="p-4 text-sm text-black">{customer[4]}</td>
+                <td className="p-4 text-sm text-black">
+                  {customer.FirstName} {customer.LastName}
+                </td>
+                <td className="p-4 text-sm text-black">{customer.Email}</td>
+                <td className="p-4 text-sm text-black">{customer.Phone}</td>
+                <td className="p-4 text-sm text-black overflow-ellipsis">{customer.Company !== null ? customer.Company : 'N/A'}</td>
                 <td className="p-4">
                   <button className="mr-4" title="Edit">
-                    <Link href={`/dashboard/customers/${customer[0]}`}>
+                    <Link href={`/dashboard/customers/${customer.CustomerId}`}>
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 fill-blue-500 hover:fill-blue-700"
@@ -60,7 +64,9 @@ export default function Customers({ customers }: { customers: any[] }) {
                     </Link>
                   </button>
                   <button className="mr-4" title="Delete">
-                    <Link href={`dashboard/customers/${customer[0]}/delete`}>
+                    <Link
+                      href={`dashboard/customers/${customer.CustomerId}/delete`}
+                    >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="w-5 fill-red-500 hover:fill-red-700"
@@ -79,8 +85,8 @@ export default function Customers({ customers }: { customers: any[] }) {
                   </button>
                 </td>
                 <td className="p-4 text-sm text-black hover:underline hover:text-blue-500 text-md italic border border-slate-300">
-                  <Link href={`/dashboard/employees/${customer[0]}`}>
-                    {customer[13]} ...
+                  <Link href={`/dashboard/employees/${customer.SupportRepId}`}>
+                    {customer.SupportRepId}- {customer[12]}{" "}{customer[13]}
                   </Link>
                 </td>
               </tr>

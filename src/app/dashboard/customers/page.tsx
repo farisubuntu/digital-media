@@ -1,8 +1,9 @@
 import React from "react";
 import { Breadcrumb, NavigationMenu } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
+import { getCustomers } from "@/lib/utils/getTables";
 import Customers from "@/ui/dashboard/Customers/Customers";
-import { Customer } from "@/lib/definitiions";
+
 const breadcrumbs: Breadcrumb[] = [
   {
     label: "Home",
@@ -26,19 +27,15 @@ export const metadata = {
 };
 
 export default async function CustomersPage() {
-  const result = await fetch("http://localhost:3000/api/dashboard/customers");
-
-  const data = await result.json();
-
-  // const customersData = data;
-  // console.log(Array.from(data.rows));
-
-  // console.log(customersData);
+  const result = await getCustomers();
+  const customersData = result;
+  const row = customersData[0];
+  console.log("row", row[12]);
   return (
     <>
       <div className="flex flex-col">
         <Nav breadcrumbs={breadcrumbs} />
-        <Customers customers={data.rows} />
+        <Customers customers={customersData} />
       </div>
     </>
   );
