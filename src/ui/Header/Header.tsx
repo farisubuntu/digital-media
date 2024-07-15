@@ -28,6 +28,8 @@ export default function Header() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  console.log("pathname", pathname.includes("dashboard"));
+
   return (
     <>
       <header className="font-[sans-serif] tracking-wide">
@@ -79,7 +81,7 @@ export default function Header() {
               {navigation.map((item, index) => (
                 <li
                   className={`${
-                    pathname === item.href ? "lg:after:bg-white" : ""
+                    pathname.includes(item.href) ? "lg:after:bg-white" : ""
                   } max-lg:py-3 relative lg:after:absolute  lg:after:w-full lg:after:h-[2px] lg:after:block lg:after:-bottom-4 lg:after:transition-all lg:after:duration-300`}
                   key={index}
                 >

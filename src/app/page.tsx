@@ -1,5 +1,5 @@
 import { Breadcrumb } from "@/lib/definitiions";
-import Nav from "@/ui/dashboard/Nav/Nav";
+import Nav from "@/ui/Nav/Nav";
 import Link from "next/link";
 const breadcrumbs: Breadcrumb[] = [
   {
