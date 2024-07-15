@@ -1,11 +1,16 @@
 "use server";
-import { tursoClient } from "./turso";
+
+import { revalidatePath } from "next/cache";
 import { getEmployee, getEmployeeCustomers } from "./utils/employeeUtils";
 
 export async function actionGetEmployee(id: number) {
-  return await getEmployee(id);
+  const result = await getEmployee(id);
+  revalidatePath("/dashboard/employees/[employeeId]");
+  return result;
 }
 
 export async function actionGetEmployeeCustomers(id: number) {
-  return await getEmployeeCustomers(id);
+  const result = await getEmployeeCustomers(id);
+  revalidatePath("/dashboard/employees/[employeeId]");
+  return result;
 }
