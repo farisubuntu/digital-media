@@ -2,7 +2,7 @@ import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import Link from "next/link";
 import EmployeeDetails from "@/ui/dashboard/Employees/EmployeeDetails";
-import { getEmployee, getEmployeeCustomers } from "@/lib/utils/employeeUtils";
+import { actionGetEmployee, actionGetEmployeeCustomers } from "@/lib/actions";
 import CustomerDetails from "@/ui/dashboard/Customers/CustomerDetails";
 
 const breadcrumbs: Breadcrumb[] = [
@@ -21,18 +21,14 @@ const breadcrumbs: Breadcrumb[] = [
     href: "/dashboard/employees",
     active: false,
   },
-
 ];
 export default async function EmployeeDetailsPage({ params }: any) {
   const employeeId = Number(params.employeeId);
-  const employeeData = await getEmployee(employeeId);
-  
-  const employeeCustomersData = await getEmployeeCustomers(employeeId);
+  const employeeData = await actionGetEmployee(employeeId);
+
+  const employeeCustomersData = await actionGetEmployeeCustomers(employeeId);
 
   console.log("employeeCustomersData", employeeCustomersData);
-
-
-
 
   return (
     <>
