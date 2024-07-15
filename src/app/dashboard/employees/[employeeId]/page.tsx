@@ -21,11 +21,7 @@ const breadcrumbs: Breadcrumb[] = [
     href: "/dashboard/employees",
     active: false,
   },
-  {
-    label: "Employee Details",
-    href: "/dashboard/employees/[employeeId]/page",
-    active: true,
-  },
+
 ];
 export default async function EmployeeDetailsPage({ params }: any) {
   const employeeId = Number(params.employeeId);
@@ -40,13 +36,14 @@ export default async function EmployeeDetailsPage({ params }: any) {
 
   return (
     <>
-      <div className="flex flex-col">
-        {/* <Nav breadcrumbs={breadcrumbs} /> */}
+      <div className="flex flex-col gap-3">
+        <Nav breadcrumbs={breadcrumbs} />
 
         <EmployeeDetails employee={employeeData} />
+        <h1 className="text-3xl font-bold underline">Customers</h1>
         {employeeCustomersData !== null && employeeCustomersData.length > 0 ? (
           employeeCustomersData.map((customerRow: any) => (
-            <div key={customerRow.CustomerId}>
+            <div key={customerRow.CustomerId} className="even:bg-slate-500">
               <CustomerDetails customer={customerRow} />
             </div>
           ))

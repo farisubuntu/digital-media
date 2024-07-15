@@ -24,7 +24,7 @@ export async function getEmployeeCustomers(id: number) {
   `;
   try {
     const result = await tursoClient.execute(sql);
-    console.log("result", result);
+   
     return result.rows;
   } catch (error) {
     console.log(error);

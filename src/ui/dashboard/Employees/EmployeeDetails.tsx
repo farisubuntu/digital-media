@@ -1,82 +1,80 @@
-
 import Image from "next/image";
 
 export default async function EmployeeDetails({ employee }: { employee: any }) {
-  console.log("EMPLOYEE: ", employee);
-  
+  const employeeData = {...employee[0]};
+  console.log("EMPLOYEEDATA: ", employeeData);
 
   return (
     <>
       <>
-        <div className="flex flex-col">
-          <div className="flex">
-            <div className="w-1/3">
+        
+          <div className="flex space-x-4 bg-slate-800">
+            <div className="w-1/4">
               <Image
-                src={employee?.ImageURL}
-                width={100}
-                height={100}
-                alt={employee?.FirstName}
+                src={employeeData.ImageURL}
+                className="rounded-full"
+                width={400}
+                height={500}
+                alt={employeeData?.FirstName}
               />
             </div>
-            <div className="w-2/3">
+            <div className="w-3/4">
               <div className="flow-root rounded-lg border border-gray-100 py-3 shadow-sm">
-                <dl className="-my-3 divide-y divide-gray-200">
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">Name</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee.FirstName} {employee?.LastName}
+                <dl className="-my-3 divide-y divide-gray-300">
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-200 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium ">Name</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData.FirstName} {employeeData?.LastName}
                     </dd>
                   </div>
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">
                       Department/Title
                     </dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee?.Title}
+                    <dd className=" sm:col-span-2">
+                      {employeeData?.Title}
                     </dd>
                   </div>
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">Hire Date</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee.HireDate}
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">Hire Date</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData.HireDate}
                     </dd>
                   </div>
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">Address</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee?.Address}
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">Address</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData?.Address}
                     </dd>
                   </div>
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">Country</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee?.Country}
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">Country</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData?.Country}
                     </dd>
                   </div>
 
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">Phone</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee?.Phone}
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">Phone</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData?.Phone}
                     </dd>
                   </div>
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">Email</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee?.Email}
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">Email</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData?.Email}
                     </dd>
                   </div>
-                  <div className="grid grid-cols-1 gap-1 p-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
-                    <dt className="font-medium text-gray-900">ReportsTo</dt>
-                    <dd className="text-gray-700 sm:col-span-2">
-                      {employee?.ReportsTo}
+                  <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
+                    <dt className="font-medium">ReportsTo</dt>
+                    <dd className=" sm:col-span-2">
+                      {employeeData?.ReportsTo}
                     </dd>
                   </div>
                 </dl>
               </div>
             </div>
-          </div>
-      
         </div>
       </>
     </>
