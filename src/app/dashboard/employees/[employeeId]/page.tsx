@@ -1,3 +1,10 @@
+export const dynamic = "auto";
+export const dynamicParams = true;
+export const revalidate = false;
+export const fetchCache = "auto";
+export const runtime = "nodejs";
+export const preferredRegion = "auto";
+
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import Link from "next/link";

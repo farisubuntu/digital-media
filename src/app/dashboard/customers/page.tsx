@@ -1,4 +1,10 @@
-import React from "react";
+export const dynamic = "auto";
+export const dynamicParams = true;
+export const revalidate = false;
+export const fetchCache = "auto";
+export const runtime = "nodejs";
+export const preferredRegion = "auto";
+
 import { Breadcrumb, NavigationMenu } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import { getCustomers } from "@/lib/utils/getTables";
