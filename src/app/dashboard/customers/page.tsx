@@ -1,5 +1,3 @@
-
-
 import { Breadcrumb, NavigationMenu } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import { getCustomers } from "@/lib/utils/getTables";
@@ -31,7 +29,7 @@ export default async function CustomersPage() {
   const result = await getCustomers();
   const customersData = result;
   const row = customersData[0];
-  console.log("row", row[12]);
+
   return (
     <>
       <div className="flex flex-col">

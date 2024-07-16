@@ -6,8 +6,13 @@ import CustomerDetails from "@/ui/dashboard/Customers/CustomerDetails";
 import { getEmployee, getEmployeeCustomers } from "@/lib/utils/employeeUtils";
 
 async function getEmployeeDetails(id: number) {
-  const employeeData = await getEmployee(id);
-  const employeeCustomersData = await getEmployeeCustomers(id);
+  const employeeDataPromise = getEmployee(id);
+  const employeeCustomersDataPromise = getEmployeeCustomers(id);
+
+  const [employeeData, employeeCustomersData] = await Promise.all([
+    employeeDataPromise,
+    employeeCustomersDataPromise,
+  ]);
   return { employeeData, employeeCustomersData };
 }
 const breadcrumbs: Breadcrumb[] = [
@@ -32,7 +37,13 @@ export default async function EmployeeDetailsPage({ params }: any) {
     Number(params.employeeId)
   );
 
+  console.log("################# employeeData #################");
+  console.log(`############## ${Date.now().toString()} ##############`);
+  console.log("###################################################");
   console.log("employeeData", employeeData);
+    console.log("################# employeeCustomersData #################");
+    console.log(`############## ${Date.now().toString()} ##############`);
+    console.log("###################################################");
   console.log("employeeCustomersData", employeeCustomersData);
 
   return (
