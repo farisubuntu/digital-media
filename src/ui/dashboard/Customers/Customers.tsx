@@ -43,7 +43,9 @@ export default function Customers({ customers }: { customers: any[] }) {
                 </td>
                 <td className="p-4 text-sm text-black">{customer.Email}</td>
                 <td className="p-4 text-sm text-black">{customer.Phone}</td>
-                <td className="p-4 text-sm text-black overflow-ellipsis">{customer.Company !== null ? customer.Company : 'N/A'}</td>
+                <td className="p-4 text-sm text-black overflow-ellipsis">
+                  {customer.Company !== null ? customer.Company : "N/A"}
+                </td>
                 <td className="p-4">
                   <button className="mr-4" title="Edit">
                     <Link href={`/dashboard/customers/${customer.CustomerId}`}>
@@ -65,7 +67,7 @@ export default function Customers({ customers }: { customers: any[] }) {
                   </button>
                   <button className="mr-4" title="Delete">
                     <Link
-                      href={`dashboard/customers/${customer.CustomerId}/delete`}
+                      href={`/dashboard/customers/${customer.CustomerId}/delete`}
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -85,8 +87,8 @@ export default function Customers({ customers }: { customers: any[] }) {
                   </button>
                 </td>
                 <td className="p-4 text-sm text-black hover:underline hover:text-blue-500 text-md italic border border-slate-300">
-                  <Link href={`api/dashboard/employees/${customer.SupportRepId}`}>
-                    {customer.SupportRepId}- {customer[12]}{" "}{customer[13]}
+                  <Link href={`/dashboard/employees/${customer.SupportRepId}`}>
+                    {customer.SupportRepId}- {customer[12]} {customer[13]}
                   </Link>
                 </td>
               </tr>

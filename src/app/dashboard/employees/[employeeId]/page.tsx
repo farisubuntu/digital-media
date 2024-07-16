@@ -1,11 +1,15 @@
-
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import Link from "next/link";
 import EmployeeDetails from "@/ui/dashboard/Employees/EmployeeDetails";
-import { actionGetEmployee, actionGetEmployeeCustomers } from "@/lib/actions";
 import CustomerDetails from "@/ui/dashboard/Customers/CustomerDetails";
+import { getEmployee, getEmployeeCustomers } from "@/lib/utils/employeeUtils";
 
+async function getEmployeeDetails(id: number) {
+  const employeeData = await getEmployee(id);
+  const employeeCustomersData = await getEmployeeCustomers(id);
+  return { employeeData, employeeCustomersData };
+}
 const breadcrumbs: Breadcrumb[] = [
   {
     label: "Home",
@@ -24,19 +28,17 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 export default async function EmployeeDetailsPage({ params }: any) {
-  const employeeId = Number(params.employeeId);
-  
-  const employeeData = await actionGetEmployee(employeeId);
+  const { employeeData, employeeCustomersData } = await getEmployeeDetails(
+    Number(params.employeeId)
+  );
 
-  const employeeCustomersData = await actionGetEmployeeCustomers(employeeId);
-
+  console.log("employeeData", employeeData);
   console.log("employeeCustomersData", employeeCustomersData);
 
   return (
     <>
       <div className="flex flex-col gap-3">
         <Nav breadcrumbs={breadcrumbs} />
-
         <EmployeeDetails employee={employeeData} />
         <h1 className="text-3xl font-bold underline">Customers</h1>
         {employeeCustomersData !== null && employeeCustomersData.length > 0 ? (
