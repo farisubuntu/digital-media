@@ -1,9 +1,3 @@
-export const dynamic = "auto";
-export const dynamicParams = true;
-export const revalidate = false;
-export const fetchCache = "auto";
-export const runtime = "nodejs";
-export const preferredRegion = "auto";
 
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
@@ -31,6 +25,7 @@ const breadcrumbs: Breadcrumb[] = [
 ];
 export default async function EmployeeDetailsPage({ params }: any) {
   const employeeId = Number(params.employeeId);
+  
   const employeeData = await actionGetEmployee(employeeId);
 
   const employeeCustomersData = await actionGetEmployeeCustomers(employeeId);

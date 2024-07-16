@@ -85,7 +85,7 @@ export default function Customers({ customers }: { customers: any[] }) {
                   </button>
                 </td>
                 <td className="p-4 text-sm text-black hover:underline hover:text-blue-500 text-md italic border border-slate-300">
-                  <Link href={`/dashboard/employees/${customer.SupportRepId}`}>
+                  <Link href={`api/dashboard/employees/${customer.SupportRepId}`}>
                     {customer.SupportRepId}- {customer[12]}{" "}{customer[13]}
                   </Link>
                 </td>
