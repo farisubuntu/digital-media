@@ -5,6 +5,9 @@ import { ImageResponse } from "next/og";
 export const runtime = "edge";
 
 export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const FullName = searchParams.get("fullname");
+
   return new ImageResponse(
     (
       <div
@@ -19,7 +22,7 @@ export async function GET(request: Request) {
           justifyContent: "center",
         }}
       >
-        Hello world!
+        {FullName}
       </div>
     ),
     {

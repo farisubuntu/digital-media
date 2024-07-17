@@ -19,7 +19,6 @@ import { tursoClient } from "@/lib/turso";
 //   EmployeeLastName: string;
 // }
 
-
 export async function getCustomers() {
   const sql = `
    SELECT Customer.CustomerId, Customer.FirstName, Customer.LastName,Customer.Company, Customer.Email, Customer.Phone, Customer.Address, Customer.City, Customer.State, Customer.Country, Customer.PostalCode, Customer.SupportRepId, Employee.FirstName, Employee.LastName
@@ -27,6 +26,15 @@ export async function getCustomers() {
    JOIN Employee ON Customer.SupportRepId = Employee.EmployeeId
   `;
 
+  const result = await tursoClient.execute(sql);
+
+  return result.rows;
+}
+
+export async function getEmployees() {
+  const sql = `
+  SELECT * FROM Employee
+  `;
   const result = await tursoClient.execute(sql);
 
   return result.rows;

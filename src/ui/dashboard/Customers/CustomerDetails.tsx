@@ -1,13 +1,12 @@
 import Image from "next/image";
 
 export default function CustomerDetails({ customer }: { customer: any }) {
-  console.log("CUSTOMER: ", customer);
   return (
     <>
       <div className="flex">
         <div className="w-1/3">
           <Image
-            src={customer.ImageURL}
+            src={`https://i.pravatar.cc/`}
             width={100}
             height={100}
             alt={customer.FirstName}
@@ -24,7 +23,9 @@ export default function CustomerDetails({ customer }: { customer: any }) {
               </div>
               <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
                 <dt className="font-medium">Company</dt>
-                <dd className=" sm:col-span-2">{customer?.Company === null ? "N/A" : customer?.Company}</dd>
+                <dd className=" sm:col-span-2">
+                  {customer?.Company === null ? "N/A" : customer?.Company}
+                </dd>
               </div>
               <div className="grid grid-cols-1 gap-1 p-3 text-white even:bg-gray-50 even:text-black sm:grid-cols-3 sm:gap-4">
                 <dt className="font-medium">Address</dt>

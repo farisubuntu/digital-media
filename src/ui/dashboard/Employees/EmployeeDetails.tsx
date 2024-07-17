@@ -8,7 +8,7 @@ export default async function EmployeeDetails({ employee }: { employee: any }) {
       <div className="flex space-x-4 bg-slate-800">
         <div className="w-1/4">
           <Image
-            src={employeeData.ImageURL}
+            src={`https://i.pravatar.cc/`}
             className="rounded-full"
             width={400}
             height={500}
