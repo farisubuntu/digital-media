@@ -56,7 +56,9 @@ export default async function EmployeeDetailsPage({ params }: any) {
           <EmployeeDetails employee={employeeData} />
         </Suspense>
 
-        <h1 className="text-3xl font-bold underline">Customers</h1>
+        <h1 className="text-3xl font-bold underline">
+          Customers - {getEmployeeCustomers.length > 0 && getEmployeeCustomers.length}
+        </h1>
         <Suspense fallback={<Loading />}>
           {employeeCustomersData !== null &&
           employeeCustomersData.length > 0 ? (
