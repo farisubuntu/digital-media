@@ -9,8 +9,9 @@ import { createClient } from "@libsql/client";
 // });
 
 export const tursoClient = createClient({
-  url: "file:./src/lib/chinook.db",
-  syncInterval: 60,
-  authToken: process.env.TURSO_AUTH_TOKEN as string,
+  url: "file:src/lib/chinook.db",
+  authToken:
+    "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3MjA4MjIyNDksImlkIjoiNTBlMDhkMTItNGVhOS00YjViLThjOTItZGNhNGIyZDIxMDY4In0.bsz1PqI37pcU9SemBiD1XxmQloAhHsVh9K1TEjxuJ1GNLVl3P0G5w34b6E4_0jg088NvojLN5soSJ9wrQ0ESCg",
+  syncInterval: 120,
   syncUrl: "libsql://chinook-farisubuntu.turso.io",
 });
