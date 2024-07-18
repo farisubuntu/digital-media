@@ -27,3 +27,16 @@ tr:hover{
   background-color: #130d36;
   color: white;
 }
+
+@media screen and (max-width: 884px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+  }
+  .sidebar-list{
+    display: flex;
+    justify-content: space-between;
+  }
+}
