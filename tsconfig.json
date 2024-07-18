@@ -22,10 +22,10 @@
       "/": ["./public/*"],
       "@/*": ["./src/*"],
       "@/app/*": ["./src/app/*"],
-      "@/prisma/client":["./prisma/generated/client/**/*"]
+      "@/prisma/client/*": ["./prisma/generated/client/*"]
     }
   },
-  
+
   "include": [
     "next-env.d.ts",
     "**/*.ts",
@@ -33,11 +33,7 @@
     ".next/types/**/*.ts",
     "src/**/*",
     "prisma/**/*",
-    "prisma/**/*.ts",
+    "prisma/**/*.ts"
   ],
   "exclude": ["node_modules"]
-  
-
-  
 }
-
