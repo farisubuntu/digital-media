@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import Link from "next/link";
@@ -17,6 +18,17 @@ async function getEmployeeDetails(id: number) {
   ]);
   return { employeeData, employeeCustomersData };
 }
+=======
+import EmployeeDetails from "@/ui/dashboard/EmployeeDetails/EmployeeDetails";
+import { getCustomerDetails, getEmployeeDetails } from "@/lib/utils";
+import Nav from "@/ui/dashboard/Nav/Nav";
+import { Breadcrumb } from "@/lib/definitiions";
+import type { Employee } from "@prisma/client";
+import { Suspense } from "react";
+import Loading from "@/app/dashboard/loading";
+import { notFound } from "next/navigation";
+
+>>>>>>> vercel-prisma
 const breadcrumbs: Breadcrumb[] = [
   {
     label: "Home",
@@ -31,6 +43,7 @@ const breadcrumbs: Breadcrumb[] = [
   {
     label: "Employees",
     href: "/dashboard/employees",
+<<<<<<< HEAD
     active: false,
   },
 ];
@@ -73,5 +86,38 @@ export default async function EmployeeDetailsPage({ params }: any) {
         </Suspense>
       </div>
     </>
+=======
+    active: true,
+  },
+];
+
+export default async function EmployeePage({
+  params,
+}: {
+  params: { employeeId: string | any };
+}) {
+  const employeeData: Employee | null = await getEmployeeDetails(
+    params.employeeId
+  );
+const teams=await getEmployeeDetails(employeeData?.ReportsTo);
+
+// console.log("DATA: ", teams);
+  if (!employeeData) return notFound();
+  // console.log(employeeData);
+
+  return (
+    <div className="flex flex-col">
+      <Nav breadcrumbs={breadcrumbs} />
+      <Suspense fallback={<Loading />}>
+        <div className="flex justify-between items-center">
+          <h1 className="text-3xl bg-green-900 p-1 italic border rounded-xl my-4 mx-2 text-white">
+            {employeeData?.FirstName} {employeeData?.LastName}
+          </h1>
+        </div>
+        <EmployeeDetails employee={employeeData} />
+      
+      </Suspense>
+    </div>
+>>>>>>> vercel-prisma
   );
 }

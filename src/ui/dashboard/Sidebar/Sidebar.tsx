@@ -9,8 +9,13 @@ export default function Sidebar() {
   const pathname = usePathname();
   return (
     <>
+<<<<<<< HEAD
       <nav className="bg-[#121e31] h-screen fixed top-auto left-0 py-6 px-4 font-[sans-serif] tracking-wide overflow-auto">
         <ul className="space-y-3">
+=======
+      <nav className="bg-[#121e31] w-64 top-auto left-0 py-6 px-4 font-[sans-serif] h-screen overflow-auto sidebar">
+        <ul className="space-y-3 sidebar-list">
+>>>>>>> vercel-prisma
           <li
             className={`${
               pathname.includes("dashboard/invoices") ? "bg-green-900" : ""
@@ -36,7 +41,11 @@ export default function Sidebar() {
           </li>
           <li
             className={`${
+<<<<<<< HEAD
               pathname.includes("/dasboard/insights") ? "bg-gray-800" : ""
+=======
+              pathname.includes("/dasboard/insights") ? "bg-green-800" : ""
+>>>>>>> vercel-prisma
             }`}
           >
             <Link
@@ -57,7 +66,11 @@ export default function Sidebar() {
               <span>Insights</span>
             </Link>
           </li>
+<<<<<<< HEAD
           <li className={`${pathname.includes("/dashboard/customers") ? "bg-gray-800" : ""}`}>
+=======
+          <li className={`${pathname.includes("/dashboard/customers") ? "bg-green-800" : ""}`}>
+>>>>>>> vercel-prisma
             <Link
               href="/dashboard/customers"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
@@ -76,7 +89,11 @@ export default function Sidebar() {
               <span>Customers</span>
             </Link>
           </li>
+<<<<<<< HEAD
           <li className={`${pathname.includes("/dashboard/employees") ? "bg-gray-800" : ""}`}>
+=======
+          <li className={`${pathname.includes("/dashboard/employees") ? "bg-green-800" : ""}`}>
+>>>>>>> vercel-prisma
             <Link
               href="/dashboard/employees"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
@@ -95,7 +112,11 @@ export default function Sidebar() {
               <span>Employees</span>
             </Link>
           </li>
+<<<<<<< HEAD
           <li className={`${pathname.includes("/dashboard/albums") ? "bg-gray-800" : ""}`}>
+=======
+          <li className={`${pathname.includes("/dashboard/albums") ? "bg-green-800" : ""}`}>
+>>>>>>> vercel-prisma
             <Link
               href="/dashboard/albums"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
@@ -132,7 +153,11 @@ export default function Sidebar() {
               <span>Albums</span>
             </Link>
           </li>
+<<<<<<< HEAD
           <li className={`${pathname.includes("/dashboard/artists") ? "bg-gray-800" : ""}`}>
+=======
+          <li className={`${pathname.includes("/dashboard/artists") ? "bg-green-800" : ""}`}>
+>>>>>>> vercel-prisma
             <Link
               href="/dashboard/artists"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"

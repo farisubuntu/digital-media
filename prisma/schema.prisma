@@ -1,0 +1,151 @@
+generator client {
+  provider        = "prisma-client-js"
+  output   = "./generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./chinook.db"
+}
+
+model Album {
+  AlbumId  Int     @id @default(autoincrement())
+  Title    String
+  ArtistId Int
+  Artist   Artist  @relation(fields: [ArtistId], references: [ArtistId], onDelete: NoAction, onUpdate: NoAction)
+  Track    Track[]
+
+  @@index([ArtistId], map: "IFK_AlbumArtistId")
+}
+
+model Artist {
+  ArtistId Int     @id @default(autoincrement())
+  Name     String?
+  Album    Album[]
+}
+
+model Customer {
+  CustomerId   Int       @id @default(autoincrement())
+  FirstName    String
+  LastName     String
+  ImageURL     String    @default("https://picsum.photos/300")
+  Company      String?
+  Address      String?
+  City         String?
+  State        String?
+  Country      String?
+  PostalCode   String?
+  Phone        String?
+  Fax          String?
+  Email        String
+  SupportRepId Int?
+  Employee     Employee? @relation(fields: [SupportRepId], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
+  Invoice      Invoice[]
+
+  @@index([SupportRepId], map: "IFK_CustomerSupportRepId")
+}
+
+model Employee {
+  EmployeeId     Int        @id @default(autoincrement())
+  LastName       String
+  FirstName      String
+  ImageURL       String     @default("https://picsum.photos/300")
+  Title          String?
+  ReportsTo      Int?
+  BirthDate      DateTime?
+  HireDate       DateTime?
+  Address        String?
+  City           String?
+  State          String?
+  Country        String?
+  PostalCode     String?
+  Phone          String?
+  Fax            String?
+  Email          String?
+  Customer       Customer[]
+  Employee       Employee?  @relation("EmployeeToEmployee", fields: [ReportsTo], references: [EmployeeId], onDelete: NoAction, onUpdate: NoAction)
+  other_Employee Employee[] @relation("EmployeeToEmployee")
+
+  @@index([ReportsTo], map: "IFK_EmployeeReportsTo")
+}
+
+model Genre {
+  GenreId Int     @id @default(autoincrement())
+  Name    String?
+  Track   Track[]
+}
+
+model Invice_Item {
+  InvoiceLineId Int     @id @default(autoincrement())
+  InvoiceId     Int
+  TrackId       Int
+  UnitPrice     Decimal
+  Quantity      Int
+  Track         Track   @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
+  Invoice       Invoice @relation(fields: [InvoiceId], references: [InvoiceId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([TrackId], map: "IFK_InvoiceLineTrackId")
+  @@index([InvoiceId], map: "IFK_InvoiceLineInvoiceId")
+}
+
+model Invoice {
+  InvoiceId         Int           @id @default(autoincrement())
+  CustomerId        Int
+  InvoiceDate       DateTime
+  BillingAddress    String?
+  BillingCity       String?
+  BillingState      String?
+  BillingCountry    String?
+  BillingPostalCode String?
+  Total             Decimal
+  Invice_Item       Invice_Item[]
+  Customer          Customer      @relation(fields: [CustomerId], references: [CustomerId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([CustomerId], map: "IFK_InvoiceCustomerId")
+}
+
+model Media_Type {
+  MediaTypeId Int     @id @default(autoincrement())
+  Name        String?
+  Track       Track[]
+}
+
+model Playlist {
+  PlaylistId     Int              @id @default(autoincrement())
+  Name           String?
+  Playlist_Track Playlist_Track[]
+}
+
+model Playlist_Track {
+  PlaylistId Int
+  TrackId    Int
+  Playlist   Playlist @relation(fields: [PlaylistId], references: [PlaylistId], onDelete: NoAction, onUpdate: NoAction)
+  Track      Track    @relation(fields: [TrackId], references: [TrackId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([PlaylistId, TrackId])
+  @@index([TrackId], map: "IFK_PlaylistTrackTrackId")
+}
+
+model Track {
+  TrackId        Int              @id @default(autoincrement())
+  Name           String
+  AlbumId        Int?
+  MediaTypeId    Int
+  GenreId        Int?
+  Composer       String?
+  Milliseconds   Int
+  Bytes          Int?
+  UnitPrice      Decimal
+  Invice_Item    Invice_Item[]
+  Playlist_Track Playlist_Track[]
+  Album          Album?           @relation(fields: [AlbumId], references: [AlbumId], onDelete: NoAction, onUpdate: NoAction)
+  Media_Type     Media_Type       @relation(fields: [MediaTypeId], references: [MediaTypeId], onDelete: NoAction, onUpdate: NoAction)
+  Genre          Genre?           @relation(fields: [GenreId], references: [GenreId], onDelete: NoAction, onUpdate: NoAction)
+
+  @@index([MediaTypeId], map: "IFK_TrackMediaTypeId")
+  @@index([GenreId], map: "IFK_TrackGenreId")
+  @@index([AlbumId], map: "IFK_TrackAlbumId")
+}
+
+
+

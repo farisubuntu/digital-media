@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { StatCardInterface, Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/Nav/Nav";
 import StatCard from "@/ui/dashboard/StatCard/StatCard";
@@ -5,6 +6,66 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { fetchCardData } from "@/lib/utils/counts";
 import Loading from "@/app/dashboard/loading";
+=======
+import { Breadcrumb, StatCardInterface } from "@/lib/definitiions";
+import Nav from "@/ui/dashboard/Nav/Nav";
+import Link from "next/link";
+import StatCard from "@/ui/dashboard/StatCard/StatCard";
+import {} from "@/lib/definitiions";
+import PlaylistIcon from "@/ui/Icons/playlist-icon";
+import {
+  getInvoicesTotal,
+  getCustomersCount,
+  getEmployeesCount,
+  getArtistsCount,
+  getAlbumsCount,
+  getPlaylistsCount,
+} from "@/lib/utils";
+import {
+  CurrencyPoundIcon,
+  UserGroupIcon,
+  UserPlusIcon,
+  MusicalNoteIcon,
+  QueueListIcon,
+} from "@heroicons/react/24/outline";
+
+async function fetchData() {
+  const statCardItems: StatCardInterface[] = [
+    {
+      title: "Total Customers",
+      icon: <UserGroupIcon className="size-12" />,
+      value: Number(await getCustomersCount()),
+    },
+    {
+      title: "Total Employees",
+      icon: <UserPlusIcon className="size-12" />,
+      value: Number(await getEmployeesCount()),
+    },
+    {
+      title: "Total Invoices",
+      icon: <CurrencyPoundIcon className="size-12" />,
+      value: Number(await getInvoicesTotal()).toFixed(2),
+    },
+    {
+      title: "Artists Count",
+      icon: <MusicalNoteIcon className="size-12" />,
+      value: Number(await getArtistsCount()),
+    },
+    {
+      title: "Albums Count",
+      icon: <QueueListIcon className="size-12" />,
+      value: Number(await getAlbumsCount()),
+    },
+    {
+      title: "Playlists Count",
+      icon: <PlaylistIcon size={48} />,
+      value: Number(await getPlaylistsCount()),
+    },
+  ];
+
+  return statCardItems;
+}
+>>>>>>> vercel-prisma
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -64,6 +125,7 @@ export default async function DashboardPage() {
   // console.log(cards);
   return (
     <>
+<<<<<<< HEAD
 
 
           <Suspense fallback={<Loading />}>
@@ -82,6 +144,15 @@ export default async function DashboardPage() {
                     </div>
                   ))}
                 </div>
+=======
+      <div className="flex flex-col gap-2">
+        <Nav breadcrumbs={breadcrumbs} />
+        <div className="px-1">
+          <div className="flex flex-wrap gap-2">
+            {statCardItems.map((statCardItem, index) => (
+              <div key={index} className="">
+                <StatCard item={statCardItem} />
+>>>>>>> vercel-prisma
               </div>
             </div>
           </Suspense>
