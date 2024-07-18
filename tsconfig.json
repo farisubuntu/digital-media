@@ -17,22 +17,11 @@
         "name": "next"
       }
     ],
-<<<<<<< HEAD
 
     "paths": {
       "/": ["./public/*"],
       "@/*": ["./src/*"],
       "@/app/*": ["./src/app/*"]
-=======
-    "paths": {
-      "/": ["./public/*"],
-      "@/*": ["./src/*"],
-      "@app/*": ["./src/app/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@ui/*": ["./src/ui/*"],
-      "@dashboard/*": ["./src/app/dashboard/*"]
->>>>>>> vercel-prisma
     }
   },
   
@@ -41,13 +30,10 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-<<<<<<< HEAD
-    ".next/types/**/*.tsx",
-    "src/lib/**/*.ts",
-=======
-    "src/**/*"
->>>>>>> vercel-prisma
+    "src/**/*",
+    "prisma/**/*"
   ],
   "exclude": ["node_modules"]
   
 }
+
