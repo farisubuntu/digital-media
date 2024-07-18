@@ -49,7 +49,14 @@ export async function getAllAlbums(): Promise<Album[]> {
 
   return albums;
 }
-
+export async function getAlbums(artistId: string | any) : Promise<Album[]> {
+  const albums = await prismaClient.album.findMany({
+    where: {
+      ArtistId: Number(artistId),
+    },
+  });
+  return albums;
+}
 export async function getAllInvoices(): Promise<Invoice[]> {
   const invoices = await prismaClient.invoice.findMany();
 
@@ -238,5 +245,7 @@ export async function getInvoiceItems(invoiceId: number) {
   });
   return res;
 }
+
+
 
 export { prismaClient };

@@ -36,7 +36,7 @@ export default function Sidebar() {
           </li>
           <li
             className={`${
-              pathname.includes("/dasboard/insights") ? "bg-gray-800" : ""
+              pathname.includes("/dasboard/insights") ? "bg-green-800" : ""
             }`}
           >
             <Link
@@ -57,7 +57,7 @@ export default function Sidebar() {
               <span>Insights</span>
             </Link>
           </li>
-          <li className={`${pathname.includes("/dashboard/customers") ? "bg-gray-800" : ""}`}>
+          <li className={`${pathname.includes("/dashboard/customers") ? "bg-green-800" : ""}`}>
             <Link
               href="/dashboard/customers"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
@@ -76,7 +76,7 @@ export default function Sidebar() {
               <span>Customers</span>
             </Link>
           </li>
-          <li className={`${pathname.includes("/dashboard/employees") ? "bg-gray-800" : ""}`}>
+          <li className={`${pathname.includes("/dashboard/employees") ? "bg-green-800" : ""}`}>
             <Link
               href="/dashboard/employees"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
@@ -95,7 +95,7 @@ export default function Sidebar() {
               <span>Employees</span>
             </Link>
           </li>
-          <li className={`${pathname.includes("/dashboard/albums") ? "bg-gray-800" : ""}`}>
+          <li className={`${pathname.includes("/dashboard/albums") ? "bg-green-800" : ""}`}>
             <Link
               href="/dashboard/albums"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
@@ -132,7 +132,7 @@ export default function Sidebar() {
               <span>Albums</span>
             </Link>
           </li>
-          <li className={`${pathname.includes("/dashboard/artists") ? "bg-gray-800" : ""}`}>
+          <li className={`${pathname.includes("/dashboard/artists") ? "bg-green-800" : ""}`}>
             <Link
               href="/dashboard/artists"
               className="text-white text-sm flex items-center hover:bg-gray-700 rounded px-4 py-3 transition-all"
