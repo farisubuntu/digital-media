@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+import { Breadcrumb, NavigationMenu } from "@/lib/definitiions";
+import Nav from "@/ui/Nav/Nav";
+import { getCustomers } from "@/lib/utils/getTables";
+import Customers from "@/ui/dashboard/Customers/Customers";
+=======
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { getAllCustomers } from "@/lib/utils";
@@ -6,6 +12,7 @@ import Link from "next/link";
 import type { Customer } from "@prisma/client";
 import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";
+>>>>>>> vercel-prisma
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -25,6 +32,24 @@ const breadcrumbs: Breadcrumb[] = [
   },
 ];
 
+<<<<<<< HEAD
+export const metadata = {
+  title: "Customers",
+};
+
+export default async function CustomersPage() {
+  const result = await getCustomers();
+  const customersData = result;
+  const row = customersData[0];
+
+  return (
+    <>
+      <div className="flex flex-col">
+        <Nav breadcrumbs={breadcrumbs} />
+        <Customers customers={customersData} />
+      </div>
+    </>
+=======
 export default async function CustomersPage() {
   const customers: Customer[] = await getAllCustomers();
   // console.log(customers[0])
@@ -112,5 +137,6 @@ export default async function CustomersPage() {
         </div>
       </Suspense>
     </div>
+>>>>>>> vercel-prisma
   );
 }

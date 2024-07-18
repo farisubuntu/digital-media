@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+import { Breadcrumb, NavigationMenu } from "@/lib/definitiions";
+import Nav from "@/ui/Nav/Nav";
+import { getEmployees } from "@/lib/utils/getTables";
+import Employees from "@/ui/dashboard/Employees/Employees";
+=======
 import { Breadcrumb } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import { getAllEmployees } from "@/lib/utils";
@@ -7,6 +13,7 @@ import { Employee } from "@prisma/client";
 
 import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";
+>>>>>>> vercel-prisma
 
 const breadcrumbs: Breadcrumb[] = [
   {
@@ -21,11 +28,27 @@ const breadcrumbs: Breadcrumb[] = [
   },
   {
     label: "Employees",
-    href: "/dashboard/employees",
+    href: "/dashboard/customers",
     active: true,
   },
 ];
 
+<<<<<<< HEAD
+export const metadata = {
+  title: "Customers",
+};
+
+export default async function EmployeesPage() {
+  const employeesData = await getEmployees();
+
+  return (
+    <>
+      <div className="flex flex-col">
+        <Nav breadcrumbs={breadcrumbs} />
+        <Employees employees={employeesData} />
+      </div>
+    </>
+=======
 export default async function EmployeePage() {
   const allEmployees: Employee[] | null = await getAllEmployees();
   if (!allEmployees) return <h1 className="text-3xl">No employees found</h1>;
@@ -136,5 +159,6 @@ export default async function EmployeePage() {
         </div>
       </Suspense>
     </div>
+>>>>>>> vercel-prisma
   );
 }

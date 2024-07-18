@@ -2,18 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+<<<<<<< HEAD
+=======
 
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
 }
+>>>>>>> vercel-prisma
 
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
+
+body {
+  padding: 0.5rem;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: inherit;
 }

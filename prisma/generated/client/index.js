@@ -237,8 +237,12 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
+<<<<<<< HEAD
+    "rootEnvPath": null
+=======
     "rootEnvPath": "../../../.env",
     "schemaEnvPath": "../../../.env"
+>>>>>>> vercel-prisma
   },
   "relativePath": "../..",
   "clientVersion": "5.16.2",
@@ -247,7 +251,11 @@ const config = {
     "db"
   ],
   "activeProvider": "sqlite",
+<<<<<<< HEAD
+  "postinstall": false,
+=======
   "postinstall": true,
+>>>>>>> vercel-prisma
   "inlineDatasources": {
     "db": {
       "url": {

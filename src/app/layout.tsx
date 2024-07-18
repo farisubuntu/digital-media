@@ -1,6 +1,9 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+
+import Header from "@/ui/Header/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +22,14 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </head>
-      <body className={`${inter.className} h-full`}>{children}</body>
+      <body className={`${inter.className} h-full`}>
+        {/* <TopNav /> */}
+          <div>
+            <Header />
+          </div>
+           <div> {children}</div>
+        
+      </body>
     </html>
   );
 }

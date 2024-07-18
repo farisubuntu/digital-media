@@ -17,14 +17,11 @@
         "name": "next"
       }
     ],
+
     "paths": {
       "/": ["./public/*"],
       "@/*": ["./src/*"],
-      "@app/*": ["./src/app/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@lib/*": ["./src/lib/*"],
-      "@ui/*": ["./src/ui/*"],
-      "@dashboard/*": ["./src/app/dashboard/*"]
+      "@/app/*": ["./src/app/*"]
     }
   },
   
@@ -33,9 +30,13 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/**/*"
+    "src/**/*",
+    "prisma/**/*",
+    "prisma/**/*.ts",
   ],
   "exclude": ["node_modules"]
   
+
   
 }
+

@@ -1,3 +1,24 @@
+<<<<<<< HEAD
+import { Breadcrumb } from "@/lib/definitiions";
+import Nav from "@/ui/Nav/Nav";
+import Link from "next/link";
+import EmployeeDetails from "@/ui/dashboard/Employees/EmployeeDetails";
+import CustomerDetails from "@/ui/dashboard/Customers/CustomerDetails";
+import { getEmployee, getEmployeeCustomers } from "@/lib/utils/employeeUtils";
+import { Suspense } from "react";
+import Loading from "@/app/dashboard/loading";
+
+async function getEmployeeDetails(id: number) {
+  const employeeDataPromise = getEmployee(id);
+  const employeeCustomersDataPromise = getEmployeeCustomers(id);
+
+  const [employeeData, employeeCustomersData] = await Promise.all([
+    employeeDataPromise,
+    employeeCustomersDataPromise,
+  ]);
+  return { employeeData, employeeCustomersData };
+}
+=======
 import EmployeeDetails from "@/ui/dashboard/EmployeeDetails/EmployeeDetails";
 import { getCustomerDetails, getEmployeeDetails } from "@/lib/utils";
 import Nav from "@/ui/dashboard/Nav/Nav";
@@ -7,6 +28,7 @@ import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";
 import { notFound } from "next/navigation";
 
+>>>>>>> vercel-prisma
 const breadcrumbs: Breadcrumb[] = [
   {
     label: "Home",
@@ -21,6 +43,50 @@ const breadcrumbs: Breadcrumb[] = [
   {
     label: "Employees",
     href: "/dashboard/employees",
+<<<<<<< HEAD
+    active: false,
+  },
+];
+export default async function EmployeeDetailsPage({ params }: any) {
+  const { employeeData, employeeCustomersData } = await getEmployeeDetails(
+    Number(params.employeeId)
+  );
+
+  console.log("################# employeeData #################");
+  console.log(`############## ${Date.now().toString()} ##############`);
+  console.log("###################################################");
+  console.log("employeeData", employeeData);
+  console.log("################# employeeCustomersData #################");
+  console.log(`############## ${Date.now().toString()} ##############`);
+  console.log("###################################################");
+  console.log("employeeCustomersData", employeeCustomersData);
+
+  return (
+    <>
+      <div className="flex flex-col gap-3">
+        <Nav breadcrumbs={breadcrumbs} />
+        <Suspense fallback={<Loading />}>
+          <EmployeeDetails employee={employeeData} />
+        </Suspense>
+
+        <h1 className="text-3xl font-bold underline">
+          Customers - {getEmployeeCustomers.length > 0 && getEmployeeCustomers.length}
+        </h1>
+        <Suspense fallback={<Loading />}>
+          {employeeCustomersData !== null &&
+          employeeCustomersData.length > 0 ? (
+            employeeCustomersData.map((customerRow: any) => (
+              <div key={customerRow.CustomerId} className="even:bg-slate-500">
+                <CustomerDetails customer={customerRow} />
+              </div>
+            ))
+          ) : (
+            <div>No customers found</div>
+          )}
+        </Suspense>
+      </div>
+    </>
+=======
     active: true,
   },
 ];
@@ -52,5 +118,6 @@ const teams=await getEmployeeDetails(employeeData?.ReportsTo);
       
       </Suspense>
     </div>
+>>>>>>> vercel-prisma
   );
 }
