@@ -19,6 +19,7 @@
       }
     ],
     "paths": {
+      "/": ["./public/*"],
       "@/*": ["./src/*"],
       "@app/*": ["./src/app/*"],
       "@styles/*": ["./src/styles/*"],
@@ -35,4 +36,5 @@
     "src/**/*"
   ],
   "exclude": ["node_modules"]
+  
 }
