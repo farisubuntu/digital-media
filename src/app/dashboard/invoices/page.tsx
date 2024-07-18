@@ -37,7 +37,7 @@ export default async function InvoicesPage() {
   const invoices = await getAllInvoices();
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full mr-2">
       <Nav breadcrumbs={breadcrumbs} />
       <Suspense fallback={<Loading />}>
         <div className="table-wrapper">

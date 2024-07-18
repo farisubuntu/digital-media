@@ -29,7 +29,7 @@ export default async function CustomersPage() {
   const customers: Customer[] = await getAllCustomers();
   // console.log(customers[0])
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full mr-2">
       <Nav breadcrumbs={breadcrumbs} />
       <Suspense fallback={<Loading />}>
         <div className="table-wrapper">

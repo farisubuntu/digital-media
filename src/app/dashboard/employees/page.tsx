@@ -4,7 +4,7 @@ import { getAllEmployees } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Employee } from "@prisma/client";
-import { notFound } from "next/navigation";
+
 import { Suspense } from "react";
 import Loading from "@/app/dashboard/loading";
 
@@ -28,10 +28,10 @@ const breadcrumbs: Breadcrumb[] = [
 
 export default async function EmployeePage() {
   const allEmployees: Employee[] | null = await getAllEmployees();
-  if (!allEmployees) return notFound();
+  if (!allEmployees) return <h1 className="text-3xl">No employees found</h1>;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full mr-2">
       <Nav breadcrumbs={breadcrumbs} />
       <Suspense fallback={<Loading />}>
         <div className="table-wrapper">
@@ -61,13 +61,13 @@ export default async function EmployeePage() {
                   scope="col"
                   className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Department / Job Title
+                  Country
                 </th>
                 <th
                   scope="col"
                   className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
                 >
-                  Country
+                  Department
                 </th>
               </tr>
             </thead>
@@ -101,8 +101,18 @@ export default async function EmployeePage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="px-2 inline-flex text-sm leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      {employee?.Email}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
                     <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                       {employee?.Country}
+                    </span>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                      {employee?.Title}
                     </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
