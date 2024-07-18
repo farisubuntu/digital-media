@@ -2,10 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  /* background-color: #1e293b; */
-  /* color: white; */
-}
+
 input[type="number"] {
   -moz-appearance: textfield;
   appearance: textfield;
@@ -19,31 +16,4 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
-}
-tr{
-  color:blue;
-}
-tr:hover{
-  background-color: #5446a1;
-  color: white;
-}
-th {
-  color: white;
-}
-thead{
-  position: sticky;
-  top: 0;
-  width: 100%;
-}
-@media screen and (max-width: 884px) {
-  .sidebar {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-
-  }
-  .sidebar-list{
-    display: flex;
-    justify-content: space-between;
-  }
 }

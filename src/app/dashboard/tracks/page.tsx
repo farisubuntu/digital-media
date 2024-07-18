@@ -76,7 +76,7 @@ export default async function TracksPage() {
                   </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-white  divide-y-2 divide-gray-200">
                 {tracksData.map((track) => (
                   <tr key={track.TrackId}>
                     <td className="px-2 py-3 text-left">{track?.Name}</td>

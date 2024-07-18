@@ -1,8 +1,8 @@
-import { Breadcrumb , StatCardInterface} from "@/lib/definitiions";
+import { Breadcrumb, StatCardInterface } from "@/lib/definitiions";
 import Nav from "@/ui/dashboard/Nav/Nav";
 import Link from "next/link";
 import StatCard from "@/ui/dashboard/StatCard/StatCard";
-import {  } from "@/lib/definitiions";
+import {} from "@/lib/definitiions";
 import PlaylistIcon from "@/ui/Icons/playlist-icon";
 import {
   getInvoicesTotal,
@@ -19,7 +19,6 @@ import {
   MusicalNoteIcon,
   QueueListIcon,
 } from "@heroicons/react/24/outline";
-
 
 async function fetchData() {
   const statCardItems: StatCardInterface[] = [
@@ -49,11 +48,10 @@ async function fetchData() {
       value: Number(await getAlbumsCount()),
     },
     {
-      title:"Playlists Count",
+      title: "Playlists Count",
       icon: <PlaylistIcon size={48} />,
       value: Number(await getPlaylistsCount()),
-
-    }
+    },
   ];
 
   return statCardItems;
@@ -76,12 +74,12 @@ export default async function DashboardPage() {
   const statCardItems = await fetchData();
   return (
     <>
-      <Nav breadcrumbs={breadcrumbs} />
-      <div className="px-1">
-        <div className="flex flex-col lg:flex-row gap-2">
-          <div className="flex flex-col md:flex-row">
+      <div className="flex flex-col gap-2">
+        <Nav breadcrumbs={breadcrumbs} />
+        <div className="px-1">
+          <div className="flex flex-wrap gap-2">
             {statCardItems.map((statCardItem, index) => (
-              <div key={index} className="w-full">
+              <div key={index} className="">
                 <StatCard item={statCardItem} />
               </div>
             ))}

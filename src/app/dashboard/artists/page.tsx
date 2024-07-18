@@ -71,13 +71,13 @@ export default async function ArtistsPage() {
               <tr>
                 <th
                   scope="col"
-                  className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                  className="px-2 py-3 text-left"
                 >
                   Name
                 </th>
                 <th
                   scope="col"
-                  className="px-2 py-3 text-left text-xs font-medium uppercase tracking-wider"
+                  className="px-2 py-3 text-left"
                 >
                   Albums
                 </th>

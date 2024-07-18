@@ -1,4 +1,4 @@
-@media screen and (min-width: 900px) {
+/* @media screen and (min-width: 900px) {
   .table-wrapper table thead tr th {
     font-size: 1.3rem;
   }
@@ -12,5 +12,42 @@
   }
   input {
     border: 1px solid white;
+  }
+} */
+.table-wrapper {
+  font-size: 1.1rem;
+}
+tr {
+  color: blue;
+  font-size: inherit;
+}
+tr:hover {
+  background-color: #5446a1;
+  color: white;
+}
+th,
+td {
+  color: inherit;
+  font-size: inherit;
+}
+th {
+  color: white;
+}
+thead {
+  position: sticky;
+  top: 0;
+  width: 100%;
+}
+
+  
+@media screen and (max-width: 884px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  .sidebar-list {
+    display: flex;
+    justify-content: space-between;
   }
 }

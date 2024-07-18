@@ -9,7 +9,7 @@ export default function Sidebar() {
   const pathname = usePathname();
   return (
     <>
-      <nav className="bg-[#121e31] w-64 top-auto left-0 py-6 px-4 font-[sans-serif] tracking-wide overflow-auto sidebar">
+      <nav className="bg-[#121e31] w-64 top-auto left-0 py-6 px-4 font-[sans-serif] h-screen overflow-auto sidebar">
         <ul className="space-y-3 sidebar-list">
           <li
             className={`${

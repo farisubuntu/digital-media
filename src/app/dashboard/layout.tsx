@@ -11,7 +11,7 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <Suspense fallback={<Loading />}>
+
         <div className="flex flex-col">
           <TopNav />
           <div className="flex gap-2">
@@ -19,7 +19,7 @@ export default function DashboardLayout({
             {children}
           </div>
         </div>
-      </Suspense>
+
     </>
   );
 }

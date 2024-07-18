@@ -27,6 +27,7 @@
       "@dashboard/*": ["./src/app/dashboard/*"]
     }
   },
+  
   "include": [
     "next-env.d.ts",
     "**/*.ts",
